@@ -26,8 +26,24 @@ See Conda instructions with `ENV_NAME` set to `into_to_Python`.
 ### Bayesian Inference
 ### Natural language processing
 ### Reinforcement Learning
-### Deep learning methods for genomics 
+### Deep learning methods for genomics
+The seminar hands-on workshop will be run in a [google colab notebook](https://colab.research.google.com/drive/1SRHe_SXmKeXImNBR6tnhFQ3eThM4-iZu). A google account is required though. Additional information can be found in this [repo](https://github.com/rschwess/tutorial_dl_for_genomics) but no need to install anything for the workshop.
 ### Deep Generative Models for dimensionality reduction
 ### Tree based methods
 
 ## Hackathons
+
+### Dilated Convolutional Neural Nets for DNase-seq and ATAC-seq footprinting 
+Requirements: 
+* `python3`
+* `keras` and `Tensorflow v1.14` as backend
+* `numpy`
+* `scikit-learn`
+* google account for colab notebook work
+
+Literature:
+* [Dnase Footprinting general Introduction](https://www.nature.com/articles/nmeth.3768)
+* [Learning genomic signals at base pair resolution](https://drive.google.com/file/d/1kg6Ic0-FvJtVUva9Mh3FPnOAHJcN6VB-/view)
+
+
+### 
