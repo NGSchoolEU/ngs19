@@ -12,8 +12,13 @@ Put the Conda instructions here.
 
 ## Workshops
 
-### Intro to Linux
+### Intro to HPC
+
+The wbsite is [here](https://docs.cyfronet.pl/display/~plgnoga/NGSchool2019)
+
 ### Intro to R
+
+
 ### Intro to Python
 The whole workshop will be executed in the Jupyter notebook. 
 
