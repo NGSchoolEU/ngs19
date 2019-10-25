@@ -46,6 +46,11 @@ Once it is installed, you need to load it to R:
 ```{r}
 library(data.table)
 ```
+Since we are all working together and sharing threads, let's be collegial:
+```{r}
+setDTthreads(threads = 1, restore_after_fork = FALSE)
+
+```
 
 If you already have a data frame, convert it to data.table by:  
 
