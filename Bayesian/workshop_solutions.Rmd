@@ -1,0 +1,460 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+title: The Bayesian inference workshop
+---
+# Bayesian inference
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(rstan)
+library(reshape2)
+library(magrittr)
+library(readr)
+library(stringr)
+options(mc.cores = parallel::detectCores(), width = 140)
+rstan_options(auto_write = TRUE)
+```
+
+## Clinical trial: classical approach
+
+```{r}
+(trial_outcomes <-
+  tibble(condition = c("treatment","control"),
+         cured = c(5,3),
+         not_cured = c(5,8)))
+```
+
+### chi^2 test
+
+Let's test whether the treatment effect is statistically significant.
+
+```{r}
+prop.test(as.matrix(trial_outcomes[2:3]))
+```
+
+### The GLM approach
+
+We can also model this using a generalized linear model (GLM).
+
+```{r}
+glm_fit <- glm(cbind(cured,not_cured) ~ condition,
+    family = binomial(), data=trial_outcomes)
+summary(glm_fit)
+```
+
+## Clinical trial: Bayesian approach
+
+### Analytical
+
+Plot the posterior densities:
+
+```{r}
+trial_outcomes %>% group_by_all %>%
+  do(x=seq(from=0,to=1,by=1e-3)) %>%
+  unnest(x) %>%
+  mutate(y=dbeta(x,cured+1,not_cured+1)) %>%
+  ggplot() + geom_line(aes(x,y,color=condition))
+```
+
+Calculate the probability that the treatment works (increases the probability of getting cured).
+
+Via integration:
+
+```{r}
+trial_outcomes %>%
+  pivot_wider(names_from = condition, values_from=c(cured,not_cured)) %>%
+  with(integrate(function(x)
+    pbeta(x, cured_control+1, not_cured_control+1) *
+    dbeta(x, cured_treatment+1, not_cured_treatment+1), lower=0, upper=1))
+```
+
+Via sampling:
+
+```{r}
+beta_samples <- trial_outcomes %>% group_by_all %>%
+  do(i=seq(10000), p = rbeta(10000, .$cured+1, .$not_cured+1)) %>%
+  unnest(i,p)
+ggplot(beta_samples) + geom_density(aes(p,color=condition))
+beta_samples_long <- beta_samples %>%
+  pivot_wider(names_from = condition, values_from = p, id_cols = i) %>%
+  mutate(treatment_works = treatment > control)
+mean(beta_samples_long$treatment_works)
+```
+
+## MCMC
+
+```{r}
+mdl1 <- stan_model(model_code = "
+  data {
+    int outcomes[2,2];
+  }
+  parameters {
+    vector<lower=0,upper=1>[2] p;
+  }
+  model {
+    for (i in 1:2) {
+      outcomes[i,1] ~ binomial(sum(outcomes[i]), p[i]);
+    }
+  }
+  ")
+
+mcmc_samples_1 <- sampling(mdl1, data = list(outcomes = as.matrix(trial_outcomes[2:3])), iter=10000, chains=10)
+summary(mcmc_samples_1)
+# Now repeat the graphs and the calculation
+p_samples_1 <- rstan::extract(mcmc_samples_1)$p
+colnames(p_samples_1) <- c("treatment", "control")
+mean(p_samples_1[,"treatment"] > p_samples_1[,"control"])
+```
+
+### The probability of cure
+
+#### Via filtering
+
+```{r}
+p_cured_samples_1 <-
+  p_samples_1 %>% as_tibble %>%
+    mutate(cure = treatment - control) %>%
+    filter(cure > 0)
+ggplot(p_cured_samples_1) + geom_density(aes(cure)) + lims(x=c(0,1))
+mean(p_cured_samples_1$cure)
+```
+
+#### Via an amended model
+
+Version 1:
+
+```{r}
+mdl2 <- stan_model(model_code = "
+  data {
+    int outcomes[2,2];
+  }
+  parameters {
+    simplex[3] q;
+  }
+  transformed parameters {
+    vector[2] p;
+    p[1] = q[1]+q[2];
+    p[2] = q[2];
+  }
+  model {
+    for (i in 1:2) {
+      outcomes[i,1] ~ binomial(sum(outcomes[i]), p[i]);
+    }
+  }
+  ")
+
+mcmc_samples_2 <- sampling(mdl2, data = list(outcomes = as.matrix(trial_outcomes[2:3])), iter=10000, chains=10)
+q_samples_2 <- rstan::extract(mcmc_samples_2)$q
+mean(q_samples_2[,1])
+```
+
+Version 2:
+
+```{r}
+mdl3 <- stan_model(model_code = "
+  data {
+    int outcomes[2,2];
+  }
+  parameters {
+    vector<lower=0,upper=1>[2] q;
+  }
+  transformed parameters {
+    vector[2] p;
+    p[1] = q[1] * (1 - q[2]) + q[2];
+    p[2] = q[2];
+  }
+  model {
+    target += log(1-q[2]);
+    for (i in 1:2) {
+      outcomes[i,1] ~ binomial(sum(outcomes[i]), p[i]);
+    }
+  }
+  ")
+
+mcmc_samples_3 <- sampling(mdl3, data = list(outcomes = as.matrix(trial_outcomes[2:3])), iter=10000, chains=10)
+p_samples_3 <- rstan::extract(mcmc_samples_3)$p
+mean(p_samples_3[,1]-p_samples_3[,2])
+```
+
+### Priors
+
+```{r}
+mdl4 <- stan_model(model_code = "
+  data {
+    int outcomes[2,2];
+  }
+  parameters {
+    simplex[3] q;
+  }
+  transformed parameters {
+    vector[2] p;
+    p[1] = q[1]+q[2];
+    p[2] = q[2];
+  }
+  model {
+    q ~ dirichlet([1, 2, 4]');
+    for (i in 1:2) {
+      outcomes[i,1] ~ binomial(sum(outcomes[i]), p[i]);
+    }
+  }
+  ")
+
+mcmc_samples_4 <- sampling(mdl4, data = list(outcomes = as.matrix(trial_outcomes[2:3])))
+q_samples_4 <- rstan::extract(mcmc_samples_4)$q
+mean(q_samples_4[,1])
+```
+
+## RNA-seq
+
+Data loading
+
+```{r}
+expression_data <- read_tsv("GSE121757_SUPT4H1_HEK293_intron.tab.gz") %>%
+  pivot_longer(matches("^(scramble|SUPT4H1)"), names_to = "sample", values_to = "read_count") %>%
+  tidyr::extract(col=sample, into=c("condition", "replicate"), regex="(\\w+)_(\\d+)") %>%
+  mutate(condition = ifelse(condition == "scramble", "control", "treatment")) %>%
+  select(gene = ensembl_gene_id, condition, replicate, read_count) %>%
+  group_by(condition, replicate) %>% mutate(library_size = sum(read_count)) %>% ungroup
+ercc_expression <- expression_data %>% filter(str_starts(gene, "ERCC")) %>%
+  rename(ercc_id = gene)
+ercc_len <- read_tsv("ERCC92_len.tsv", col_names = c("ercc_id","length"))
+ercc_mix_info <- read_tsv("ERCC_Controls_Analysis.txt") %>%
+  select(ercc_id = `ERCC ID`, subgroup,
+         control=`concentration in Mix 1 (attomoles/ul)`,
+         treatment=`concentration in Mix 2 (attomoles/ul)`) %>%
+  pivot_longer(cols = c(control,treatment), names_to = "condition", values_to = "concentration")
+ercc_data <- ercc_expression %>%
+  inner_join(ercc_len, by="ercc_id") %>%
+  inner_join(ercc_mix_info, by=c("ercc_id","condition")) %>%
+  mutate(sample_idx = group_indices(., condition, replicate),
+         condition_idx = group_indices(., condition))
+sample_info <- ercc_data %>% distinct(sample_idx, condition, condition_idx, replicate) %>% arrange(sample_idx)
+```
+
+Plotting
+
+```{r}
+ggplot(ercc_data) + geom_jitter(aes(concentration, read_count / library_size / length, color=condition)) +
+  scale_x_log10() + scale_y_log10()
+
+ggplot(ercc_data) + geom_jitter(aes(concentration, read_count / library_size, color=condition)) +
+  scale_x_log10() + scale_y_log10()
+```
+
+```{r}
+ercc_data %>% group_by(ercc_id, subgroup, condition) %>% summarise(rel_expr = mean(read_count/library_size)) %>% ungroup %>%
+  pivot_wider(c(ercc_id, subgroup), names_from=condition, values_from=rel_expr) %>%
+  ggplot() + geom_boxplot(aes(subgroup, log2(control/treatment)))
+```
+
+Rough estimation
+
+
+```{r}
+d <- ercc_data %>% filter(read_count > 0) %>%
+  mutate(c = log(read_count / (library_size * concentration * length)))
+ggplot(d) + geom_boxplot(aes(condition, c))
+d %>% group_by(condition) %>% summarise(c=mean(c)) %>% pivot_wider(names_from=condition, values_from=c) %>%
+  summarize(treatment-control)
+```
+
+Check the Poisson assumption
+
+```{r}
+ercc_mean_var <- ercc_data %>%
+  mutate(expr = read_count / library_size) %>%
+  group_by(ercc_id, condition) %>% summarize(mean = mean(expr), var=var(expr))
+ggplot(ercc_mean_var) + geom_point(aes(mean,var, color=condition))
+ggplot(ercc_mean_var) + geom_point(aes(mean,sqrt(var), color=condition))
+```
+
+Bayesian analysis
+
+Poisson
+
+```{r}
+model_poisson <- stan_model(model_code = "
+  data {
+    // Number of spike-in measurements (combinations of sample × spike-in)
+    int n_sp;
+    // Number of samples
+    int n_samples;
+    // The expected concentration for each sample × spike-in
+    vector[n_sp] concentration;
+    // The observed read count for each sample × spike-in
+    int read_count[n_sp];
+    // Which sample the measurement comes from
+    int<lower=1,upper=n_samples> sample[n_sp];
+    // spike-in length
+    int length[n_sp];
+    // library size per measurement
+    int library_size[n_sp];
+  }
+  
+  parameters {
+    // normalization constant per sample, proportional to the total RNA concentration
+    vector<lower=0>[n_samples] rna_conc;
+  }
+  
+  model {
+    for (sp in 1:n_sp) {
+      read_count[sp] ~ poisson(concentration[sp] * length[sp] * library_size[sp] / rna_conc[sample[sp]]);
+    }
+  }
+")
+```
+
+```{r}
+samples_poisson <- sampling(model_poisson, chains=4,
+                     data = list(n_sp = nrow(ercc_data),
+                                 n_samples = max(ercc_data$sample_idx),
+                                 concentration = ercc_data$concentration,
+                                 read_count = ercc_data$read_count,
+                                 sample = ercc_data$sample_idx,
+                                 length = ercc_data$length,
+                                 library_size = ercc_data$library_size))
+
+rstan::extract(samples_poisson)$rna_conc %>%
+  melt(varnames = c("i","sample_idx"), value.name = "rna_conc") %>%
+  inner_join(sample_info, by="sample_idx") %>%
+  ggplot() + geom_density(aes(rna_conc)) + facet_grid(replicate ~ condition)
+```
+
+
+Negative binomial
+
+```{r}
+model_negbinom <- stan_model(model_code = "
+  data {
+    // Number of spike-in measurements (combinations of sample × spike-in)
+    int n_sp;
+    // Number of samples
+    int n_samples;
+    // The expected concentration for each sample × spike-in
+    vector[n_sp] concentration;
+    // The observed read count for each sample × spike-in
+    int read_count[n_sp];
+    // Which sample the measurement comes from
+    int<lower=1,upper=n_samples> sample[n_sp];
+    // spike-in length
+    int length[n_sp];
+    // library size per measurement
+    int library_size[n_sp];
+    // condition, per sample
+    int <lower=1,upper=2> condition[n_samples];
+    real phi;
+  }
+  
+  parameters {
+    // normalization constant per sample, proportional to the total RNA concentration
+    vector<lower=0>[n_samples] rna_conc;
+    // the overdispersion coefficient
+    // vector<lower=0>[2] phi;
+  }
+  
+  model {
+    for (sp in 1:n_sp) {
+      // read_count[sp] ~ poisson(concentration[sp] * length[sp] * library_size[sp] / rna_conc[sample[sp]]);
+      read_count[sp] ~ neg_binomial_2(concentration[sp] * length[sp] * library_size[sp] / rna_conc[sample[sp]], phi);
+      // read_count[sp] ~ neg_binomial_2(concentration[sp] * length[sp] * library_size[sp] / rna_conc[sample[sp]], phi[condition[sample[sp]]]);
+    }
+  }
+")
+```
+
+```{r}
+(samples_negbinom <- sampling(model_negbinom, chains=4,
+                     data = list(n_sp = nrow(ercc_data),
+                                 n_samples = max(ercc_data$sample_idx),
+                                 concentration = ercc_data$concentration,
+                                 read_count = ercc_data$read_count,
+                                 sample = ercc_data$sample_idx,
+                                 length = ercc_data$length,
+                                 library_size = ercc_data$library_size,
+                                 phi = 10,
+                                 condition = sample_info$condition_idx)))
+
+rstan::extract(samples_negbinom)$rna_conc %>%
+  melt(varnames = c("i","sample_idx"), value.name = "rna_conc") %>%
+  inner_join(sample_info, by="sample_idx") %>%
+  ggplot() + geom_density(aes(rna_conc)) + facet_grid(replicate ~ condition)
+```
+
+Gamma for per-condition means
+
+```{r}
+model_gamma <- stan_model(model_code = "
+  data {
+    // Number of spike-in measurements (combinations of sample × spike-in)
+    int n_sp;
+    // Number of samples
+    int n_samples;
+    // The expected concentration for each sample × spike-in
+    vector[n_sp] concentration;
+    // The observed read count for each sample × spike-in
+    int read_count[n_sp];
+    // Which sample the measurement comes from
+    int<lower=1,upper=n_samples> sample[n_sp];
+    // spike-in length
+    int length[n_sp];
+    // library size per measurement
+    int library_size[n_sp];
+    // condition, per sample
+    int <lower=1,upper=2> condition[n_samples];
+  }
+  
+  parameters {
+    // normalization constant per sample, proportional to the total RNA concentration
+    vector<lower=0>[n_samples] rna_conc;
+    // parameters of the gamma distribution describing rna_conc, per condition
+    vector<lower=0>[2] gamma_alpha;
+    vector<lower=0>[2] gamma_beta;
+  }
+  
+  model {
+    for (s in 1:n_samples) {
+      rna_conc[s] ~ gamma(gamma_alpha[condition[s]], gamma_beta[condition[s]]);
+    }
+    for (sp in 1:n_sp) {
+      read_count[sp] ~ poisson(concentration[sp] * length[sp] * library_size[sp] / rna_conc[sample[sp]]);
+    }
+  }
+  
+  generated quantities {
+    real rna_conc_sample[2] = gamma_rng(gamma_alpha, gamma_beta);
+    real ratio = rna_conc_sample[2] / rna_conc_sample[1];
+  }
+")
+```
+
+```{r}
+samples_gamma <- sampling(model_gamma, chains=4, control = list(adapt_delta = 0.95),
+                     data = list(n_sp = nrow(ercc_data),
+                                 n_samples = max(ercc_data$sample_idx),
+                                 concentration = ercc_data$concentration,
+                                 read_count = ercc_data$read_count,
+                                 sample = ercc_data$sample_idx,
+                                 length = ercc_data$length,
+                                 library_size = ercc_data$library_size,
+                                 condition = sample_info$condition_idx))
+
+        rstan::extract(samples_gamma)$rna_conc %>%
+  melt(varnames = c("i","sample_idx"), value.name = "rna_conc") %>%
+  inner_join(sample_info, by="sample_idx") %>%
+  ggplot() + geom_density(aes(rna_conc)) + facet_grid(replicate ~ condition)
+  
+rstan::extract(samples_gamma)$ratio %>% tibble::enframe(name = NULL, value="ratio") %>%
+  ggplot() + geom_density(aes(ratio))
+
+rstan::extract(samples_gamma)$gamma_alpha %>%
+  melt(varnames = c("i","condition"), value.name = "alpha") %>%
+  ggplot() + geom_density(aes(alpha, color=as.factor(condition)))
+
+rstan::extract(samples_gamma)$gamma_beta %>%
+  melt(varnames = c("i","condition"), value.name = "beta") %>%
+  ggplot() + geom_density(aes(beta, color=as.factor(condition)))
+```

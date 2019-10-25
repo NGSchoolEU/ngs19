@@ -1,0 +1,155 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+title: The Bayesian inference workshop
+---
+# Bayesian inference
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(rstan)
+library(reshape2)
+library(magrittr)
+library(readr)
+library(stringr)
+options(mc.cores = parallel::detectCores(), width = 140)
+rstan_options(auto_write = TRUE)
+```
+
+## Clinical trial: classical approach
+
+```{r}
+(trial_outcomes <-
+  tibble(condition = c("treatment","control"),
+         cured = c(5,3),
+         not_cured = c(5,8)))
+```
+
+### Classical (frequentist) approach
+
+Test whether the treatment effect is statistically significant.
+
+### Analytical Bayesian approach
+
+Plot the posterior densities `y=dbeta(x,cured+1,not_cured+1)`.
+
+Calculate the probability that the treatment works (increases the probability of getting cured).
+
+## MCMC
+
+See <https://mc-stan.org/users/documentation/>
+
+```{r}
+mdl1 <- stan_model(model_code = "
+  data {
+    int outcomes[2,2];
+  }
+  parameters {
+    vector<lower=0,upper=1>[2] p;
+  }
+  model {
+    for (i in 1:2) {
+      outcomes[i,1] ~ binomial(sum(outcomes[i]), p[i]);
+    }
+  }
+  ")
+
+mcmc_samples_1 <- sampling(mdl1, data = list(outcomes = as.matrix(trial_outcomes[2:3])))
+p_samples_1 <- rstan::extract(mcmc_samples_1)$p
+colnames(p_samples_1) <- c("treatment", "control")
+```
+
+Exercices:
+
+* Plot the posterior distributions of p[1] and p[2]
+* Calculate the probability that treatment works
+* Calculate the probability that a patient won't improve without the treatment and will with the treatment
+* Adjust the priors and see how that affects the result
+
+## RNA-seq
+
+Data loading
+
+```{r}
+expression_data <- read_tsv("GSE121757_SUPT4H1_HEK293_intron.tab.gz") %>%
+  pivot_longer(matches("^(scramble|SUPT4H1)"), names_to = "sample", values_to = "read_count") %>%
+  tidyr::extract(col=sample, into=c("condition", "replicate"), regex="(\\w+)_(\\d+)") %>%
+  mutate(condition = ifelse(condition == "scramble", "control", "treatment")) %>%
+  select(gene = ensembl_gene_id, condition, replicate, read_count) %>%
+  group_by(condition, replicate) %>% mutate(library_size = sum(read_count)) %>% ungroup
+ercc_expression <- expression_data %>% filter(str_starts(gene, "ERCC")) %>%
+  rename(ercc_id = gene)
+ercc_len <- read_tsv("ERCC92_len.tsv", col_names = c("ercc_id","length"))
+ercc_mix_info <- read_tsv("ERCC_Controls_Analysis.txt") %>%
+  select(ercc_id = `ERCC ID`, subgroup,
+         control=`concentration in Mix 1 (attomoles/ul)`,
+         treatment=`concentration in Mix 2 (attomoles/ul)`) %>%
+  pivot_longer(cols = c(control,treatment), names_to = "condition", values_to = "concentration")
+ercc_data <- ercc_expression %>%
+  inner_join(ercc_len, by="ercc_id") %>%
+  inner_join(ercc_mix_info, by=c("ercc_id","condition")) %>%
+  mutate(sample_idx = group_indices(., condition, replicate),
+         condition_idx = group_indices(., condition))
+sample_info <- ercc_data %>% distinct(sample_idx, condition, condition_idx, replicate) %>% arrange(sample_idx)
+```
+
+* Inspect the data
+* Construct a model
+
+Bayesian model
+
+```{r}
+model_poisson <- stan_model(model_code = "
+  data {
+    // Number of spike-in measurements (combinations of sample × spike-in)
+    int n_sp;
+    // Number of samples
+    int n_samples;
+    // The expected concentration for each sample × spike-in
+    vector[n_sp] concentration;
+    // The observed read count for each sample × spike-in
+    int read_count[n_sp];
+    // Which sample the measurement comes from
+    int<lower=1,upper=n_samples> sample[n_sp];
+    // spike-in length
+    int length[n_sp];
+    // library size per measurement
+    int library_size[n_sp];
+  }
+  
+  parameters {
+    // normalization constant per sample, proportional to the total RNA concentration
+    vector<lower=0>[n_samples] rna_conc;
+  }
+  
+  model {
+    for (sp in 1:n_sp) {
+      read_count[sp] ~ poisson(concentration[sp] * length[sp] * library_size[sp] / rna_conc[sample[sp]]);
+    }
+  }
+")
+```
+
+```{r}
+samples_poisson <- sampling(model_poisson, chains=4,
+                     data = list(n_sp = nrow(ercc_data),
+                                 n_samples = max(ercc_data$sample_idx),
+                                 concentration = ercc_data$concentration,
+                                 read_count = ercc_data$read_count,
+                                 sample = ercc_data$sample_idx,
+                                 length = ercc_data$length,
+                                 library_size = ercc_data$library_size))
+
+rstan::extract(samples_poisson)$rna_conc %>%
+  melt(varnames = c("i","sample_idx"), value.name = "rna_conc") %>%
+  inner_join(sample_info, by="sample_idx") %>%
+  ggplot() + geom_density(aes(rna_conc)) + facet_grid(replicate ~ condition)
+```
+
+Exercises:
+
+* Change the model to use the negative binomial distribution
+* Calculate the average mean between the RNA concentrations
