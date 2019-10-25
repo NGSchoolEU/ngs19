@@ -1,0 +1,454 @@
+---
+title: "data.table"
+author: "Maja Kuzman"
+institute: "University of Zagreb"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: inverse, center, middle
+
+# Creating a data.frame  
+
+---
+# example: pi exercise  
+
+```{r}
+
+set.seed(1234)
+ddf <- data.frame(x = runif(n = 1000000,-1,1), y=runif(n = 1000000,-1,1))
+ddf$insideCircle <- ((ddf$x^2 + ddf$y^2 )<=1)
+ddf$group <- cut(1:1000000,10)
+ddf$group50 <- cut(1:1000000,50)
+head(ddf)
+```
+
+I will show you some examples on this data, and you will do the exercise on data available in R (iris).  
+
+---
+
+# Loading the library  
+
+If you don't have the package, install it with:  
+(only once)  
+```{r, eval=FALSE}
+install.packages(data.table)
+```
+
+Once it is installed, you need to load it to R:  
+(once per session)  
+
+```{r}
+library(data.table)
+```
+
+If you already have a data frame, convert it to data.table by:  
+
+```{r}
+ddf_dt <- as.data.table(ddf)
+```
+
+---
+class: invert, center, middle
+# Packages in R: data.table   
+
+
+####All you need to know:  
+
+#### DT[i,j,by]  
+     
+##### i: select those rows  
+##### j: do this to them  
+##### by: do it per groups  
+
+---
+#data.table: SELECTING ROWS  
+
+
+Selecting rows:
+What is the number of rows with y cordinate smaller than 0.05 and larger than 0 in ddf:  
+
+In data.table:  
+You select rows similar as you would select elements in vector:  
+
+```{r}
+nrow(ddf_dt[y<0.05 & y>0])
+ddf_dt[y<0.05 & y>0][1:2]
+```
+
+
+---
+
+#data.table: SELECTING COLUMNS   
+
+Select columns x and y and first 5 rows:  
+
+In data.table use . instead of c,  
+. is short for list()  
+```{r}
+ddf_dt[1:5,.(x,y)]
+```
+
+If you want to use column names:
+```{r}
+cnames <- c("x","y")
+ddf_dt[1:5,..cnames]
+```
+
+---
+
+#data.table: SELECTING COLUMNS
+
+note on columns selections: this will also work:
+```{r}
+ddf_dt[1:3,x:insideCircle]
+```
+
+```{r}
+ddf_dt[1:3,-(x:insideCircle)]
+```
+
+```{r}
+ddf_dt[1:3,!(x:insideCircle)]
+```
+
+---
+
+#data.table: exercise iris 1  
+
+```{r, eval=FALSE}
+ddf_dt <- as.data.table(ddt)
+ddf_dt[1:5,.(x,y)]
+cnames <- c("x","y")
+ddf_dt[1:5,..cnames]
+```
+
+Mini exercise:  
+
+- convert iris to data.table - call it iris_dt  
+- Select all rows in iris_dt with Sepal.Length<6.7  
+- Select as before, but show only columns Sepal.Length and Species  
+- Do the previous by using column names!
+
+---
+#data.table: OPERATION ON COLUMNS
+
+Calculations of mean:  
+```{r}
+ddf_dt[,mean(insideCircle)]
+```
+
+By groups:
+```{r}
+ddf_dt[,mean(insideCircle), by=group]
+```
+
+---
+
+# data.table: OPERATION ON COLUMNS
+
+Calculations of mean, sd, max x , min x, number of observations per group, get a data frame order it by mean:  
+```{r}
+meanic <- by(ddf$insideCircle,INDICES = ddf$group, mean)
+sdic <- by(ddf$insideCircle,INDICES = ddf$group, sd)
+maxx <- by(ddf$x,INDICES = ddf$group, max)
+minx <- by(ddf$x,INDICES = ddf$group, min)
+nr_grp <- by(ddf$insideCircle,INDICES = ddf$group, length)
+res_df <- data.frame(as.numeric(meanic),
+                     as.numeric(sdic),
+                     as.numeric(maxx),
+                     as.numeric(minx),
+                     as.numeric(nr_grp))
+res_df[order(res_df$as.numeric.meanic.),]    
+```
+
+---
+
+# data.table: OPERATION ON COLUMNS
+
+Calculations of mean, sd, max x , min x, number of observations per group, get a data frame order it by mean:  
+
+```{r}
+ddf_dt[ , 
+        .(mean=mean(insideCircle),
+          sd  =sd(insideCircle),
+          min_x= min(x),
+          max_x= max(x),
+          N= .N),
+        by=group][order(mean)]
+```
+
+---
+# data.table: .N, by 
+
+The .N gives number of observations:  
+```{r}
+ddf_dt[,.N]
+```
+
+You can group by multiple variables:  
+```{r}
+ddf_dt[,.N, by=.(group,x>0.5)]
+```
+
+---
+# data.table: exercise iris 2  
+
+```{r, eval=FALSE}
+ddf_dt[,
+       .(N=.N), 
+       by=.(group,x>0.5)]
+
+```
+
+Exercise on iris_dt:  
+- Select all rows where Sepal.Length < 6.7 and Species=="virginica"   
+- For those - use chaining - [][] to calculate mean Petal.Width for all flowers  
+- Repeat mean Petal.Width but grouped by condition Sepal.Length < 6.7  
+- How many of those flowers have Sepal.Width>3 and how many less then 3?  
+
+
+---
+
+# data.table:  add a new column 
+
+Use ':=' to add a new column
+```{r}
+ddf_dt[,N:=.N]
+ddf_dt[1:3]
+```
+
+If you want to add multiple columns, use ':='as a function:  
+```{r}
+ddf_dt[ ,
+       ':='(N_grp=.N, mean=mean(insideCircle)),
+       by=.(group)]
+ddf_dt[1:3]
+```
+
+---
+
+# data.table: Exercise add a new column 
+
+```{r, eval=FALSE}
+ddf_dt[ ,
+       ':='(N_grp=.N, mean=mean(insideCircle)),
+       by=.(group)]
+```
+- Add columns to iris_dt that represent mean and sd of Petal.Width grouped by species.  
+- use function uniqueN to check how many unique mean petal withs s there are. 
+
+
+---
+# data.table:  .I, .GRP  
+
+The .I holds row numbers:
+```{r}
+ddf_dt[,.(row_id=.I,x,y)]
+```
+
+--
+
+The .GRP holds unique group number:  
+
+```{r}
+ddf_dt[,.GRP,.(group, insideCircle)][1:10]
+```
+
+---
+# data.table Exercise :=, .N, .I, .GRP  
+
+
+```{r, eval=FALSE}
+ddf_dt[ ,
+       ':='(N_grp=.N, mean=mean(insideCircle)),
+       by=.(group,group50)]
+ddf_dt[,.(row_id=.I,x,y)]
+ddf_dt[,.GRP,.(group, insideCircle)]
+```
+
+- Add columns to iris_dt that represent number of observations, row number and group ID of all rows for which Petal.Length is smaller than 6.5 in iris_dt grouped by species.  
+- One great benefit of data.table is the ability to sub-assign by reference:  Try it: select all rows that have species=="virginica" and rename those Species entries using := to new_virginica  
+
+
+
+---
+#data.table MORE ADVANCED USAGE: keys  
+
+     You can "set a key" of data.table by using the setkey() function. This will result in data table that is ordered by the key/s and will allow for (much) faster manipulation (for example merge function!)!   
+```{r}
+setkey(ddf_dt, insideCircle,x,y)
+ddf_dt
+```
+
+---
+
+# data.table MORE ADVANCED USAGE: .SD, .SDcols  
+
+Select all columns with .SD. Select only a subset of all columns by .SDcols:  
+```{r}
+ddf_dt[,.SD, .SDcols=1:2]
+```
+
+this is especially useful when you want to do the same operation on multiple columns: for example, calculate mean of x and y: 
+```{r}
+ddf_dt[,lapply(.SD,mean), by=insideCircle,.SDcols=1:2]
+
+```
+
+
+---
+#data.table MORE ADVANCED USAGE: .SD, .SDcols  
+
+..Or for example select first and last row for each group:  
+```{r}
+ddf_dt[, .SD[c(1, .N)], by=insideCircle]
+
+```
+It is easier if you read it as: SelectedData  
+
+---
+#data.table exercise MORE ADVANCED USAGE
+
+```{r, eval=FALSE}
+ddf_dt[,lapply(.SD,mean), by=insideCircle,.SDcols=1:2]
+ddf_dt[, .SD[c(1, .N)], by=insideCircle]
+```
+
+
+Do the following in a single command:  
+- order the results by Petal.Width and select first three (smallest) observations .  
+- Calculate mean of first four columns for iris_dt for those observations      
+
+---
+
+#data.table MORE ADVANCED USAGE {}
+
+Suppressing Intermediate Output with {}:
+
+If you want to do multiple things, but dont need to save all steps in separate columns, no problem! Check this out:  
+
+Lets calculate x^2 +y^2, save it to xysquared,  
+check if xysquared is smaller or equal to 1, save it to checkCircle  
+and finally check if checkCircle is equal to insideCircle -> this is the only comparison we want to save in a variable, call that variable SKOROCEKRAJ 
+---
+#data.table MORE ADVANCED USAGE {} solved  
+
+```{r}
+ddf_dt[,SKOROCEKRAJ:= {
+          xysquared = x^2 + y^2
+          checkCircle = xysquared <= 1
+          insideCircle == checkCircle
+     }]
+ddf_dt[,unique(SKOROCEKRAJ)]
+```
+
+---
+
+#data.table exercise MORE ADVANCED USAGE {} solved  
+
+```{r, eval=FALSE}
+ddf_dt[,SKOROCEKRAJ:= {
+          xysquared = x^2 + y^2
+          checkCircle = xysquared <= 1
+          insideCircle == checkCircle
+     }]
+```
+
+Create a new variable sepal_length_diff as the difference from mean value:
+
+
+
+
+---
+#data.table exercise MORE ADVANCED USAGE: merging 
+
+
+Lets define dummy data tables:  
+```{r}
+dt1 <- data.table(x = c("a", "b", "c", "d"), y = c(11.9, 21.4, 5.7, 18))
+dt2 <- data.table(x= c("a","b","k"),y = c(10, 15, 20), z = c("one", "two", "three"))
+dt1
+dt2
+```
+
+---
+#data.table exercise MORE ADVANCED USAGE: merging 
+
+Merge those two data tables by variable x
+
+
+```{r}
+merge(dt1,dt2, by="x")
+```
+
+```{r, eval=FALSE}
+merge(dt1,dt2, by="x", all.x = T)
+merge(dt1,dt2, by="x", all.y = T)
+
+```
+
+---
+#data.table exercise MORE ADVANCED USAGE: merging  
+
+```{r, eval=FALSE}
+merge(dt1,dt2, by="x", all.y = T)
+
+```
+
+```{r}
+dt1[dt2, on = .(x)]
+```
+
+---
+
+# data.table exercise MORE ADVANCED USAGE: roll
+
+```{r}
+dt1
+dt2
+
+```
+---
+#keep rolling! - FORWARD JOIN:   
+Merge two data frames on CLOSEST SMALLER NUMERICAL VALUE in dt2 - keep all observations from dt1!:  
+
+```{r}
+dt2[dt1, on = .(y), roll = T]
+```
+---
+#keep rolling! - BACKWARD JOIN:   
+Merge two data frames on CLOSEST LARGER NUMERICAL VALUE in dt2 NOT LARGER THAN 4 - keep all observations from dt1!:  
+```{r}
+dt2[dt1, on = .(y), roll = -4]
+```
+roll can also take "nearest".
+
+---
+
+# data.table exercise MORE ADVANCED USAGE: foverlaps
+
+```{r}
+dt3 <- data.table(min_y = c(0, 10, 15, 20), max_y = c(10, 15, 20, 30))
+setkey(dt3, min_y, max_y)
+dt1[, `:=` (dt1_y_end = c(13, 25, 10, 22), dt1_y=y)]
+setkey(dt1, dt1_y, dt1_y_end)
+
+foverlaps(dt1, dt3, type = "any")
+```
+
+Each window does not have to be equal
+```{r}
+dt1
+dt3
+```
+
+
+
+
+

@@ -1,0 +1,593 @@
+---
+title: "Data visualization"
+subtitle: "with ggplot2"
+author: "Maja Kuzman"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include=FALSE}
+library(xaringanthemer)
+mono_accent( base_color = "#1F4257",
+  code_font_family = "Fira Code",
+  code_font_url    = "https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css"
+)
+```
+
+###Tidy data
+
+
+**Tidy data makes it analysis easier to do, faster to check, easier to plot and to reuse for other analysis. If you have a messy data set and you think that it is exactly what you need, you will most likely use it only once -for one analysis and a single graph.**  
+
+```
+
+1. Each variable forms a column.
+
+2. Each observation forms a row.
+
+3. Each type of observational unit forms a table.
+
+```
+
+```{r}
+library(data.table)
+tidy <- fread("http://hex.bioinfo.hr/~mfabijanic/tidyData.txt", header=T)
+head(tidy)
+``` 
+
+
+---
+###Graphs in R
+
+.pull-left[
+Variable types:  
+- categorical :  
+
+        nominal  
+        ordinal    
+
+- quantitative :  
+
+        numerical discrete  
+        numerical continuous  
+]
+
+---
+### Graphs in R
+
+.pull-left[
+Variable types:  
+- categorical :  
+
+        nominal  
+        ordinal    
+        
+- quantitative :  
+
+        numerical discrete  
+        numerical continuous  
+]
+
+.pull-right[
+
+Cathegorical variables example:  
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+require(ggplot2)
+ggplot(tidy, aes(Continent))+geom_bar()+theme_light()
+```
+
+]
+
+---
+### Graphs in R
+
+.pull-left[
+Variable types:  
+- categorical :  
+
+        nominal  
+        ordinal    
+- quantitative :  
+
+        numerical discrete  
+        numerical continuous  
+
+]
+
+.pull-right[
+Quantitative variables example:
+
+
+```{r, echo=FALSE}
+ggplot(tidy, aes(Height))+geom_density()+theme_light()
+```
+]
+
+---
+### Graphs in R
+
+.pull-left[
+Variable types:  
+- categorical :  
+
+        nominal  
+        ordinal    
+- quantitative :  
+
+        numerical discrete  
+        numerical continuous  
+
+]
+
+.pull-right[
+Quantitative variables example:
+
+```{r, echo=FALSE, message=FALSE}
+ggplot(tidy, aes(Height))+geom_area(stat="bin")+theme_light()
+
+```
+
+]
+
+---
+
+### Graphs in R
+.pull-left[
+
+Graphs with two variables:
+    Continuous X, Continuous Y
+
+    
+]
+
+.pull-right[
+Scatterplot:   
+
+```{r, echo=FALSE}
+ggplot(tidy, aes(Height, Weight))+geom_point()+theme_light()
+```
+]
+
+---
+### Graphs in R
+
+.pull-left[
+Graphs with two variables:
+    Discrete X, Continuous Y
+
+Boxplot:  
+  
+```{r, echo=FALSE, height=1300, width=1300}
+ggplot(tidy, aes(Gender, Height))+ 
+     geom_boxplot()+ 
+     theme_light()
+
+```
+
+
+]
+
+.pull-right[
+
+
+Violin plot:  
+  
+```{r, echo=FALSE}
+ggplot(tidy, aes(Gender, Height))+geom_violin()+theme_light()
+```
+
+]
+
+---
+### Graphs in R
+.pull-left[
+Graphs with two variables:
+    Discrete X, Discrete Y
+
+```{r, echo=FALSE}
+ggplot(tidy, aes(Gender, Height))+geom_bar(stat="identity")+theme_light()
+
+```
+    
+]
+.pull-right[
+
+Barplot:  
+  
+
+```{r, echo=FALSE}
+ggplot(tidy, aes(Gender, Height, fill=Continent))+geom_bar(stat="identity")+theme_light()
+```
+
+]
+
+---
+###ggplot2 VS base R plots  
+
+.pull-left[
+```{r, echo=FALSE}
+plot(iris$Sepal.Length, iris$Petal.Length, col=iris$Species)
+```
+
+]
+
+.pull-right[
+```{r, echo=FALSE}
+ggplot(iris, aes(Sepal.Length, Petal.Length, color=Species)) + 
+    geom_point()+theme_light()
+```
+]
+
+---
+### ggplot2 
+
+
+There are different types of plots and they are used based on different data that we want to show. We will use ggplot2 package to draw graphs in R for the following reasons:
+
++ Elegant
+
++ Highly customisable
+
++ Uniform
+
++ Natural
+
++ Expressive
+
++ Popular
+
+- Steep learning curve
+
+- Slow
+
+- Evolving pretty fast (too fast?)
+
+
+
+---
+### Basic ggplot logic: ggplot(data, aes(x,y))
+
+The ggplot() object acts as a storage facility for the data. It is here where we define the data frame that houses the x and y coordinate values themselves and instructions on how to split the data. There are three ways to initialise a ggplot() object:  
+
+```
+p <- ggplot()
+p <- ggplot(data_frame)
+p <- ggplot(data_frame, aes(x, y ))
+```  
+
+Displaying the object p generated in the code chunk above would result in Error: No layers in plot. This is because you always need at least one layer for a ggplot.  
+
+
+
+---
+### Mapping aesthetics to data  
+
+The aes() aesthetic mapping function lives inside a ggplot object and is where we specify the set of plot attributes that remain constant throughout the subsequent layers (unless overwritten more on this later).  
+
+We can consider the relationship between the aes() and geoms components as follows:  
+
+The aes() function is the how data is stored, how data is split   
+geoms is the what the data looks like. These are geometrical objects stored in subsequent layers.  
+
+### Layers  
+
+
+We use the + operator to construct. By appending layers we can connect the "how" (aesthetics) to the "what" (geometric objects). Adding geometric, scale, facet and statistic layers to a ggplot() object is how to control virtually every visual aspect of the plot from the data contained in the object.  
+
+---
+
+### Adding a geometric object layer  
+
+A geometric object is used to define the style of the plot. Common geometric objects include:  
+
+geom_point() which is used to draw a dot plot  
+geom_line() used to draw a line plot  
+geom_bar() used to draw a bar chart.  
+  
+
+### Facets  
+
+Appending a facet layer to a ggplot generates the same plot for different subsets of data.   
+
+### Statistics  
+
+Exploratory data analysis can be done using the base packages in R, the results of which can be added to a ggplot() in the guise of a geom layer.  
+
+---
+
+### Example : Basic layout  
+
+x axis is categorical, y axis is numerical  
+
+1. Set the basic layout:  
+
+Fill the empty spaces with correct terms so you get a layout in which we use dataset iris, and we want x axis to represent Species and y to represent Petal.Length .  
+
+```{r, eval=FALSE}
+p <- ggplot( , aes( ,  ))
+p
+```
+
+What does p look like?    
+
+---
+
+### Example : Basic Layout - solved  
+
+
+```{r, fig.width=6, fig.height=6, fig.align='center', echo=FALSE}
+p <- ggplot( iris, aes( Species, Petal.Length )); p
+```
+
+---
+
+### Example : add a layer - graph type  
+
+2. Choose graph type that you want to show.. Lets say we want a scatterplot for petal length for each group. Add geom_point() to your layout.  
+
+```{r, eval=FALSE}
+p + ???
+     
+```
+
+---
+
+###Example : add a layer - graph type - solved  
+
+
+```{r, fig.width=6, fig.height=6, fig.align='center', echo=FALSE}
+p + geom_point()
+     
+```
+  
+---
+### Example : add another layer  
+
+3. Color the points by iris$Petal.Length. - Do this inside geom_point.  
+4. We wanted a scatterplot but changed out mind and now we also want boxplot on top of this scatterplot. Add + geom_boxplot() to previous line to see what you get.  
+
+```{r, eval=FALSE}
+p + geom_point(???) +
+    ??? 
+     
+```
+ 
+---
+
+### Example : add another layer- solved  
+3. Color the points by iris$Petal.Length. - Do this inside geom_point.  
+
+```{r, fig.width=6, fig.height=6, fig.align='center', echo=FALSE}
+p + geom_point(aes(color=Petal.Length)) 
+     
+```
+
+---
+
+### Example : add another layer SOLVED  
+
+4. We wanted a scatterplot but changed out mind and now we also want boxplot on top of this scatterplot. Add + geom_boxplot() to previous line to see what you get.  
+
+```{r, eval=FALSE, echo=FALSE}
+p + geom_point(aes(color=Petal.Length)) + geom_boxplot()
+     
+```
+ 
+
+---
+
+### Example 2: Lets build another graph!  
+
+x axis is numerical, y axis is numerical  
+
+1. Set the basic layout: We want to see if there is any connection between Petal.Length (x axis) and Sepal.Length (y) in iris dataset.  
+
+```{r, eval=FALSE}
+p2 <- ggplot(iris, aes(???, ???))
+p2
+```
+
+2. We would like to add points to the graph. Use geom_point()  
+```{r,eval=FALSE}
+p2 + ???
+
+```
+
+---
+### Example 2: Lets build another graph! -SOLVED  
+
+```{r, fig.width=6, fig.height=6, fig.align='center', echo=FALSE}
+p2 <-ggplot(iris, aes(Petal.Length, Sepal.Length)); p2
+```
+
+---
+### Example 2: Lets build another graph! -SOLVED  
+```{r, fig.width=6, fig.height=6, fig.align='center', echo=FALSE}
+p2 + geom_point()
+```
+
+---
+### change it  
+3. We don't really like the graph that much. From it we can't conclude if dependencies are species related or now.. It would looks better if points could be colored by Species. But for this we need to change the aestethics and do everything again bacause we set aestethics in the first step... no worries, just reset the aestethics inside of geom_point() function by aes(color=Species)  
+
+```{r, eval=FALSE}
+p3<-p2 + geom_point(???)
+p3
+```
+
+
+
+---
+###Example 2: change it -SOLVED  
+
+```{r, fig.width=6, fig.height=6, fig.align='center', echo=FALSE}
+p3<-p2 + geom_point(aes(color=Species)); p3
+```
+
+---
+###Example 2: do some magic!  
+
+It looks to us now that if we put linear regression lines through each group of points, maybe lines would be the same for blue and green points! Lets check this by adding geom_smooth() to plot. Again you might need to set the aestethics for geom_smooth also, but this time we want to group it by species, not color by species.  
+
+```{r, eval=FALSE}
+p4 <- p3 + ???
+p4
+```
+
+
+---
+
+### Example 2: do some magic! - solved   
+
+```{r, fig.width=6, fig.height=6, fig.align='center', echo=FALSE}
+p4 <- p3 + geom_smooth(aes(group=Species), method="lm"); p4
+```
+
+---
+
+###Example 2: do some more magic!  
+
+This looks ok but now we would like for each group to appear in its own graph. For this use facet_wrap(). Parameter to facet_wrap is variable by which you would want to separate the graphs (~variable2). If you put ~variable2, then the graph will be separated into as many columns as there are levels in variable2. Lets separate it to columns by Species variable.  
+
+
+```{r, eval=FALSE}
+p4 + ???
+     
+```
+
+---
+###Example 2: do some more magic! - solved  
+
+
+```{r}
+p4 + facet_wrap(~Species)
+     
+```
+
+---
+###Example 2: do some more magic again! - solved  
+
+Hmm.. graph looks kind of funny.. It is because x and y axis are automatically chosen to be the same everywhere (how smart!). but in this picture, you don't want that because each group occupies their own part and it just might look better if x axis was "free". No problem, just add  scales="free_x" as a parameter to facet_wrap.  
+
+```{r, eval=FALSE}
+p4 + facet_wrap(~Species, ???)
+
+```
+
+---
+###Example 2: do some more magic again! - solved   
+
+```{r, fig.width=6, fig.height=6, fig.align='center',echo=FALSE}
+p4 + facet_wrap(~Species, scales="free_x")
+
+```
+
+
+---
+
+### Example 3: back to basics - FILL  
+
+```{r, fig.width=6, fig.height=6, fig.align='center'}
+set.seed(200)
+smallIris <- iris[sample(1:150,20),]
+smallIris$Flower <- rep(c("Female","Male"),c(15,5))
+```
+
+
+
+```{r, fig.width=5, fig.height=5, fig.align='center'}
+ggplot(smallIris, aes(Flower))+
+    geom_bar()
+
+```
+
+
+---
+.pull-left[
+### Example 3: back to basics - FILL  
+
+```{r, fig.width=6, fig.height=6}
+ggplot(smallIris, 
+       aes(Flower, fill=Species))+
+    geom_bar()
+```
+]
+.pull-right[
+
+```{r, fig.width=6, fig.height=6}
+ggplot(smallIris, 
+       aes(Flower,fill=Species))+
+    geom_bar(position="fill")+
+    xlab("X label") + 
+    ylab("Y label") + 
+    theme_light()
+
+```
+]
+
+
+---
+###Exercise: Recreate the following plot  
+
+```{r, fig.width=6, fig.height=6, fig.align='center'}
+df <- read.table("http://hex.bioinfo.hr/~mfabijanic/df.txt", header=T)
+```
+These are the colors from Strongly yes to Strongly no:
+c("#1a9641", "#a6d96a", "#ffffbf", "#fdae61","#d7191c")
+
+```{r, echo=FALSE,message=FALSE}
+df$recommend <- factor(df$recommendation, levels=c("Strongly no","No", "Maybe", "Yes", "Strongly yes"))
+Recommendation <- ggplot(df, aes(recommend, fill=recommend))+
+    geom_bar(colour="black")+          
+    scale_fill_manual("",values=rev(c("#1a9641", "#a6d96a", "#ffffbf", "#fdae61","#d7191c")), drop=FALSE)+
+    ylab("Number of people")+xlab("Will you recommend #NGSchool to your friends and colleagues?")+
+    theme_light()+
+    theme(legend.position="none", axis.title=element_text(size=10,face="bold"), axis.text = element_text(size=6))+ 
+              scale_x_discrete(limits=levels(df$recommend))
+    ylim(0,18)
+```
+
+```{r, echo=FALSE, message=FALSE, fig.width=7, fig.height=4, fig.align='center'}
+Recommendation
+
+library(plotly)
+ggplotly(Recommendation)
+
+```
+
+---
+###Exercise: Recreate the following plot  
+
+```{r, fig.width=6, fig.height=6, fig.align='center'}
+works <- fread("http://hex.bioinfo.hr/~mfabijanic/works.txt", header = T)
+```
+
+Hint: Jitter the points!  
+
+```{r, echo=FALSE, fig.width=6, fig.height=6, fig.align='center'}
+works$Grade <- factor(works$Grade, levels=c("Extremely bad", "Below average", "Average", "Good", "Excellent"))
+ggplot(works, aes(x=Lecturer, group=Lecturer, y=Grade))+
+     geom_violin()+geom_jitter(width = 0.2, height = 0.2,aes(color=Gender))+
+     theme_light() +   theme(axis.text.x = element_text(angle=90))
+
+```
+
+---
+
+```{r, eval=FALSE}
+library(plotly)
+ggplotly(plot2)
+```
+
