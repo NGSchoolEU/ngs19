@@ -81,6 +81,34 @@ tutor: Roman Cheplyaka
 ### Natural language processing
 tutor: Noura Al Moubayed
 
+*create conda environment:*
+
+`conda create -n workshop python=3.7`
+
+*access the environment:*
+
+`source activate workshop`
+
+*install the libraries:*
+
+```
+conda install pandas
+conda install jupyter
+conda install matplotlib
+conda install -c conda-forge spacy
+conda install -c anaconda scikit-learn
+python -m spacy download en_core_web_lg
+conda install keras
+```
+
+*download the workshop folder can be found here:*
+
+https://drive.google.com/open?id=154y730NtzsLDjXrT7SwJmbjnlFvkGQC4
+
+*start Jupyter:*
+
+In the terminal “cd” to the workshop folder (NLP_workshop) and then type: `jupyter notebook`
+
 ### Reinforcement Learning
 tutor: Robert Loftin
 
