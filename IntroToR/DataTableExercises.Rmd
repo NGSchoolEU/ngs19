@@ -1,0 +1,91 @@
+---
+title: "Data table homework"
+output: html_notebook
+author: "YOUR NAME"
+date: "`r Sys.Date()`"
+---
+
+
+## Exercise 1:
+
+Read in the flights data in flights variable from   "https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv". (Install curl package if you need to before doing this.)
+
+```{r}
+library(data.table)
+flights <- fread("https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv")
+flights
+```
+
+a1) Order the flights data table by carrier (ascenting order) then by decreasing distance, and save only hour as a vector in a variable var1a1. (1 point)
+
+a2) Order the flights data table by carrier (ascenting order) then by decreasing distance, and save only hour as a data table with one column in a variable var1a2. (1 point)
+
+b1) Find the max flight air time for each carrier. copy the result to variable var1b1 (data.table with 2 columns, carrier and maxairtime, sorted by carrier. Do this in one command, no chaining, don't change the original data.table.). (1 point)  
+
+b2) Find the max flight air time for each carrier. copy the result to variable var1b2 (data.table with 2 columns, carrier and maxairtime, sorted by maxairtime, from largest to smallest. Don't change the original data.table.). (1 point)  
+
+c1) Count the number of flights that flew maximum air time for each carrier. Copy the data.table with carrier and numberofmaxflights to var1c1. Do this in one command, no addition of new columns and no chaining=2 points.  
+
+c2) Then do this by addition of new column to flights and/or chaining in one command = 1 point save the result to var1c2 (copy!). If you add the column, remove it in the end of this exercise (end of c2 just remove the column/s if added from flights).  
+
+d1) Count how many flights had the same flight time for each carrier separately, ordered by carrier alphabetically and by decreasing flight time (carrier, air_time, N). copy the result to var1d1. Do this in one command, no chaining. (1 point)
+
+d2) Get the data.table containing the same as previous (carrier, air_time, N), but only for the longest 2 flights for each carrier! copy the result to var1d2. Do this in one command, chaining if needed. (1 point)  
+
+d3) Get the data.table containing the same as previous (carrier, air_time, N), but only for the longest and shortest flights for each carrier! copy the result to var1d3. Do this in one command, chaining if needed. (1 point)  
+
+e) Get the name of the carrier who has the largest difference between longest and shortest flight air time! copy the result to var1e (only the carrier name as an element of vector). Do this in one command, chaining if needed, do not change the original data.table! (3 points)  
+
+f) Get the name of the carrier who has the largest mean air time. One command, chaining allowed, don't change the original data.table. Save the name alone in variable var1f (still the same command.). (1 point)  
+
+g1) Write a function that will calculate RSS (residual sum of squares), call the function myRss. The function should take one vector as an argument and return numeric value. Use this function to calculate residual sum of squares for air time for each carrier, name the column rss, dont change the original table! one command, no chaining. (copy to var1g1, 2 points).  
+
+g2) Do as the previous but for air_time and arr_delay columns in the same command, no chaining, no change to original data.table (var1g2, 1 point)!   
+
+g3) Do as the previous but for all numeric columns in the same command, no chaining, no change to original data.table (var1g3, 2 points)!   
+
+h1) Assign a new column to flights: speed which will have speed calculated for each flight. Do it in a data.table fashion. copy the resulting flights data.table to myFlights1 variable. (1 point)  
+
+h2) Convert speed and distance variables to type double. do it in data.table fashion, in one command. copy the resulting data.table to myFlights2 variable. Do this withouth lapply. (1 point). 
+
+h3) Again do the RSS calculation as in var1g1 but for all double columns in the same command, no chaining, no change to original data.table (var1g4, 1 point)!   
+
+i) Save the names of the columns which are of type double to thosecolumns variable.(1 point)  
+j) Convert thosecolumns back to type integer. do it in data.table fashion, in one command.  copy the resulting data.table to myFlights3 variable. But now do this with lapply.(2 points).  
+k) For air_time column, calculate the difference between the second and first observation for each carrier, in flights data frame ordered by carrier and then by decreasing. In the same command, no chaining, no change to original data.table, no additional function defined outside (var1k, 2 points)!  
+l) For all integer columns, calculate the difference between the second and first observation for each carrier. In the same command, no chaining, no change to original data.table, no additional function defined outside (var1l, 2 points)!   
+m) Copy the flights to myFlights. Add a new column, rss_air_time which will have myRss of air_time saved in it, to myFlights. do not change the flights variable, dont use chaining, do it in one command, (myFlights assignment is separate command.) copy the result to variable myFlights1  
+n) Make a vector with all the names of the columns with integer values, save it in intnames variable. Use the paste function to make a vector which will have all the names of integer columns converted to rss_columnname (so for air_time it will be rss_air_time, dor hour it will be rss_hour, ...) (2 points) (No need to do this with data table). save the vector as rssnames variable.  
+o) Use the previously created vectors to add multiple new columns to data.table. The names of the columns you will add will be rssnames. And the values will of course be myRss(column), where column is every column from intnames. Do it in one command, data.table style, no chaining. Copy the result to myFlights3 variable. (3 points).   
+p) Go back to flights data.table. Calculate and return (do not change the data.table) the mean, and sd for air_time for flights which travel between JFK and MIA. Do this by each carrier, in one line, no chaining. Do not rename the columns to anything, copy the result to myFlights4.(1 points)  
+
+
+# Exercise 2: 
+
+Again, lets analyse the flights. Answer the following questions by using data.table as you wish (so use data table but find your own way to do it since there are no specific instructions). Save the results in variables var2X, where X is the letter of the task. If you need to add some column, add the column and save the entire data frame. If you need to get the name of something, save only this element. If you need to return something and not change the data.table, still copy the data.table you need to return to this variable.  
+
+(First read in the flights again:)
+```{r}
+flights <- fread("https://raw.githubusercontent.com/Rdatatable/data.table/master/vignettes/flights14.csv")
+flights
+```
+
+
+a) Which carrier (or carriers if more have the same result) were delayed in departures the most times? 
+b) Which carrier (or carriers if more have the same result) were delayed in arrivals the most times?  
+c) Which journey (from -> to, regardless of the carrier) was delayed in arrival the most times?  
+d) Which journey  (from -> to, regardless of the carrier) was delayed in arrival the most in total minutes?  
+e) Are flights longer depending on time of the day? (Divide the day into : night (from 22->6 hours), morning (6->12, afternoon 12->16, evening 16->22 ))  
+f) For which time of the day are flights delayed in departure the most and for which the least? What about arrival delays?    
+g) Answer f but take into account the day of the week as well. (For which day of the week and which time of the day are flights delayed the least, and for which the most?)
+h) Count the number of flights between all pairs of locations. Which pair of locations had the most flights?  
+i) Which day was the flight from JFK to SFO delayed in arrival most times ?  
+j) Answer i again but take into account the number of flights on those days. So if on Monday there were 10 flights and 3 were delayed, and on Tuesdays there were 3 flights and one was delayed, then Tuesday is worse.  
+k) add JourneyID variable that will note the groups based on travel locations. (So all JFK->SFO flights will be one group and have the same JourneyID, JFK -> MIA another, ...).  Save this variable as a vector to var2k variable.  
+l) Calculate makeUpTime as delay in arrival - delay in departure. Which Journey had the best makeUpTime (scale based on time of average journey time).  
+m) Same as in l but for carrier and Journey. Add a column rankByMadeUpTime which will have this rank. For example, if carrier X1 on journey Y1 makes up 0.03% of the time of the journey, and carrier X2 on this journey makes up 0.05% of this journey time, but this carrier makes up 0.01% on some other journey, then the rank is 2,1,3 for those 3 combinations. So more time made up means better rank. Use rank function to do the rankings.  
+n) Which carrier has the best median rank?  
+o) Which carrier has the best mean rank?  
+p) Which journey has the best median rank?  
+r) Which destination has the best median rank?  
+
