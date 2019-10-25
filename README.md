@@ -123,6 +123,7 @@ conda install matplotlib
 conda install -c conda-forge spacy
 conda install -c anaconda scikit-learn
 #python -m spacy download en_core_web_lg
+pip install /path/to/folder/with/en_core_web_lg-2.2.0.tar.gz
 conda install keras
 ```
 
