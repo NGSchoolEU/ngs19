@@ -44,6 +44,12 @@ tutor: Kasia Kędzierska
 
 The whole workshop will be executed in the Jupyter notebook, and will rely on several Python packages. In the directory you can find a `setup_check.sh` script you can run to see if your enviorenment satisfies all requirements.
 
+Install and check if requirements are satisfied.
+
+```
+bash intro_to_python/setup_check.sh
+```
+
 Requirements:
 * `python3`  
 * `Jupyter` 
@@ -60,20 +66,35 @@ tutor: German Demidov
 ### Unsupervised learning
 tutor: Kasia Kędzierska
 
-The workshop will be run in R notebook. We would work locally and in order to check if all requirements are satisfied.
+Slids: [unsupervised_learning/unsupervised_learning_slides.pdf](unsupervised_learning/unsupervised_learning_slides.pdf)
+
+The workshop will be run in R notebook. We would work locally and the following packages are required.
 
 Requirements:
 * `R` 3.5+
 * `tidyverse` 1.2.1+
-* `dslabs` 0.7.1+
 * `factoextra` 1.0.5+
 * `ggpubr` 0.2+
 * `ggsci`  2.9+
 * `MASS` 7.3-50+
-* `tidyverse` 1.2.1+
 * `tsne` 0.1-3+
 * `umap` 0.2.3.1+
 
+```
+required_packages <- c("tidyverse", "factoextra", "ggpubr", 
+                       "ggsci", "MASS", "tsne", "umap")
+
+for (pkg in required_packages) {
+  if(!require(pkg, character.only = TRUE, 
+              quietly = TRUE, 
+              warn.conflicts = FALSE)) {
+    print(paste0("Warning! Installing package: ", pkg, "."))
+    install.packages(pkg)
+  } 
+}
+
+print("All done! :)")
+```
 
 ### Bayesian Inference
 tutor: Roman Cheplyaka
@@ -100,40 +121,46 @@ print("All done! :)")
 ### Natural language processing
 tutor: Noura Al Moubayed
 
-**install miniconda**
+#### Installation guidelines
+
+1. Install miniconda
+
+Start by installing miniconda.
 
 https://docs.conda.io/en/latest/miniconda.html
 
-**create conda environment:**
+2. Create conda environment 
 
-`conda create -n workshop python=3.7`
+To simplify, we can crete the enviromnet from the yml file: [nlp/workshop.yml](nlp/workshop.yml)
 
-**access the environment:**
+`conda env create -f nlp/workshop.yml`
 
-`conda activate workshop`
+3. **FROM LOCAL COPY** Install missing package:
 
-Do not forget to activate the environment before starting the workshop!
-
-**install the libraries:**
+Due to a large file size (>1GB), we are copying the `en_core_web_lg` from USB sticks distributed on site. When you copy the file from a USB, please change the following command to point to the location of the file.
 
 ```
-conda install pandas
-conda install jupyter
-conda install matplotlib
-conda install -c conda-forge spacy
-conda install -c anaconda scikit-learn
-#python -m spacy download en_core_web_lg
+# python -m spacy download en_core_web_lg
+conda activate workshop
 pip install /path/to/folder/with/en_core_web_lg-2.2.0.tar.gz
-conda install keras
 ```
 
-**download the workshop folder:**
+4. Clone the repository
 
-https://drive.google.com/open?id=154y730NtzsLDjXrT7SwJmbjnlFvkGQC4
+Make sure your github repository is up to date and unpack one of files from the nlp directory! The files is gziped to reduce its size.
 
-**start Jupyter:**
+```
+git pull origin master
+gunzip nlp/tutorial_features.pkl.gz
+```
 
-In the terminal “cd” to the workshop folder (NLP_workshop) and then type: `jupyter notebook`
+#### Running the workshop
+
+```
+cd nlp
+conda activate workshop
+jupyter notebook
+```
 
 ### Reinforcement Learning
 tutor: Robert Loftin

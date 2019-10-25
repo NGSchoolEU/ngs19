@@ -1,0 +1,14 @@
+name: workshop
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7
+  - jupyter
+  - pandas
+  - keras
+  - matplotlib
+  - jupyter
+  - spacy
+  - scikit-learn
