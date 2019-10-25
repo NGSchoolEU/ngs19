@@ -78,6 +78,22 @@ Requirements:
 ### Bayesian Inference
 tutor: Roman Cheplyaka
 
+Either in RStudio or in the interactive R session run following commands:
+
+```
+install.packages("rstan")
+install.packages("StanHeaders")
+install.packages("magrittr")
+install.packages("reshape2")
+install.packages("forcats")
+install.packages("stringr")
+install.packages("dplyr")
+install.packages("purrr")
+install.packages("readr")
+install.packages("tidyr")
+install.packages("tibble")
+```
+
 ### Natural language processing
 tutor: Noura Al Moubayed
 
