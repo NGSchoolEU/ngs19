@@ -1,0 +1,1705 @@
+Gender,Age,Continent,Height,Weight,OTU,Count
+female,18,Asia,186,72,OTU80,55
+female,18,Europe,160,77,OTU80,2519
+female,18,Europe,156,88,OTU80,419
+female,18,Europe,189,61,OTU80,4115
+female,18,Europe,160,67,OTU80,4746
+female,18,Europe,178,65,OTU80,1053
+female,18,Europe,157,89,OTU80,3109
+female,18,North America,181,82,OTU80,1290
+female,19,Europe,164,62,OTU80,4816
+female,19,North America,179,87,OTU80,2087
+female,19,North America,188,69,OTU80,1008
+female,20,Europe,184,65,OTU80,38
+female,21,Asia,162,90,OTU80,4444
+female,21,Europe,166,78,OTU80,1132
+female,21,Europe,179,70,OTU80,158
+female,21,Europe,157,80,OTU80,3258
+female,22,Europe,168,84,OTU80,2417
+female,22,Europe,174,58,OTU80,3921
+female,22,Europe,182,77,OTU80,4127
+female,22,North America,158,87,OTU80,750
+female,23,Europe,157,83,OTU80,1924
+female,23,Europe,190,64,OTU80,495
+female,24,Europe,187,82,OTU80,2112
+female,24,Europe,160,61,OTU80,277
+female,24,Europe,184,55,OTU80,412
+female,24,North America,164,89,OTU80,4589
+female,24,North America,169,90,OTU80,4342
+female,25,Europe,188,83,OTU80,2608
+female,25,North America,179,67,OTU80,93
+female,25,North America,178,76,OTU80,3993
+female,26,Europe,168,88,OTU80,1646
+female,26,Europe,179,64,OTU80,2262
+female,26,Europe,155,73,OTU80,4883
+female,26,Europe,160,68,OTU80,2929
+female,27,Asia,170,64,OTU80,468
+female,27,Europe,173,59,OTU80,2074
+female,27,Europe,186,82,OTU80,3586
+female,27,Europe,164,87,OTU80,3124
+female,27,North America,186,57,OTU80,570
+female,28,Asia,166,77,OTU80,4212
+female,28,Europe,175,85,OTU80,2468
+female,28,Europe,163,63,OTU80,3626
+female,29,Asia,164,73,OTU80,4708
+female,29,Europe,159,75,OTU80,4048
+female,29,Europe,184,85,OTU80,996
+female,29,North America,166,65,OTU80,876
+female,29,North America,170,67,OTU80,3435
+female,29,North America,167,81,OTU80,447
+female,29,North America,181,66,OTU80,4904
+female,30,Europe,166,87,OTU80,494
+female,30,North America,161,78,OTU80,2083
+female,30,North America,181,57,OTU80,1597
+female,31,Europe,166,77,OTU80,2880
+female,32,Europe,156,78,OTU80,2530
+female,32,Europe,169,87,OTU80,3576
+female,33,Europe,174,75,OTU80,1723
+female,33,Europe,166,77,OTU80,849
+female,33,North America,174,89,OTU80,2084
+female,33,North America,158,90,OTU80,2485
+female,34,Europe,167,79,OTU80,3838
+female,34,Europe,188,57,OTU80,526
+female,34,Europe,186,80,OTU80,3601
+female,34,Europe,177,75,OTU80,4703
+female,34,North America,164,66,OTU80,1468
+female,34,North America,171,62,OTU80,226
+female,35,Asia,183,84,OTU80,3856
+female,35,Europe,167,79,OTU80,2398
+female,35,North America,182,90,OTU80,2555
+female,35,North America,166,72,OTU80,1612
+female,35,North America,190,78,OTU80,4274
+male,18,Europe,188,69,OTU80,4341
+male,18,Europe,175,73,OTU80,4235
+male,18,North America,188,68,OTU80,2609
+male,18,North America,184,75,OTU80,3398
+male,18,North America,166,74,OTU80,2756
+male,19,Asia,159,80,OTU80,2165
+male,19,Europe,184,58,OTU80,2654
+male,19,Europe,189,79,OTU80,2339
+male,19,Europe,185,81,OTU80,2301
+male,19,North America,186,77,OTU80,4288
+male,20,Europe,170,89,OTU80,224
+male,20,Europe,178,90,OTU80,1014
+male,20,North America,169,68,OTU80,1523
+male,20,North America,180,75,OTU80,4322
+male,20,North America,166,78,OTU80,1131
+male,21,Europe,172,76,OTU80,3153
+male,22,Europe,183,86,OTU80,2667
+male,22,Europe,158,70,OTU80,1354
+male,22,North America,174,73,OTU80,1999
+male,22,North America,186,81,OTU80,1155
+male,23,Asia,186,72,OTU80,2066
+male,23,Europe,160,65,OTU80,3446
+male,24,North America,177,73,OTU80,1471
+male,24,North America,187,67,OTU80,1616
+male,25,Europe,182,79,OTU80,2622
+male,25,North America,185,82,OTU80,3497
+male,25,North America,168,84,OTU80,4949
+male,26,Asia,180,73,OTU80,4201
+male,26,Asia,190,70,OTU80,3308
+male,26,Europe,190,77,OTU80,4390
+male,26,Europe,186,87,OTU80,2968
+male,26,North America,179,76,OTU80,353
+male,26,North America,176,58,OTU80,1956
+male,27,Europe,188,85,OTU80,437
+male,27,Europe,158,81,OTU80,271
+male,27,Europe,186,56,OTU80,3168
+male,27,Europe,157,90,OTU80,247
+male,27,North America,172,67,OTU80,318
+male,27,North America,162,66,OTU80,3592
+male,28,Europe,175,80,OTU80,412
+male,28,Europe,162,85,OTU80,21
+male,28,Europe,183,72,OTU80,1355
+male,28,Europe,183,71,OTU80,4032
+male,28,North America,175,80,OTU80,3740
+male,29,Europe,164,74,OTU80,4203
+male,29,North America,190,86,OTU80,4238
+male,30,Europe,185,71,OTU80,989
+male,30,Europe,186,58,OTU80,3370
+male,30,Europe,162,57,OTU80,1555
+male,30,North America,156,78,OTU80,3201
+male,31,Asia,182,88,OTU80,3200
+male,31,Europe,182,89,OTU80,3008
+male,31,Europe,180,83,OTU80,3517
+male,31,Europe,170,69,OTU80,1663
+male,31,Europe,178,84,OTU80,3565
+male,31,North America,186,57,OTU80,4945
+male,32,Asia,187,87,OTU80,560
+male,32,Europe,180,58,OTU80,4929
+male,32,Europe,170,55,OTU80,2696
+male,32,North America,157,79,OTU80,2520
+male,32,North America,188,56,OTU80,3095
+male,32,North America,174,86,OTU80,103
+male,33,Europe,172,90,OTU80,3964
+male,33,Europe,166,81,OTU80,770
+male,33,Europe,172,87,OTU80,704
+male,33,Europe,184,67,OTU80,4676
+male,33,North America,183,86,OTU80,2489
+male,34,Europe,174,78,OTU80,748
+male,34,Europe,159,61,OTU80,2323
+male,34,North America,169,68,OTU80,4586
+male,34,North America,178,58,OTU80,2271
+male,34,North America,188,62,OTU80,3097
+female,18,Asia,186,72,OTU81,2277
+female,18,Europe,160,77,OTU81,3879
+female,18,Europe,156,88,OTU81,289
+female,18,Europe,189,61,OTU81,1926
+female,18,Europe,160,67,OTU81,4331
+female,18,Europe,178,65,OTU81,1153
+female,18,Europe,157,89,OTU81,2074
+female,18,North America,181,82,OTU81,906
+female,19,Europe,164,62,OTU81,3538
+female,19,North America,179,87,OTU81,4995
+female,19,North America,188,69,OTU81,797
+female,20,Europe,184,65,OTU81,2290
+female,21,Asia,162,90,OTU81,2663
+female,21,Europe,166,78,OTU81,392
+female,21,Europe,179,70,OTU81,710
+female,21,Europe,157,80,OTU81,4599
+female,22,Europe,168,84,OTU81,3634
+female,22,Europe,174,58,OTU81,924
+female,22,Europe,182,77,OTU81,2152
+female,22,North America,158,87,OTU81,3976
+female,23,Europe,157,83,OTU81,5000
+female,23,Europe,190,64,OTU81,3693
+female,24,Europe,187,82,OTU81,3068
+female,24,Europe,160,61,OTU81,4179
+female,24,Europe,184,55,OTU81,719
+female,24,North America,164,89,OTU81,645
+female,24,North America,169,90,OTU81,1188
+female,25,Europe,188,83,OTU81,121
+female,25,North America,179,67,OTU81,4016
+female,25,North America,178,76,OTU81,1590
+female,26,Europe,168,88,OTU81,756
+female,26,Europe,179,64,OTU81,3084
+female,26,Europe,155,73,OTU81,3108
+female,26,Europe,160,68,OTU81,1445
+female,27,Asia,170,64,OTU81,3124
+female,27,Europe,173,59,OTU81,3575
+female,27,Europe,186,82,OTU81,747
+female,27,Europe,164,87,OTU81,2820
+female,27,North America,186,57,OTU81,4690
+female,28,Asia,166,77,OTU81,2847
+female,28,Europe,175,85,OTU81,1423
+female,28,Europe,163,63,OTU81,4783
+female,29,Asia,164,73,OTU81,2796
+female,29,Europe,159,75,OTU81,1681
+female,29,Europe,184,85,OTU81,1590
+female,29,North America,166,65,OTU81,698
+female,29,North America,170,67,OTU81,1732
+female,29,North America,167,81,OTU81,2468
+female,29,North America,181,66,OTU81,1123
+female,30,Europe,166,87,OTU81,4446
+female,30,North America,161,78,OTU81,3885
+female,30,North America,181,57,OTU81,3998
+female,31,Europe,166,77,OTU81,3007
+female,32,Europe,156,78,OTU81,3521
+female,32,Europe,169,87,OTU81,3994
+female,33,Europe,174,75,OTU81,4433
+female,33,Europe,166,77,OTU81,2210
+female,33,North America,174,89,OTU81,1097
+female,33,North America,158,90,OTU81,3144
+female,34,Europe,167,79,OTU81,2488
+female,34,Europe,188,57,OTU81,1894
+female,34,Europe,186,80,OTU81,4731
+female,34,Europe,177,75,OTU81,2990
+female,34,North America,164,66,OTU81,4037
+female,34,North America,171,62,OTU81,2505
+female,35,Asia,183,84,OTU81,2012
+female,35,Europe,167,79,OTU81,137
+female,35,North America,182,90,OTU81,4783
+female,35,North America,166,72,OTU81,3690
+female,35,North America,190,78,OTU81,2915
+male,18,Europe,188,69,OTU81,2224
+male,18,Europe,175,73,OTU81,790
+male,18,North America,188,68,OTU81,4300
+male,18,North America,184,75,OTU81,4542
+male,18,North America,166,74,OTU81,4796
+male,19,Asia,159,80,OTU81,4248
+male,19,Europe,184,58,OTU81,998
+male,19,Europe,189,79,OTU81,4962
+male,19,Europe,185,81,OTU81,379
+male,19,North America,186,77,OTU81,3599
+male,20,Europe,170,89,OTU81,1089
+male,20,Europe,178,90,OTU81,806
+male,20,North America,169,68,OTU81,4997
+male,20,North America,180,75,OTU81,2453
+male,20,North America,166,78,OTU81,3043
+male,21,Europe,172,76,OTU81,3581
+male,22,Europe,183,86,OTU81,2831
+male,22,Europe,158,70,OTU81,1850
+male,22,North America,174,73,OTU81,113
+male,22,North America,186,81,OTU81,1086
+male,23,Asia,186,72,OTU81,1890
+male,23,Europe,160,65,OTU81,3696
+male,24,North America,177,73,OTU81,1853
+male,24,North America,187,67,OTU81,696
+male,25,Europe,182,79,OTU81,1918
+male,25,North America,185,82,OTU81,3728
+male,25,North America,168,84,OTU81,707
+male,26,Asia,180,73,OTU81,277
+male,26,Asia,190,70,OTU81,1577
+male,26,Europe,190,77,OTU81,1829
+male,26,Europe,186,87,OTU81,4171
+male,26,North America,179,76,OTU81,3226
+male,26,North America,176,58,OTU81,701
+male,27,Europe,188,85,OTU81,3524
+male,27,Europe,158,81,OTU81,1243
+male,27,Europe,186,56,OTU81,3281
+male,27,Europe,157,90,OTU81,3625
+male,27,North America,172,67,OTU81,195
+male,27,North America,162,66,OTU81,729
+male,28,Europe,175,80,OTU81,2243
+male,28,Europe,162,85,OTU81,4777
+male,28,Europe,183,72,OTU81,3074
+male,28,Europe,183,71,OTU81,4824
+male,28,North America,175,80,OTU81,4964
+male,29,Europe,164,74,OTU81,2448
+male,29,North America,190,86,OTU81,422
+male,30,Europe,185,71,OTU81,1820
+male,30,Europe,186,58,OTU81,1300
+male,30,Europe,162,57,OTU81,2903
+male,30,North America,156,78,OTU81,3478
+male,31,Asia,182,88,OTU81,3507
+male,31,Europe,182,89,OTU81,1878
+male,31,Europe,180,83,OTU81,3320
+male,31,Europe,170,69,OTU81,1352
+male,31,Europe,178,84,OTU81,1049
+male,31,North America,186,57,OTU81,1390
+male,32,Asia,187,87,OTU81,4849
+male,32,Europe,180,58,OTU81,2511
+male,32,Europe,170,55,OTU81,37
+male,32,North America,157,79,OTU81,718
+male,32,North America,188,56,OTU81,4959
+male,32,North America,174,86,OTU81,4512
+male,33,Europe,172,90,OTU81,2577
+male,33,Europe,166,81,OTU81,2151
+male,33,Europe,172,87,OTU81,4588
+male,33,Europe,184,67,OTU81,1997
+male,33,North America,183,86,OTU81,4925
+male,34,Europe,174,78,OTU81,2743
+male,34,Europe,159,61,OTU81,4076
+male,34,North America,169,68,OTU81,3325
+male,34,North America,178,58,OTU81,4207
+male,34,North America,188,62,OTU81,4375
+female,18,Asia,186,72,OTU82,2621
+female,18,Europe,160,77,OTU82,1885
+female,18,Europe,156,88,OTU82,3812
+female,18,Europe,189,61,OTU82,855
+female,18,Europe,160,67,OTU82,3497
+female,18,Europe,178,65,OTU82,4289
+female,18,Europe,157,89,OTU82,1886
+female,18,North America,181,82,OTU82,3509
+female,19,Europe,164,62,OTU82,2491
+female,19,North America,179,87,OTU82,3493
+female,19,North America,188,69,OTU82,1925
+female,20,Europe,184,65,OTU82,1350
+female,21,Asia,162,90,OTU82,1098
+female,21,Europe,166,78,OTU82,1711
+female,21,Europe,179,70,OTU82,4067
+female,21,Europe,157,80,OTU82,131
+female,22,Europe,168,84,OTU82,3913
+female,22,Europe,174,58,OTU82,2689
+female,22,Europe,182,77,OTU82,534
+female,22,North America,158,87,OTU82,3440
+female,23,Europe,157,83,OTU82,26
+female,23,Europe,190,64,OTU82,1804
+female,24,Europe,187,82,OTU82,445
+female,24,Europe,160,61,OTU82,3407
+female,24,Europe,184,55,OTU82,3481
+female,24,North America,164,89,OTU82,1863
+female,24,North America,169,90,OTU82,2874
+female,25,Europe,188,83,OTU82,1223
+female,25,North America,179,67,OTU82,4559
+female,25,North America,178,76,OTU82,3800
+female,26,Europe,168,88,OTU82,3422
+female,26,Europe,179,64,OTU82,936
+female,26,Europe,155,73,OTU82,3824
+female,26,Europe,160,68,OTU82,3218
+female,27,Asia,170,64,OTU82,253
+female,27,Europe,173,59,OTU82,3470
+female,27,Europe,186,82,OTU82,1495
+female,27,Europe,164,87,OTU82,4322
+female,27,North America,186,57,OTU82,2241
+female,28,Asia,166,77,OTU82,4031
+female,28,Europe,175,85,OTU82,4050
+female,28,Europe,163,63,OTU82,3103
+female,29,Asia,164,73,OTU82,4449
+female,29,Europe,159,75,OTU82,2887
+female,29,Europe,184,85,OTU82,1729
+female,29,North America,166,65,OTU82,2988
+female,29,North America,170,67,OTU82,2868
+female,29,North America,167,81,OTU82,969
+female,29,North America,181,66,OTU82,3315
+female,30,Europe,166,87,OTU82,2380
+female,30,North America,161,78,OTU82,3871
+female,30,North America,181,57,OTU82,1254
+female,31,Europe,166,77,OTU82,4114
+female,32,Europe,156,78,OTU82,1899
+female,32,Europe,169,87,OTU82,4255
+female,33,Europe,174,75,OTU82,1402
+female,33,Europe,166,77,OTU82,1182
+female,33,North America,174,89,OTU82,648
+female,33,North America,158,90,OTU82,235
+female,34,Europe,167,79,OTU82,1291
+female,34,Europe,188,57,OTU82,3094
+female,34,Europe,186,80,OTU82,106
+female,34,Europe,177,75,OTU82,279
+female,34,North America,164,66,OTU82,1184
+female,34,North America,171,62,OTU82,2052
+female,35,Asia,183,84,OTU82,2455
+female,35,Europe,167,79,OTU82,2813
+female,35,North America,182,90,OTU82,3820
+female,35,North America,166,72,OTU82,129
+female,35,North America,190,78,OTU82,3955
+male,18,Europe,188,69,OTU82,438
+male,18,Europe,175,73,OTU82,3775
+male,18,North America,188,68,OTU82,1414
+male,18,North America,184,75,OTU82,371
+male,18,North America,166,74,OTU82,4780
+male,19,Asia,159,80,OTU82,458
+male,19,Europe,184,58,OTU82,1060
+male,19,Europe,189,79,OTU82,2977
+male,19,Europe,185,81,OTU82,3575
+male,19,North America,186,77,OTU82,3383
+male,20,Europe,170,89,OTU82,3234
+male,20,Europe,178,90,OTU82,1434
+male,20,North America,169,68,OTU82,2648
+male,20,North America,180,75,OTU82,1028
+male,20,North America,166,78,OTU82,3345
+male,21,Europe,172,76,OTU82,49
+male,22,Europe,183,86,OTU82,4625
+male,22,Europe,158,70,OTU82,2732
+male,22,North America,174,73,OTU82,3502
+male,22,North America,186,81,OTU82,1247
+male,23,Asia,186,72,OTU82,3540
+male,23,Europe,160,65,OTU82,2289
+male,24,North America,177,73,OTU82,4313
+male,24,North America,187,67,OTU82,1173
+male,25,Europe,182,79,OTU82,863
+male,25,North America,185,82,OTU82,2739
+male,25,North America,168,84,OTU82,3166
+male,26,Asia,180,73,OTU82,785
+male,26,Asia,190,70,OTU82,3708
+male,26,Europe,190,77,OTU82,1541
+male,26,Europe,186,87,OTU82,1525
+male,26,North America,179,76,OTU82,1797
+male,26,North America,176,58,OTU82,1739
+male,27,Europe,188,85,OTU82,1269
+male,27,Europe,158,81,OTU82,4811
+male,27,Europe,186,56,OTU82,418
+male,27,Europe,157,90,OTU82,4221
+male,27,North America,172,67,OTU82,3748
+male,27,North America,162,66,OTU82,4135
+male,28,Europe,175,80,OTU82,4361
+male,28,Europe,162,85,OTU82,736
+male,28,Europe,183,72,OTU82,3952
+male,28,Europe,183,71,OTU82,144
+male,28,North America,175,80,OTU82,3333
+male,29,Europe,164,74,OTU82,254
+male,29,North America,190,86,OTU82,2831
+male,30,Europe,185,71,OTU82,2004
+male,30,Europe,186,58,OTU82,429
+male,30,Europe,162,57,OTU82,3103
+male,30,North America,156,78,OTU82,2831
+male,31,Asia,182,88,OTU82,4885
+male,31,Europe,182,89,OTU82,2797
+male,31,Europe,180,83,OTU82,1853
+male,31,Europe,170,69,OTU82,821
+male,31,Europe,178,84,OTU82,4149
+male,31,North America,186,57,OTU82,2145
+male,32,Asia,187,87,OTU82,2324
+male,32,Europe,180,58,OTU82,3087
+male,32,Europe,170,55,OTU82,679
+male,32,North America,157,79,OTU82,4117
+male,32,North America,188,56,OTU82,309
+male,32,North America,174,86,OTU82,2189
+male,33,Europe,172,90,OTU82,261
+male,33,Europe,166,81,OTU82,3636
+male,33,Europe,172,87,OTU82,2624
+male,33,Europe,184,67,OTU82,2064
+male,33,North America,183,86,OTU82,4779
+male,34,Europe,174,78,OTU82,2953
+male,34,Europe,159,61,OTU82,3781
+male,34,North America,169,68,OTU82,1527
+male,34,North America,178,58,OTU82,905
+male,34,North America,188,62,OTU82,369
+female,18,Asia,186,72,OTU83,2218
+female,18,Europe,160,77,OTU83,1643
+female,18,Europe,156,88,OTU83,2307
+female,18,Europe,189,61,OTU83,4407
+female,18,Europe,160,67,OTU83,4630
+female,18,Europe,178,65,OTU83,4391
+female,18,Europe,157,89,OTU83,4139
+female,18,North America,181,82,OTU83,2540
+female,19,Europe,164,62,OTU83,2138
+female,19,North America,179,87,OTU83,2244
+female,19,North America,188,69,OTU83,4551
+female,20,Europe,184,65,OTU83,135
+female,21,Asia,162,90,OTU83,1081
+female,21,Europe,166,78,OTU83,3736
+female,21,Europe,179,70,OTU83,4236
+female,21,Europe,157,80,OTU83,2242
+female,22,Europe,168,84,OTU83,855
+female,22,Europe,174,58,OTU83,4895
+female,22,Europe,182,77,OTU83,1078
+female,22,North America,158,87,OTU83,3120
+female,23,Europe,157,83,OTU83,280
+female,23,Europe,190,64,OTU83,2846
+female,24,Europe,187,82,OTU83,2910
+female,24,Europe,160,61,OTU83,4135
+female,24,Europe,184,55,OTU83,4515
+female,24,North America,164,89,OTU83,1391
+female,24,North America,169,90,OTU83,3034
+female,25,Europe,188,83,OTU83,3571
+female,25,North America,179,67,OTU83,4569
+female,25,North America,178,76,OTU83,2920
+female,26,Europe,168,88,OTU83,2068
+female,26,Europe,179,64,OTU83,1512
+female,26,Europe,155,73,OTU83,2693
+female,26,Europe,160,68,OTU83,4452
+female,27,Asia,170,64,OTU83,112
+female,27,Europe,173,59,OTU83,3379
+female,27,Europe,186,82,OTU83,3341
+female,27,Europe,164,87,OTU83,2762
+female,27,North America,186,57,OTU83,1604
+female,28,Asia,166,77,OTU83,20
+female,28,Europe,175,85,OTU83,2013
+female,28,Europe,163,63,OTU83,2870
+female,29,Asia,164,73,OTU83,3227
+female,29,Europe,159,75,OTU83,3552
+female,29,Europe,184,85,OTU83,4073
+female,29,North America,166,65,OTU83,3071
+female,29,North America,170,67,OTU83,3280
+female,29,North America,167,81,OTU83,3519
+female,29,North America,181,66,OTU83,4686
+female,30,Europe,166,87,OTU83,1299
+female,30,North America,161,78,OTU83,3438
+female,30,North America,181,57,OTU83,3745
+female,31,Europe,166,77,OTU83,1194
+female,32,Europe,156,78,OTU83,1208
+female,32,Europe,169,87,OTU83,4904
+female,33,Europe,174,75,OTU83,3480
+female,33,Europe,166,77,OTU83,3140
+female,33,North America,174,89,OTU83,653
+female,33,North America,158,90,OTU83,839
+female,34,Europe,167,79,OTU83,3436
+female,34,Europe,188,57,OTU83,4436
+female,34,Europe,186,80,OTU83,3517
+female,34,Europe,177,75,OTU83,1214
+female,34,North America,164,66,OTU83,3971
+female,34,North America,171,62,OTU83,3013
+female,35,Asia,183,84,OTU83,4563
+female,35,Europe,167,79,OTU83,2157
+female,35,North America,182,90,OTU83,234
+female,35,North America,166,72,OTU83,1079
+female,35,North America,190,78,OTU83,2771
+male,18,Europe,188,69,OTU83,2906
+male,18,Europe,175,73,OTU83,2068
+male,18,North America,188,68,OTU83,4158
+male,18,North America,184,75,OTU83,4100
+male,18,North America,166,74,OTU83,3611
+male,19,Asia,159,80,OTU83,4393
+male,19,Europe,184,58,OTU83,2412
+male,19,Europe,189,79,OTU83,4746
+male,19,Europe,185,81,OTU83,3916
+male,19,North America,186,77,OTU83,1354
+male,20,Europe,170,89,OTU83,2247
+male,20,Europe,178,90,OTU83,2053
+male,20,North America,169,68,OTU83,2090
+male,20,North America,180,75,OTU83,3272
+male,20,North America,166,78,OTU83,1364
+male,21,Europe,172,76,OTU83,705
+male,22,Europe,183,86,OTU83,530
+male,22,Europe,158,70,OTU83,276
+male,22,North America,174,73,OTU83,2900
+male,22,North America,186,81,OTU83,3055
+male,23,Asia,186,72,OTU83,2624
+male,23,Europe,160,65,OTU83,113
+male,24,North America,177,73,OTU83,1750
+male,24,North America,187,67,OTU83,474
+male,25,Europe,182,79,OTU83,2493
+male,25,North America,185,82,OTU83,476
+male,25,North America,168,84,OTU83,1329
+male,26,Asia,180,73,OTU83,3689
+male,26,Asia,190,70,OTU83,2356
+male,26,Europe,190,77,OTU83,2281
+male,26,Europe,186,87,OTU83,1408
+male,26,North America,179,76,OTU83,3653
+male,26,North America,176,58,OTU83,827
+male,27,Europe,188,85,OTU83,333
+male,27,Europe,158,81,OTU83,3969
+male,27,Europe,186,56,OTU83,3666
+male,27,Europe,157,90,OTU83,1476
+male,27,North America,172,67,OTU83,2227
+male,27,North America,162,66,OTU83,4629
+male,28,Europe,175,80,OTU83,4126
+male,28,Europe,162,85,OTU83,2867
+male,28,Europe,183,72,OTU83,1750
+male,28,Europe,183,71,OTU83,694
+male,28,North America,175,80,OTU83,1717
+male,29,Europe,164,74,OTU83,213
+male,29,North America,190,86,OTU83,4866
+male,30,Europe,185,71,OTU83,546
+male,30,Europe,186,58,OTU83,4869
+male,30,Europe,162,57,OTU83,440
+male,30,North America,156,78,OTU83,1678
+male,31,Asia,182,88,OTU83,3334
+male,31,Europe,182,89,OTU83,2581
+male,31,Europe,180,83,OTU83,1145
+male,31,Europe,170,69,OTU83,2793
+male,31,Europe,178,84,OTU83,3913
+male,31,North America,186,57,OTU83,3940
+male,32,Asia,187,87,OTU83,118
+male,32,Europe,180,58,OTU83,1545
+male,32,Europe,170,55,OTU83,2233
+male,32,North America,157,79,OTU83,4684
+male,32,North America,188,56,OTU83,1220
+male,32,North America,174,86,OTU83,2991
+male,33,Europe,172,90,OTU83,181
+male,33,Europe,166,81,OTU83,4877
+male,33,Europe,172,87,OTU83,341
+male,33,Europe,184,67,OTU83,3656
+male,33,North America,183,86,OTU83,1799
+male,34,Europe,174,78,OTU83,511
+male,34,Europe,159,61,OTU83,1594
+male,34,North America,169,68,OTU83,1653
+male,34,North America,178,58,OTU83,2619
+male,34,North America,188,62,OTU83,2285
+female,18,Asia,186,72,OTU84,4020
+female,18,Europe,160,77,OTU84,4453
+female,18,Europe,156,88,OTU84,1593
+female,18,Europe,189,61,OTU84,3462
+female,18,Europe,160,67,OTU84,1124
+female,18,Europe,178,65,OTU84,419
+female,18,Europe,157,89,OTU84,2591
+female,18,North America,181,82,OTU84,530
+female,19,Europe,164,62,OTU84,2499
+female,19,North America,179,87,OTU84,2227
+female,19,North America,188,69,OTU84,3481
+female,20,Europe,184,65,OTU84,3678
+female,21,Asia,162,90,OTU84,3959
+female,21,Europe,166,78,OTU84,1575
+female,21,Europe,179,70,OTU84,183
+female,21,Europe,157,80,OTU84,1443
+female,22,Europe,168,84,OTU84,1621
+female,22,Europe,174,58,OTU84,3598
+female,22,Europe,182,77,OTU84,997
+female,22,North America,158,87,OTU84,1015
+female,23,Europe,157,83,OTU84,2758
+female,23,Europe,190,64,OTU84,3301
+female,24,Europe,187,82,OTU84,3271
+female,24,Europe,160,61,OTU84,100
+female,24,Europe,184,55,OTU84,4587
+female,24,North America,164,89,OTU84,93
+female,24,North America,169,90,OTU84,232
+female,25,Europe,188,83,OTU84,2533
+female,25,North America,179,67,OTU84,2955
+female,25,North America,178,76,OTU84,3735
+female,26,Europe,168,88,OTU84,885
+female,26,Europe,179,64,OTU84,1987
+female,26,Europe,155,73,OTU84,1622
+female,26,Europe,160,68,OTU84,43
+female,27,Asia,170,64,OTU84,1517
+female,27,Europe,173,59,OTU84,496
+female,27,Europe,186,82,OTU84,399
+female,27,Europe,164,87,OTU84,187
+female,27,North America,186,57,OTU84,4153
+female,28,Asia,166,77,OTU84,2686
+female,28,Europe,175,85,OTU84,1887
+female,28,Europe,163,63,OTU84,4885
+female,29,Asia,164,73,OTU84,1841
+female,29,Europe,159,75,OTU84,2891
+female,29,Europe,184,85,OTU84,3018
+female,29,North America,166,65,OTU84,3151
+female,29,North America,170,67,OTU84,3526
+female,29,North America,167,81,OTU84,2440
+female,29,North America,181,66,OTU84,2233
+female,30,Europe,166,87,OTU84,2348
+female,30,North America,161,78,OTU84,3561
+female,30,North America,181,57,OTU84,546
+female,31,Europe,166,77,OTU84,2450
+female,32,Europe,156,78,OTU84,3514
+female,32,Europe,169,87,OTU84,3244
+female,33,Europe,174,75,OTU84,2168
+female,33,Europe,166,77,OTU84,12
+female,33,North America,174,89,OTU84,2616
+female,33,North America,158,90,OTU84,4961
+female,34,Europe,167,79,OTU84,1099
+female,34,Europe,188,57,OTU84,3048
+female,34,Europe,186,80,OTU84,34
+female,34,Europe,177,75,OTU84,2396
+female,34,North America,164,66,OTU84,3586
+female,34,North America,171,62,OTU84,4374
+female,35,Asia,183,84,OTU84,4746
+female,35,Europe,167,79,OTU84,1726
+female,35,North America,182,90,OTU84,3501
+female,35,North America,166,72,OTU84,1932
+female,35,North America,190,78,OTU84,4618
+male,18,Europe,188,69,OTU84,2863
+male,18,Europe,175,73,OTU84,504
+male,18,North America,188,68,OTU84,3012
+male,18,North America,184,75,OTU84,1596
+male,18,North America,166,74,OTU84,2153
+male,19,Asia,159,80,OTU84,289
+male,19,Europe,184,58,OTU84,1779
+male,19,Europe,189,79,OTU84,1153
+male,19,Europe,185,81,OTU84,1385
+male,19,North America,186,77,OTU84,2577
+male,20,Europe,170,89,OTU84,1578
+male,20,Europe,178,90,OTU84,4043
+male,20,North America,169,68,OTU84,592
+male,20,North America,180,75,OTU84,1536
+male,20,North America,166,78,OTU84,2050
+male,21,Europe,172,76,OTU84,4458
+male,22,Europe,183,86,OTU84,1384
+male,22,Europe,158,70,OTU84,661
+male,22,North America,174,73,OTU84,3395
+male,22,North America,186,81,OTU84,106
+male,23,Asia,186,72,OTU84,3215
+male,23,Europe,160,65,OTU84,557
+male,24,North America,177,73,OTU84,2670
+male,24,North America,187,67,OTU84,3516
+male,25,Europe,182,79,OTU84,1017
+male,25,North America,185,82,OTU84,2470
+male,25,North America,168,84,OTU84,1496
+male,26,Asia,180,73,OTU84,2621
+male,26,Asia,190,70,OTU84,1299
+male,26,Europe,190,77,OTU84,3511
+male,26,Europe,186,87,OTU84,1412
+male,26,North America,179,76,OTU84,4875
+male,26,North America,176,58,OTU84,2232
+male,27,Europe,188,85,OTU84,3952
+male,27,Europe,158,81,OTU84,3958
+male,27,Europe,186,56,OTU84,2354
+male,27,Europe,157,90,OTU84,4994
+male,27,North America,172,67,OTU84,3866
+male,27,North America,162,66,OTU84,4426
+male,28,Europe,175,80,OTU84,454
+male,28,Europe,162,85,OTU84,732
+male,28,Europe,183,72,OTU84,1152
+male,28,Europe,183,71,OTU84,3259
+male,28,North America,175,80,OTU84,4425
+male,29,Europe,164,74,OTU84,2755
+male,29,North America,190,86,OTU84,3719
+male,30,Europe,185,71,OTU84,1418
+male,30,Europe,186,58,OTU84,641
+male,30,Europe,162,57,OTU84,4089
+male,30,North America,156,78,OTU84,4045
+male,31,Asia,182,88,OTU84,4016
+male,31,Europe,182,89,OTU84,3541
+male,31,Europe,180,83,OTU84,180
+male,31,Europe,170,69,OTU84,3605
+male,31,Europe,178,84,OTU84,4935
+male,31,North America,186,57,OTU84,4272
+male,32,Asia,187,87,OTU84,101
+male,32,Europe,180,58,OTU84,1285
+male,32,Europe,170,55,OTU84,3765
+male,32,North America,157,79,OTU84,2013
+male,32,North America,188,56,OTU84,3423
+male,32,North America,174,86,OTU84,2448
+male,33,Europe,172,90,OTU84,4436
+male,33,Europe,166,81,OTU84,1518
+male,33,Europe,172,87,OTU84,271
+male,33,Europe,184,67,OTU84,1187
+male,33,North America,183,86,OTU84,4112
+male,34,Europe,174,78,OTU84,4500
+male,34,Europe,159,61,OTU84,4884
+male,34,North America,169,68,OTU84,1446
+male,34,North America,178,58,OTU84,805
+male,34,North America,188,62,OTU84,1404
+female,18,Asia,186,72,OTU85,3224
+female,18,Europe,160,77,OTU85,4231
+female,18,Europe,156,88,OTU85,248
+female,18,Europe,189,61,OTU85,255
+female,18,Europe,160,67,OTU85,3942
+female,18,Europe,178,65,OTU85,2039
+female,18,Europe,157,89,OTU85,3272
+female,18,North America,181,82,OTU85,4524
+female,19,Europe,164,62,OTU85,1884
+female,19,North America,179,87,OTU85,259
+female,19,North America,188,69,OTU85,3735
+female,20,Europe,184,65,OTU85,820
+female,21,Asia,162,90,OTU85,4221
+female,21,Europe,166,78,OTU85,1878
+female,21,Europe,179,70,OTU85,2665
+female,21,Europe,157,80,OTU85,4812
+female,22,Europe,168,84,OTU85,821
+female,22,Europe,174,58,OTU85,3334
+female,22,Europe,182,77,OTU85,4174
+female,22,North America,158,87,OTU85,3770
+female,23,Europe,157,83,OTU85,4618
+female,23,Europe,190,64,OTU85,511
+female,24,Europe,187,82,OTU85,133
+female,24,Europe,160,61,OTU85,2844
+female,24,Europe,184,55,OTU85,671
+female,24,North America,164,89,OTU85,2092
+female,24,North America,169,90,OTU85,4712
+female,25,Europe,188,83,OTU85,4558
+female,25,North America,179,67,OTU85,1106
+female,25,North America,178,76,OTU85,4235
+female,26,Europe,168,88,OTU85,2892
+female,26,Europe,179,64,OTU85,1574
+female,26,Europe,155,73,OTU85,3174
+female,26,Europe,160,68,OTU85,992
+female,27,Asia,170,64,OTU85,4022
+female,27,Europe,173,59,OTU85,4856
+female,27,Europe,186,82,OTU85,4595
+female,27,Europe,164,87,OTU85,2831
+female,27,North America,186,57,OTU85,2729
+female,28,Asia,166,77,OTU85,4397
+female,28,Europe,175,85,OTU85,2454
+female,28,Europe,163,63,OTU85,3360
+female,29,Asia,164,73,OTU85,472
+female,29,Europe,159,75,OTU85,808
+female,29,Europe,184,85,OTU85,1356
+female,29,North America,166,65,OTU85,701
+female,29,North America,170,67,OTU85,1798
+female,29,North America,167,81,OTU85,2767
+female,29,North America,181,66,OTU85,2763
+female,30,Europe,166,87,OTU85,3334
+female,30,North America,161,78,OTU85,49
+female,30,North America,181,57,OTU85,2082
+female,31,Europe,166,77,OTU85,2598
+female,32,Europe,156,78,OTU85,2684
+female,32,Europe,169,87,OTU85,2792
+female,33,Europe,174,75,OTU85,4679
+female,33,Europe,166,77,OTU85,3643
+female,33,North America,174,89,OTU85,2512
+female,33,North America,158,90,OTU85,401
+female,34,Europe,167,79,OTU85,3996
+female,34,Europe,188,57,OTU85,2892
+female,34,Europe,186,80,OTU85,1438
+female,34,Europe,177,75,OTU85,938
+female,34,North America,164,66,OTU85,1054
+female,34,North America,171,62,OTU85,728
+female,35,Asia,183,84,OTU85,2081
+female,35,Europe,167,79,OTU85,3710
+female,35,North America,182,90,OTU85,2085
+female,35,North America,166,72,OTU85,260
+female,35,North America,190,78,OTU85,512
+male,18,Europe,188,69,OTU85,1824
+male,18,Europe,175,73,OTU85,2902
+male,18,North America,188,68,OTU85,2284
+male,18,North America,184,75,OTU85,1529
+male,18,North America,166,74,OTU85,2934
+male,19,Asia,159,80,OTU85,4097
+male,19,Europe,184,58,OTU85,970
+male,19,Europe,189,79,OTU85,4140
+male,19,Europe,185,81,OTU85,2936
+male,19,North America,186,77,OTU85,762
+male,20,Europe,170,89,OTU85,3472
+male,20,Europe,178,90,OTU85,1283
+male,20,North America,169,68,OTU85,745
+male,20,North America,180,75,OTU85,2171
+male,20,North America,166,78,OTU85,4734
+male,21,Europe,172,76,OTU85,2332
+male,22,Europe,183,86,OTU85,4588
+male,22,Europe,158,70,OTU85,4535
+male,22,North America,174,73,OTU85,1511
+male,22,North America,186,81,OTU85,4233
+male,23,Asia,186,72,OTU85,677
+male,23,Europe,160,65,OTU85,1146
+male,24,North America,177,73,OTU85,4653
+male,24,North America,187,67,OTU85,1810
+male,25,Europe,182,79,OTU85,4403
+male,25,North America,185,82,OTU85,2485
+male,25,North America,168,84,OTU85,1230
+male,26,Asia,180,73,OTU85,2027
+male,26,Asia,190,70,OTU85,2857
+male,26,Europe,190,77,OTU85,4359
+male,26,Europe,186,87,OTU85,3842
+male,26,North America,179,76,OTU85,2872
+male,26,North America,176,58,OTU85,4993
+male,27,Europe,188,85,OTU85,4642
+male,27,Europe,158,81,OTU85,2618
+male,27,Europe,186,56,OTU85,3595
+male,27,Europe,157,90,OTU85,700
+male,27,North America,172,67,OTU85,4853
+male,27,North America,162,66,OTU85,2869
+male,28,Europe,175,80,OTU85,3311
+male,28,Europe,162,85,OTU85,782
+male,28,Europe,183,72,OTU85,2926
+male,28,Europe,183,71,OTU85,1455
+male,28,North America,175,80,OTU85,1745
+male,29,Europe,164,74,OTU85,394
+male,29,North America,190,86,OTU85,4015
+male,30,Europe,185,71,OTU85,3472
+male,30,Europe,186,58,OTU85,4487
+male,30,Europe,162,57,OTU85,2484
+male,30,North America,156,78,OTU85,4225
+male,31,Asia,182,88,OTU85,4865
+male,31,Europe,182,89,OTU85,595
+male,31,Europe,180,83,OTU85,718
+male,31,Europe,170,69,OTU85,975
+male,31,Europe,178,84,OTU85,2180
+male,31,North America,186,57,OTU85,2439
+male,32,Asia,187,87,OTU85,2339
+male,32,Europe,180,58,OTU85,4140
+male,32,Europe,170,55,OTU85,4094
+male,32,North America,157,79,OTU85,2673
+male,32,North America,188,56,OTU85,985
+male,32,North America,174,86,OTU85,1478
+male,33,Europe,172,90,OTU85,3865
+male,33,Europe,166,81,OTU85,4481
+male,33,Europe,172,87,OTU85,2566
+male,33,Europe,184,67,OTU85,4972
+male,33,North America,183,86,OTU85,1337
+male,34,Europe,174,78,OTU85,3836
+male,34,Europe,159,61,OTU85,2156
+male,34,North America,169,68,OTU85,1382
+male,34,North America,178,58,OTU85,3718
+male,34,North America,188,62,OTU85,2594
+female,18,Asia,186,72,OTU86,4788
+female,18,Europe,160,77,OTU86,4445
+female,18,Europe,156,88,OTU86,3854
+female,18,Europe,189,61,OTU86,2769
+female,18,Europe,160,67,OTU86,1402
+female,18,Europe,178,65,OTU86,1909
+female,18,Europe,157,89,OTU86,4883
+female,18,North America,181,82,OTU86,2664
+female,19,Europe,164,62,OTU86,581
+female,19,North America,179,87,OTU86,563
+female,19,North America,188,69,OTU86,4186
+female,20,Europe,184,65,OTU86,3210
+female,21,Asia,162,90,OTU86,3129
+female,21,Europe,166,78,OTU86,1884
+female,21,Europe,179,70,OTU86,4067
+female,21,Europe,157,80,OTU86,2480
+female,22,Europe,168,84,OTU86,3004
+female,22,Europe,174,58,OTU86,4516
+female,22,Europe,182,77,OTU86,1490
+female,22,North America,158,87,OTU86,4298
+female,23,Europe,157,83,OTU86,3216
+female,23,Europe,190,64,OTU86,4987
+female,24,Europe,187,82,OTU86,1735
+female,24,Europe,160,61,OTU86,1042
+female,24,Europe,184,55,OTU86,1660
+female,24,North America,164,89,OTU86,137
+female,24,North America,169,90,OTU86,3316
+female,25,Europe,188,83,OTU86,1450
+female,25,North America,179,67,OTU86,4683
+female,25,North America,178,76,OTU86,3591
+female,26,Europe,168,88,OTU86,607
+female,26,Europe,179,64,OTU86,3163
+female,26,Europe,155,73,OTU86,2509
+female,26,Europe,160,68,OTU86,4156
+female,27,Asia,170,64,OTU86,3863
+female,27,Europe,173,59,OTU86,3431
+female,27,Europe,186,82,OTU86,3671
+female,27,Europe,164,87,OTU86,325
+female,27,North America,186,57,OTU86,4374
+female,28,Asia,166,77,OTU86,1591
+female,28,Europe,175,85,OTU86,2250
+female,28,Europe,163,63,OTU86,202
+female,29,Asia,164,73,OTU86,462
+female,29,Europe,159,75,OTU86,1494
+female,29,Europe,184,85,OTU86,1879
+female,29,North America,166,65,OTU86,1787
+female,29,North America,170,67,OTU86,2299
+female,29,North America,167,81,OTU86,1057
+female,29,North America,181,66,OTU86,2785
+female,30,Europe,166,87,OTU86,926
+female,30,North America,161,78,OTU86,4471
+female,30,North America,181,57,OTU86,3116
+female,31,Europe,166,77,OTU86,577
+female,32,Europe,156,78,OTU86,4541
+female,32,Europe,169,87,OTU86,4795
+female,33,Europe,174,75,OTU86,1573
+female,33,Europe,166,77,OTU86,4123
+female,33,North America,174,89,OTU86,1671
+female,33,North America,158,90,OTU86,1171
+female,34,Europe,167,79,OTU86,727
+female,34,Europe,188,57,OTU86,3051
+female,34,Europe,186,80,OTU86,3178
+female,34,Europe,177,75,OTU86,2230
+female,34,North America,164,66,OTU86,777
+female,34,North America,171,62,OTU86,269
+female,35,Asia,183,84,OTU86,3832
+female,35,Europe,167,79,OTU86,3369
+female,35,North America,182,90,OTU86,2682
+female,35,North America,166,72,OTU86,4113
+female,35,North America,190,78,OTU86,4870
+male,18,Europe,188,69,OTU86,1134
+male,18,Europe,175,73,OTU86,162
+male,18,North America,188,68,OTU86,2717
+male,18,North America,184,75,OTU86,1644
+male,18,North America,166,74,OTU86,3433
+male,19,Asia,159,80,OTU86,4668
+male,19,Europe,184,58,OTU86,880
+male,19,Europe,189,79,OTU86,3555
+male,19,Europe,185,81,OTU86,1086
+male,19,North America,186,77,OTU86,3646
+male,20,Europe,170,89,OTU86,3342
+male,20,Europe,178,90,OTU86,2566
+male,20,North America,169,68,OTU86,4430
+male,20,North America,180,75,OTU86,3524
+male,20,North America,166,78,OTU86,3131
+male,21,Europe,172,76,OTU86,2391
+male,22,Europe,183,86,OTU86,2814
+male,22,Europe,158,70,OTU86,2516
+male,22,North America,174,73,OTU86,1696
+male,22,North America,186,81,OTU86,588
+male,23,Asia,186,72,OTU86,2918
+male,23,Europe,160,65,OTU86,4300
+male,24,North America,177,73,OTU86,3022
+male,24,North America,187,67,OTU86,843
+male,25,Europe,182,79,OTU86,3114
+male,25,North America,185,82,OTU86,3329
+male,25,North America,168,84,OTU86,1867
+male,26,Asia,180,73,OTU86,4146
+male,26,Asia,190,70,OTU86,3576
+male,26,Europe,190,77,OTU86,2160
+male,26,Europe,186,87,OTU86,1550
+male,26,North America,179,76,OTU86,3529
+male,26,North America,176,58,OTU86,3985
+male,27,Europe,188,85,OTU86,3372
+male,27,Europe,158,81,OTU86,489
+male,27,Europe,186,56,OTU86,4909
+male,27,Europe,157,90,OTU86,4993
+male,27,North America,172,67,OTU86,4288
+male,27,North America,162,66,OTU86,4209
+male,28,Europe,175,80,OTU86,848
+male,28,Europe,162,85,OTU86,626
+male,28,Europe,183,72,OTU86,4099
+male,28,Europe,183,71,OTU86,1295
+male,28,North America,175,80,OTU86,3783
+male,29,Europe,164,74,OTU86,2281
+male,29,North America,190,86,OTU86,2381
+male,30,Europe,185,71,OTU86,2381
+male,30,Europe,186,58,OTU86,2418
+male,30,Europe,162,57,OTU86,4081
+male,30,North America,156,78,OTU86,4183
+male,31,Asia,182,88,OTU86,2772
+male,31,Europe,182,89,OTU86,2600
+male,31,Europe,180,83,OTU86,285
+male,31,Europe,170,69,OTU86,3899
+male,31,Europe,178,84,OTU86,4051
+male,31,North America,186,57,OTU86,1083
+male,32,Asia,187,87,OTU86,4908
+male,32,Europe,180,58,OTU86,3087
+male,32,Europe,170,55,OTU86,2253
+male,32,North America,157,79,OTU86,946
+male,32,North America,188,56,OTU86,1269
+male,32,North America,174,86,OTU86,1847
+male,33,Europe,172,90,OTU86,2067
+male,33,Europe,166,81,OTU86,1242
+male,33,Europe,172,87,OTU86,713
+male,33,Europe,184,67,OTU86,451
+male,33,North America,183,86,OTU86,766
+male,34,Europe,174,78,OTU86,2468
+male,34,Europe,159,61,OTU86,4894
+male,34,North America,169,68,OTU86,2357
+male,34,North America,178,58,OTU86,1613
+male,34,North America,188,62,OTU86,306
+female,18,Asia,186,72,OTU87,4853
+female,18,Europe,160,77,OTU87,2178
+female,18,Europe,156,88,OTU87,2817
+female,18,Europe,189,61,OTU87,3653
+female,18,Europe,160,67,OTU87,449
+female,18,Europe,178,65,OTU87,2017
+female,18,Europe,157,89,OTU87,1792
+female,18,North America,181,82,OTU87,1561
+female,19,Europe,164,62,OTU87,2903
+female,19,North America,179,87,OTU87,4247
+female,19,North America,188,69,OTU87,4764
+female,20,Europe,184,65,OTU87,307
+female,21,Asia,162,90,OTU87,1024
+female,21,Europe,166,78,OTU87,2293
+female,21,Europe,179,70,OTU87,1045
+female,21,Europe,157,80,OTU87,3193
+female,22,Europe,168,84,OTU87,4202
+female,22,Europe,174,58,OTU87,4264
+female,22,Europe,182,77,OTU87,168
+female,22,North America,158,87,OTU87,338
+female,23,Europe,157,83,OTU87,4988
+female,23,Europe,190,64,OTU87,3914
+female,24,Europe,187,82,OTU87,3840
+female,24,Europe,160,61,OTU87,3510
+female,24,Europe,184,55,OTU87,2085
+female,24,North America,164,89,OTU87,1277
+female,24,North America,169,90,OTU87,402
+female,25,Europe,188,83,OTU87,1203
+female,25,North America,179,67,OTU87,49
+female,25,North America,178,76,OTU87,3309
+female,26,Europe,168,88,OTU87,2508
+female,26,Europe,179,64,OTU87,2244
+female,26,Europe,155,73,OTU87,4161
+female,26,Europe,160,68,OTU87,1672
+female,27,Asia,170,64,OTU87,531
+female,27,Europe,173,59,OTU87,1258
+female,27,Europe,186,82,OTU87,1279
+female,27,Europe,164,87,OTU87,171
+female,27,North America,186,57,OTU87,2938
+female,28,Asia,166,77,OTU87,4051
+female,28,Europe,175,85,OTU87,2814
+female,28,Europe,163,63,OTU87,2100
+female,29,Asia,164,73,OTU87,2825
+female,29,Europe,159,75,OTU87,92
+female,29,Europe,184,85,OTU87,1183
+female,29,North America,166,65,OTU87,2600
+female,29,North America,170,67,OTU87,2653
+female,29,North America,167,81,OTU87,4344
+female,29,North America,181,66,OTU87,837
+female,30,Europe,166,87,OTU87,4201
+female,30,North America,161,78,OTU87,4383
+female,30,North America,181,57,OTU87,4616
+female,31,Europe,166,77,OTU87,1427
+female,32,Europe,156,78,OTU87,890
+female,32,Europe,169,87,OTU87,3284
+female,33,Europe,174,75,OTU87,1711
+female,33,Europe,166,77,OTU87,3383
+female,33,North America,174,89,OTU87,2811
+female,33,North America,158,90,OTU87,3119
+female,34,Europe,167,79,OTU87,3933
+female,34,Europe,188,57,OTU87,2092
+female,34,Europe,186,80,OTU87,1811
+female,34,Europe,177,75,OTU87,4724
+female,34,North America,164,66,OTU87,3358
+female,34,North America,171,62,OTU87,3753
+female,35,Asia,183,84,OTU87,1550
+female,35,Europe,167,79,OTU87,3979
+female,35,North America,182,90,OTU87,3106
+female,35,North America,166,72,OTU87,27
+female,35,North America,190,78,OTU87,269
+male,18,Europe,188,69,OTU87,1654
+male,18,Europe,175,73,OTU87,4051
+male,18,North America,188,68,OTU87,4563
+male,18,North America,184,75,OTU87,2320
+male,18,North America,166,74,OTU87,278
+male,19,Asia,159,80,OTU87,5000
+male,19,Europe,184,58,OTU87,3230
+male,19,Europe,189,79,OTU87,3045
+male,19,Europe,185,81,OTU87,2491
+male,19,North America,186,77,OTU87,85
+male,20,Europe,170,89,OTU87,3838
+male,20,Europe,178,90,OTU87,594
+male,20,North America,169,68,OTU87,1979
+male,20,North America,180,75,OTU87,3320
+male,20,North America,166,78,OTU87,2966
+male,21,Europe,172,76,OTU87,2
+male,22,Europe,183,86,OTU87,3690
+male,22,Europe,158,70,OTU87,1702
+male,22,North America,174,73,OTU87,1212
+male,22,North America,186,81,OTU87,378
+male,23,Asia,186,72,OTU87,2893
+male,23,Europe,160,65,OTU87,332
+male,24,North America,177,73,OTU87,3965
+male,24,North America,187,67,OTU87,563
+male,25,Europe,182,79,OTU87,2755
+male,25,North America,185,82,OTU87,3143
+male,25,North America,168,84,OTU87,1338
+male,26,Asia,180,73,OTU87,2209
+male,26,Asia,190,70,OTU87,5
+male,26,Europe,190,77,OTU87,2483
+male,26,Europe,186,87,OTU87,4086
+male,26,North America,179,76,OTU87,2354
+male,26,North America,176,58,OTU87,1608
+male,27,Europe,188,85,OTU87,3647
+male,27,Europe,158,81,OTU87,3159
+male,27,Europe,186,56,OTU87,3531
+male,27,Europe,157,90,OTU87,2117
+male,27,North America,172,67,OTU87,2208
+male,27,North America,162,66,OTU87,3329
+male,28,Europe,175,80,OTU87,429
+male,28,Europe,162,85,OTU87,3112
+male,28,Europe,183,72,OTU87,401
+male,28,Europe,183,71,OTU87,2356
+male,28,North America,175,80,OTU87,2576
+male,29,Europe,164,74,OTU87,3048
+male,29,North America,190,86,OTU87,1983
+male,30,Europe,185,71,OTU87,3291
+male,30,Europe,186,58,OTU87,3412
+male,30,Europe,162,57,OTU87,2692
+male,30,North America,156,78,OTU87,4974
+male,31,Asia,182,88,OTU87,3918
+male,31,Europe,182,89,OTU87,2437
+male,31,Europe,180,83,OTU87,4302
+male,31,Europe,170,69,OTU87,2036
+male,31,Europe,178,84,OTU87,777
+male,31,North America,186,57,OTU87,3985
+male,32,Asia,187,87,OTU87,102
+male,32,Europe,180,58,OTU87,948
+male,32,Europe,170,55,OTU87,229
+male,32,North America,157,79,OTU87,4560
+male,32,North America,188,56,OTU87,1042
+male,32,North America,174,86,OTU87,3118
+male,33,Europe,172,90,OTU87,1310
+male,33,Europe,166,81,OTU87,4937
+male,33,Europe,172,87,OTU87,1705
+male,33,Europe,184,67,OTU87,1004
+male,33,North America,183,86,OTU87,3361
+male,34,Europe,174,78,OTU87,2090
+male,34,Europe,159,61,OTU87,1521
+male,34,North America,169,68,OTU87,1620
+male,34,North America,178,58,OTU87,824
+male,34,North America,188,62,OTU87,2242
+female,18,Asia,186,72,OTU88,2203
+female,18,Europe,160,77,OTU88,4839
+female,18,Europe,156,88,OTU88,2607
+female,18,Europe,189,61,OTU88,2952
+female,18,Europe,160,67,OTU88,2686
+female,18,Europe,178,65,OTU88,3768
+female,18,Europe,157,89,OTU88,665
+female,18,North America,181,82,OTU88,3462
+female,19,Europe,164,62,OTU88,963
+female,19,North America,179,87,OTU88,4528
+female,19,North America,188,69,OTU88,2488
+female,20,Europe,184,65,OTU88,2010
+female,21,Asia,162,90,OTU88,491
+female,21,Europe,166,78,OTU88,4781
+female,21,Europe,179,70,OTU88,514
+female,21,Europe,157,80,OTU88,294
+female,22,Europe,168,84,OTU88,1367
+female,22,Europe,174,58,OTU88,4647
+female,22,Europe,182,77,OTU88,845
+female,22,North America,158,87,OTU88,3420
+female,23,Europe,157,83,OTU88,2788
+female,23,Europe,190,64,OTU88,766
+female,24,Europe,187,82,OTU88,3182
+female,24,Europe,160,61,OTU88,189
+female,24,Europe,184,55,OTU88,4384
+female,24,North America,164,89,OTU88,3378
+female,24,North America,169,90,OTU88,3087
+female,25,Europe,188,83,OTU88,125
+female,25,North America,179,67,OTU88,3749
+female,25,North America,178,76,OTU88,2978
+female,26,Europe,168,88,OTU88,4714
+female,26,Europe,179,64,OTU88,1516
+female,26,Europe,155,73,OTU88,4099
+female,26,Europe,160,68,OTU88,4246
+female,27,Asia,170,64,OTU88,2704
+female,27,Europe,173,59,OTU88,2577
+female,27,Europe,186,82,OTU88,1810
+female,27,Europe,164,87,OTU88,2658
+female,27,North America,186,57,OTU88,743
+female,28,Asia,166,77,OTU88,609
+female,28,Europe,175,85,OTU88,4042
+female,28,Europe,163,63,OTU88,2293
+female,29,Asia,164,73,OTU88,61
+female,29,Europe,159,75,OTU88,734
+female,29,Europe,184,85,OTU88,1654
+female,29,North America,166,65,OTU88,242
+female,29,North America,170,67,OTU88,2343
+female,29,North America,167,81,OTU88,1478
+female,29,North America,181,66,OTU88,3994
+female,30,Europe,166,87,OTU88,824
+female,30,North America,161,78,OTU88,2130
+female,30,North America,181,57,OTU88,2284
+female,31,Europe,166,77,OTU88,342
+female,32,Europe,156,78,OTU88,3358
+female,32,Europe,169,87,OTU88,2619
+female,33,Europe,174,75,OTU88,190
+female,33,Europe,166,77,OTU88,4407
+female,33,North America,174,89,OTU88,2691
+female,33,North America,158,90,OTU88,4121
+female,34,Europe,167,79,OTU88,3008
+female,34,Europe,188,57,OTU88,1701
+female,34,Europe,186,80,OTU88,3771
+female,34,Europe,177,75,OTU88,2589
+female,34,North America,164,66,OTU88,1859
+female,34,North America,171,62,OTU88,646
+female,35,Asia,183,84,OTU88,2991
+female,35,Europe,167,79,OTU88,323
+female,35,North America,182,90,OTU88,868
+female,35,North America,166,72,OTU88,1996
+female,35,North America,190,78,OTU88,1558
+male,18,Europe,188,69,OTU88,3409
+male,18,Europe,175,73,OTU88,4631
+male,18,North America,188,68,OTU88,1891
+male,18,North America,184,75,OTU88,3671
+male,18,North America,166,74,OTU88,664
+male,19,Asia,159,80,OTU88,1529
+male,19,Europe,184,58,OTU88,942
+male,19,Europe,189,79,OTU88,3667
+male,19,Europe,185,81,OTU88,1117
+male,19,North America,186,77,OTU88,1941
+male,20,Europe,170,89,OTU88,4299
+male,20,Europe,178,90,OTU88,4397
+male,20,North America,169,68,OTU88,2083
+male,20,North America,180,75,OTU88,990
+male,20,North America,166,78,OTU88,2168
+male,21,Europe,172,76,OTU88,4882
+male,22,Europe,183,86,OTU88,4097
+male,22,Europe,158,70,OTU88,2446
+male,22,North America,174,73,OTU88,942
+male,22,North America,186,81,OTU88,3655
+male,23,Asia,186,72,OTU88,3120
+male,23,Europe,160,65,OTU88,958
+male,24,North America,177,73,OTU88,1484
+male,24,North America,187,67,OTU88,2254
+male,25,Europe,182,79,OTU88,4349
+male,25,North America,185,82,OTU88,776
+male,25,North America,168,84,OTU88,1618
+male,26,Asia,180,73,OTU88,2496
+male,26,Asia,190,70,OTU88,479
+male,26,Europe,190,77,OTU88,160
+male,26,Europe,186,87,OTU88,860
+male,26,North America,179,76,OTU88,137
+male,26,North America,176,58,OTU88,4519
+male,27,Europe,188,85,OTU88,4966
+male,27,Europe,158,81,OTU88,4443
+male,27,Europe,186,56,OTU88,2527
+male,27,Europe,157,90,OTU88,4054
+male,27,North America,172,67,OTU88,3876
+male,27,North America,162,66,OTU88,2446
+male,28,Europe,175,80,OTU88,4083
+male,28,Europe,162,85,OTU88,3653
+male,28,Europe,183,72,OTU88,4838
+male,28,Europe,183,71,OTU88,986
+male,28,North America,175,80,OTU88,2744
+male,29,Europe,164,74,OTU88,2937
+male,29,North America,190,86,OTU88,2813
+male,30,Europe,185,71,OTU88,3334
+male,30,Europe,186,58,OTU88,732
+male,30,Europe,162,57,OTU88,4074
+male,30,North America,156,78,OTU88,355
+male,31,Asia,182,88,OTU88,3161
+male,31,Europe,182,89,OTU88,3377
+male,31,Europe,180,83,OTU88,2058
+male,31,Europe,170,69,OTU88,1432
+male,31,Europe,178,84,OTU88,631
+male,31,North America,186,57,OTU88,4927
+male,32,Asia,187,87,OTU88,3001
+male,32,Europe,180,58,OTU88,3760
+male,32,Europe,170,55,OTU88,2413
+male,32,North America,157,79,OTU88,1541
+male,32,North America,188,56,OTU88,408
+male,32,North America,174,86,OTU88,1060
+male,33,Europe,172,90,OTU88,930
+male,33,Europe,166,81,OTU88,1424
+male,33,Europe,172,87,OTU88,2937
+male,33,Europe,184,67,OTU88,2482
+male,33,North America,183,86,OTU88,2256
+male,34,Europe,174,78,OTU88,3757
+male,34,Europe,159,61,OTU88,3222
+male,34,North America,169,68,OTU88,1247
+male,34,North America,178,58,OTU88,1613
+male,34,North America,188,62,OTU88,3286
+female,18,Asia,186,72,OTU89,1317
+female,18,Europe,160,77,OTU89,3192
+female,18,Europe,156,88,OTU89,4571
+female,18,Europe,189,61,OTU89,74
+female,18,Europe,160,67,OTU89,4340
+female,18,Europe,178,65,OTU89,1894
+female,18,Europe,157,89,OTU89,4538
+female,18,North America,181,82,OTU89,4599
+female,19,Europe,164,62,OTU89,3161
+female,19,North America,179,87,OTU89,4735
+female,19,North America,188,69,OTU89,1164
+female,20,Europe,184,65,OTU89,1589
+female,21,Asia,162,90,OTU89,2615
+female,21,Europe,166,78,OTU89,3265
+female,21,Europe,179,70,OTU89,3226
+female,21,Europe,157,80,OTU89,4811
+female,22,Europe,168,84,OTU89,2792
+female,22,Europe,174,58,OTU89,1603
+female,22,Europe,182,77,OTU89,1941
+female,22,North America,158,87,OTU89,2055
+female,23,Europe,157,83,OTU89,1882
+female,23,Europe,190,64,OTU89,4603
+female,24,Europe,187,82,OTU89,2909
+female,24,Europe,160,61,OTU89,1662
+female,24,Europe,184,55,OTU89,2120
+female,24,North America,164,89,OTU89,1503
+female,24,North America,169,90,OTU89,1816
+female,25,Europe,188,83,OTU89,4945
+female,25,North America,179,67,OTU89,2218
+female,25,North America,178,76,OTU89,1043
+female,26,Europe,168,88,OTU89,2739
+female,26,Europe,179,64,OTU89,2478
+female,26,Europe,155,73,OTU89,4906
+female,26,Europe,160,68,OTU89,1087
+female,27,Asia,170,64,OTU89,2353
+female,27,Europe,173,59,OTU89,1544
+female,27,Europe,186,82,OTU89,2706
+female,27,Europe,164,87,OTU89,3948
+female,27,North America,186,57,OTU89,1130
+female,28,Asia,166,77,OTU89,1492
+female,28,Europe,175,85,OTU89,248
+female,28,Europe,163,63,OTU89,3204
+female,29,Asia,164,73,OTU89,1645
+female,29,Europe,159,75,OTU89,2869
+female,29,Europe,184,85,OTU89,4428
+female,29,North America,166,65,OTU89,3910
+female,29,North America,170,67,OTU89,1454
+female,29,North America,167,81,OTU89,125
+female,29,North America,181,66,OTU89,4663
+female,30,Europe,166,87,OTU89,3470
+female,30,North America,161,78,OTU89,2510
+female,30,North America,181,57,OTU89,4217
+female,31,Europe,166,77,OTU89,4180
+female,32,Europe,156,78,OTU89,3212
+female,32,Europe,169,87,OTU89,390
+female,33,Europe,174,75,OTU89,64
+female,33,Europe,166,77,OTU89,4021
+female,33,North America,174,89,OTU89,4792
+female,33,North America,158,90,OTU89,1755
+female,34,Europe,167,79,OTU89,2298
+female,34,Europe,188,57,OTU89,4389
+female,34,Europe,186,80,OTU89,567
+female,34,Europe,177,75,OTU89,3927
+female,34,North America,164,66,OTU89,2262
+female,34,North America,171,62,OTU89,1715
+female,35,Asia,183,84,OTU89,2594
+female,35,Europe,167,79,OTU89,2051
+female,35,North America,182,90,OTU89,4578
+female,35,North America,166,72,OTU89,2126
+female,35,North America,190,78,OTU89,1491
+male,18,Europe,188,69,OTU89,4397
+male,18,Europe,175,73,OTU89,2623
+male,18,North America,188,68,OTU89,2874
+male,18,North America,184,75,OTU89,2463
+male,18,North America,166,74,OTU89,175
+male,19,Asia,159,80,OTU89,4905
+male,19,Europe,184,58,OTU89,168
+male,19,Europe,189,79,OTU89,1709
+male,19,Europe,185,81,OTU89,2853
+male,19,North America,186,77,OTU89,2365
+male,20,Europe,170,89,OTU89,4650
+male,20,Europe,178,90,OTU89,2794
+male,20,North America,169,68,OTU89,45
+male,20,North America,180,75,OTU89,1246
+male,20,North America,166,78,OTU89,3971
+male,21,Europe,172,76,OTU89,1110
+male,22,Europe,183,86,OTU89,3067
+male,22,Europe,158,70,OTU89,208
+male,22,North America,174,73,OTU89,1788
+male,22,North America,186,81,OTU89,1592
+male,23,Asia,186,72,OTU89,2730
+male,23,Europe,160,65,OTU89,2076
+male,24,North America,177,73,OTU89,2687
+male,24,North America,187,67,OTU89,3313
+male,25,Europe,182,79,OTU89,4418
+male,25,North America,185,82,OTU89,4803
+male,25,North America,168,84,OTU89,3791
+male,26,Asia,180,73,OTU89,2836
+male,26,Asia,190,70,OTU89,4760
+male,26,Europe,190,77,OTU89,3473
+male,26,Europe,186,87,OTU89,274
+male,26,North America,179,76,OTU89,4933
+male,26,North America,176,58,OTU89,2909
+male,27,Europe,188,85,OTU89,279
+male,27,Europe,158,81,OTU89,1400
+male,27,Europe,186,56,OTU89,1471
+male,27,Europe,157,90,OTU89,2985
+male,27,North America,172,67,OTU89,4928
+male,27,North America,162,66,OTU89,3055
+male,28,Europe,175,80,OTU89,4113
+male,28,Europe,162,85,OTU89,3896
+male,28,Europe,183,72,OTU89,176
+male,28,Europe,183,71,OTU89,4570
+male,28,North America,175,80,OTU89,3544
+male,29,Europe,164,74,OTU89,3103
+male,29,North America,190,86,OTU89,2298
+male,30,Europe,185,71,OTU89,4612
+male,30,Europe,186,58,OTU89,3246
+male,30,Europe,162,57,OTU89,4036
+male,30,North America,156,78,OTU89,3250
+male,31,Asia,182,88,OTU89,4291
+male,31,Europe,182,89,OTU89,4256
+male,31,Europe,180,83,OTU89,4873
+male,31,Europe,170,69,OTU89,1988
+male,31,Europe,178,84,OTU89,1949
+male,31,North America,186,57,OTU89,1472
+male,32,Asia,187,87,OTU89,948
+male,32,Europe,180,58,OTU89,3806
+male,32,Europe,170,55,OTU89,919
+male,32,North America,157,79,OTU89,1753
+male,32,North America,188,56,OTU89,3616
+male,32,North America,174,86,OTU89,4081
+male,33,Europe,172,90,OTU89,20
+male,33,Europe,166,81,OTU89,5000
+male,33,Europe,172,87,OTU89,467
+male,33,Europe,184,67,OTU89,292
+male,33,North America,183,86,OTU89,2448
+male,34,Europe,174,78,OTU89,3131
+male,34,Europe,159,61,OTU89,4061
+male,34,North America,169,68,OTU89,1397
+male,34,North America,178,58,OTU89,4246
+male,34,North America,188,62,OTU89,2097
+female,18,Asia,186,72,OTU90,2617
+female,18,Europe,160,77,OTU90,1301
+female,18,Europe,156,88,OTU90,818
+female,18,Europe,189,61,OTU90,1860
+female,18,Europe,160,67,OTU90,25
+female,18,Europe,178,65,OTU90,4582
+female,18,Europe,157,89,OTU90,3262
+female,18,North America,181,82,OTU90,228
+female,19,Europe,164,62,OTU90,238
+female,19,North America,179,87,OTU90,2739
+female,19,North America,188,69,OTU90,4412
+female,20,Europe,184,65,OTU90,3269
+female,21,Asia,162,90,OTU90,2467
+female,21,Europe,166,78,OTU90,256
+female,21,Europe,179,70,OTU90,4978
+female,21,Europe,157,80,OTU90,709
+female,22,Europe,168,84,OTU90,3143
+female,22,Europe,174,58,OTU90,364
+female,22,Europe,182,77,OTU90,391
+female,22,North America,158,87,OTU90,2167
+female,23,Europe,157,83,OTU90,351
+female,23,Europe,190,64,OTU90,721
+female,24,Europe,187,82,OTU90,4629
+female,24,Europe,160,61,OTU90,4094
+female,24,Europe,184,55,OTU90,3403
+female,24,North America,164,89,OTU90,3604
+female,24,North America,169,90,OTU90,806
+female,25,Europe,188,83,OTU90,376
+female,25,North America,179,67,OTU90,2854
+female,25,North America,178,76,OTU90,3784
+female,26,Europe,168,88,OTU90,4176
+female,26,Europe,179,64,OTU90,2307
+female,26,Europe,155,73,OTU90,4171
+female,26,Europe,160,68,OTU90,523
+female,27,Asia,170,64,OTU90,1568
+female,27,Europe,173,59,OTU90,531
+female,27,Europe,186,82,OTU90,1104
+female,27,Europe,164,87,OTU90,4116
+female,27,North America,186,57,OTU90,4454
+female,28,Asia,166,77,OTU90,1469
+female,28,Europe,175,85,OTU90,1807
+female,28,Europe,163,63,OTU90,1601
+female,29,Asia,164,73,OTU90,4755
+female,29,Europe,159,75,OTU90,4912
+female,29,Europe,184,85,OTU90,4315
+female,29,North America,166,65,OTU90,4722
+female,29,North America,170,67,OTU90,333
+female,29,North America,167,81,OTU90,3528
+female,29,North America,181,66,OTU90,3994
+female,30,Europe,166,87,OTU90,4924
+female,30,North America,161,78,OTU90,383
+female,30,North America,181,57,OTU90,3670
+female,31,Europe,166,77,OTU90,807
+female,32,Europe,156,78,OTU90,1211
+female,32,Europe,169,87,OTU90,2708
+female,33,Europe,174,75,OTU90,4167
+female,33,Europe,166,77,OTU90,4327
+female,33,North America,174,89,OTU90,4892
+female,33,North America,158,90,OTU90,450
+female,34,Europe,167,79,OTU90,4925
+female,34,Europe,188,57,OTU90,359
+female,34,Europe,186,80,OTU90,25
+female,34,Europe,177,75,OTU90,3865
+female,34,North America,164,66,OTU90,4592
+female,34,North America,171,62,OTU90,739
+female,35,Asia,183,84,OTU90,1726
+female,35,Europe,167,79,OTU90,1237
+female,35,North America,182,90,OTU90,3565
+female,35,North America,166,72,OTU90,487
+female,35,North America,190,78,OTU90,1814
+male,18,Europe,188,69,OTU90,1192
+male,18,Europe,175,73,OTU90,2076
+male,18,North America,188,68,OTU90,4841
+male,18,North America,184,75,OTU90,1889
+male,18,North America,166,74,OTU90,2503
+male,19,Asia,159,80,OTU90,4352
+male,19,Europe,184,58,OTU90,479
+male,19,Europe,189,79,OTU90,2729
+male,19,Europe,185,81,OTU90,3195
+male,19,North America,186,77,OTU90,1827
+male,20,Europe,170,89,OTU90,3668
+male,20,Europe,178,90,OTU90,2080
+male,20,North America,169,68,OTU90,4286
+male,20,North America,180,75,OTU90,2633
+male,20,North America,166,78,OTU90,1327
+male,21,Europe,172,76,OTU90,20
+male,22,Europe,183,86,OTU90,1211
+male,22,Europe,158,70,OTU90,4101
+male,22,North America,174,73,OTU90,4673
+male,22,North America,186,81,OTU90,688
+male,23,Asia,186,72,OTU90,4548
+male,23,Europe,160,65,OTU90,1925
+male,24,North America,177,73,OTU90,4624
+male,24,North America,187,67,OTU90,3109
+male,25,Europe,182,79,OTU90,1305
+male,25,North America,185,82,OTU90,2965
+male,25,North America,168,84,OTU90,35
+male,26,Asia,180,73,OTU90,4508
+male,26,Asia,190,70,OTU90,3515
+male,26,Europe,190,77,OTU90,3499
+male,26,Europe,186,87,OTU90,2112
+male,26,North America,179,76,OTU90,2361
+male,26,North America,176,58,OTU90,1642
+male,27,Europe,188,85,OTU90,280
+male,27,Europe,158,81,OTU90,2543
+male,27,Europe,186,56,OTU90,3150
+male,27,Europe,157,90,OTU90,2030
+male,27,North America,172,67,OTU90,233
+male,27,North America,162,66,OTU90,1439
+male,28,Europe,175,80,OTU90,3590
+male,28,Europe,162,85,OTU90,4037
+male,28,Europe,183,72,OTU90,1823
+male,28,Europe,183,71,OTU90,2240
+male,28,North America,175,80,OTU90,180
+male,29,Europe,164,74,OTU90,3874
+male,29,North America,190,86,OTU90,1716
+male,30,Europe,185,71,OTU90,4466
+male,30,Europe,186,58,OTU90,1953
+male,30,Europe,162,57,OTU90,2285
+male,30,North America,156,78,OTU90,3579
+male,31,Asia,182,88,OTU90,1143
+male,31,Europe,182,89,OTU90,718
+male,31,Europe,180,83,OTU90,935
+male,31,Europe,170,69,OTU90,153
+male,31,Europe,178,84,OTU90,1476
+male,31,North America,186,57,OTU90,1252
+male,32,Asia,187,87,OTU90,2369
+male,32,Europe,180,58,OTU90,1116
+male,32,Europe,170,55,OTU90,440
+male,32,North America,157,79,OTU90,619
+male,32,North America,188,56,OTU90,1756
+male,32,North America,174,86,OTU90,2696
+male,33,Europe,172,90,OTU90,482
+male,33,Europe,166,81,OTU90,3723
+male,33,Europe,172,87,OTU90,1938
+male,33,Europe,184,67,OTU90,3792
+male,33,North America,183,86,OTU90,2888
+male,34,Europe,174,78,OTU90,3636
+male,34,Europe,159,61,OTU90,1025
+male,34,North America,169,68,OTU90,3670
+male,34,North America,178,58,OTU90,4418
+male,34,North America,188,62,OTU90,4854
+female,18,Asia,186,72,OTU91,1117
+female,18,Europe,160,77,OTU91,4210
+female,18,Europe,156,88,OTU91,2071
+female,18,Europe,189,61,OTU91,1744
+female,18,Europe,160,67,OTU91,481
+female,18,Europe,178,65,OTU91,1766
+female,18,Europe,157,89,OTU91,3612
+female,18,North America,181,82,OTU91,4162
+female,19,Europe,164,62,OTU91,1749
+female,19,North America,179,87,OTU91,3863
+female,19,North America,188,69,OTU91,2038
+female,20,Europe,184,65,OTU91,1493
+female,21,Asia,162,90,OTU91,905
+female,21,Europe,166,78,OTU91,3480
+female,21,Europe,179,70,OTU91,1830
+female,21,Europe,157,80,OTU91,960
+female,22,Europe,168,84,OTU91,3828
+female,22,Europe,174,58,OTU91,2431
+female,22,Europe,182,77,OTU91,1117
+female,22,North America,158,87,OTU91,4643
+female,23,Europe,157,83,OTU91,1923
+female,23,Europe,190,64,OTU91,555
+female,24,Europe,187,82,OTU91,2558
+female,24,Europe,160,61,OTU91,3617
+female,24,Europe,184,55,OTU91,2504
+female,24,North America,164,89,OTU91,682
+female,24,North America,169,90,OTU91,3254
+female,25,Europe,188,83,OTU91,3028
+female,25,North America,179,67,OTU91,4726
+female,25,North America,178,76,OTU91,445
+female,26,Europe,168,88,OTU91,1849
+female,26,Europe,179,64,OTU91,4481
+female,26,Europe,155,73,OTU91,385
+female,26,Europe,160,68,OTU91,4925
+female,27,Asia,170,64,OTU91,654
+female,27,Europe,173,59,OTU91,701
+female,27,Europe,186,82,OTU91,1107
+female,27,Europe,164,87,OTU91,422
+female,27,North America,186,57,OTU91,3251
+female,28,Asia,166,77,OTU91,3538
+female,28,Europe,175,85,OTU91,36
+female,28,Europe,163,63,OTU91,2970
+female,29,Asia,164,73,OTU91,4233
+female,29,Europe,159,75,OTU91,469
+female,29,Europe,184,85,OTU91,849
+female,29,North America,166,65,OTU91,2203
+female,29,North America,170,67,OTU91,2109
+female,29,North America,167,81,OTU91,4145
+female,29,North America,181,66,OTU91,4375
+female,30,Europe,166,87,OTU91,4154
+female,30,North America,161,78,OTU91,955
+female,30,North America,181,57,OTU91,3367
+female,31,Europe,166,77,OTU91,2358
+female,32,Europe,156,78,OTU91,4926
+female,32,Europe,169,87,OTU91,3941
+female,33,Europe,174,75,OTU91,2061
+female,33,Europe,166,77,OTU91,2648
+female,33,North America,174,89,OTU91,1956
+female,33,North America,158,90,OTU91,837
+female,34,Europe,167,79,OTU91,4492
+female,34,Europe,188,57,OTU91,4120
+female,34,Europe,186,80,OTU91,128
+female,34,Europe,177,75,OTU91,4417
+female,34,North America,164,66,OTU91,3296
+female,34,North America,171,62,OTU91,820
+female,35,Asia,183,84,OTU91,3102
+female,35,Europe,167,79,OTU91,4881
+female,35,North America,182,90,OTU91,3060
+female,35,North America,166,72,OTU91,4745
+female,35,North America,190,78,OTU91,4507
+male,18,Europe,188,69,OTU91,3402
+male,18,Europe,175,73,OTU91,402
+male,18,North America,188,68,OTU91,2857
+male,18,North America,184,75,OTU91,716
+male,18,North America,166,74,OTU91,3270
+male,19,Asia,159,80,OTU91,907
+male,19,Europe,184,58,OTU91,1314
+male,19,Europe,189,79,OTU91,2112
+male,19,Europe,185,81,OTU91,1667
+male,19,North America,186,77,OTU91,4004
+male,20,Europe,170,89,OTU91,2262
+male,20,Europe,178,90,OTU91,946
+male,20,North America,169,68,OTU91,3808
+male,20,North America,180,75,OTU91,638
+male,20,North America,166,78,OTU91,2086
+male,21,Europe,172,76,OTU91,3360
+male,22,Europe,183,86,OTU91,2956
+male,22,Europe,158,70,OTU91,4345
+male,22,North America,174,73,OTU91,1404
+male,22,North America,186,81,OTU91,3318
+male,23,Asia,186,72,OTU91,3747
+male,23,Europe,160,65,OTU91,3811
+male,24,North America,177,73,OTU91,4761
+male,24,North America,187,67,OTU91,4777
+male,25,Europe,182,79,OTU91,1039
+male,25,North America,185,82,OTU91,349
+male,25,North America,168,84,OTU91,208
+male,26,Asia,180,73,OTU91,393
+male,26,Asia,190,70,OTU91,2998
+male,26,Europe,190,77,OTU91,4766
+male,26,Europe,186,87,OTU91,3735
+male,26,North America,179,76,OTU91,5000
+male,26,North America,176,58,OTU91,3374
+male,27,Europe,188,85,OTU91,2097
+male,27,Europe,158,81,OTU91,4423
+male,27,Europe,186,56,OTU91,4486
+male,27,Europe,157,90,OTU91,3215
+male,27,North America,172,67,OTU91,827
+male,27,North America,162,66,OTU91,3580
+male,28,Europe,175,80,OTU91,2688
+male,28,Europe,162,85,OTU91,2486
+male,28,Europe,183,72,OTU91,3516
+male,28,Europe,183,71,OTU91,4681
+male,28,North America,175,80,OTU91,1393
+male,29,Europe,164,74,OTU91,1356
+male,29,North America,190,86,OTU91,3454
+male,30,Europe,185,71,OTU91,1958
+male,30,Europe,186,58,OTU91,219
+male,30,Europe,162,57,OTU91,408
+male,30,North America,156,78,OTU91,1331
+male,31,Asia,182,88,OTU91,177
+male,31,Europe,182,89,OTU91,1257
+male,31,Europe,180,83,OTU91,784
+male,31,Europe,170,69,OTU91,1691
+male,31,Europe,178,84,OTU91,4663
+male,31,North America,186,57,OTU91,4457
+male,32,Asia,187,87,OTU91,1766
+male,32,Europe,180,58,OTU91,1699
+male,32,Europe,170,55,OTU91,4623
+male,32,North America,157,79,OTU91,4733
+male,32,North America,188,56,OTU91,1276
+male,32,North America,174,86,OTU91,793
+male,33,Europe,172,90,OTU91,555
+male,33,Europe,166,81,OTU91,4427
+male,33,Europe,172,87,OTU91,1206
+male,33,Europe,184,67,OTU91,4272
+male,33,North America,183,86,OTU91,15
+male,34,Europe,174,78,OTU91,2666
+male,34,Europe,159,61,OTU91,1398
+male,34,North America,169,68,OTU91,3597
+male,34,North America,178,58,OTU91,4260
+male,34,North America,188,62,OTU91,3657
