@@ -81,17 +81,20 @@ tutor: Roman Cheplyaka
 Either in RStudio or in the interactive R session run following commands:
 
 ```
-install.packages("rstan")
-install.packages("StanHeaders")
-install.packages("magrittr")
-install.packages("reshape2")
-install.packages("forcats")
-install.packages("stringr")
-install.packages("dplyr")
-install.packages("purrr")
-install.packages("readr")
-install.packages("tidyr")
-install.packages("tibble")
+required_packages <- c("rstan", "StanHeaders", "magrittr", "reshape2", 
+                       "forcats", "stringr", "dplyr", "purrr", "readr",
+                       "tidyr", "tibble")
+
+for (pkg in required_packages) {
+  if(!require(pkg, character.only = TRUE, 
+              quietly = TRUE, 
+              warn.conflicts = FALSE)) {
+    print(paste0("Warning! Installing package: ", pkg, "."))
+    install.packages(pkg)
+  } 
+}
+
+print("All done! :)")
 ```
 
 ### Natural language processing

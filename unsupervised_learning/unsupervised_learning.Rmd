@@ -1,0 +1,562 @@
+---
+title: "Unsupervised learning"
+author: "Katarzyna Kedzierska"
+date: "25 October 2019"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(message = FALSE,
+                      dpi = 300, 
+                      out.height = "300px", 
+                      out.width = "300px")
+```
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+mono_light(
+  base_color = "#1c5253",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Droid Mono"),
+  header_h1_font_size = "40px",
+  header_h2_font_size = "30px",
+  header_h3_font_size = "20px", 
+  text_font_size = "20px",
+  code_font_size = "15px"
+)
+```
+
+```{r setup, echo=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggsci)
+theme_set(theme_classic())
+```
+
+# Outline 
+
+What will be talking about today?
+
+* Unsupervised learning
+* Dimensionality reduction techniques
+  + PCA
+  + PCoA
+  + nMDS
+  + tSNE
+  + UMAP
+* Clustering
+  + K-means
+  + Hierarchical
+
+---
+
+# Unsupervised learning
+
+## The goal: find hidden patterns in unlabeled data.
+
+```{r, echo=FALSE, out.height = "400px", out.width = "400px"}
+iris_kmeans <- kmeans(scale(iris[,1:4]), 3)
+
+factoextra::fviz_cluster(iris_kmeans, data = iris[,1:4],
+             palette = pal_aaas()(3),
+             ggtheme = theme_classic(), geom = "point",
+             main = "Clustering example")
+
+```
+
+
+---
+
+# What does dimensionality reduction mean?
+
+We can reduce dimensionality of our data by for example explaining two measuremnets by one. 
+
+Let's say we have the dimenions of a recatngle:
+
+```{r}
+rect_dims <- tibble(rect = 1:5,
+                    a = sample(1:10, 5, replace = TRUE),
+                    b = sample(5:10, 5, replace = TRUE))
+rect_dims
+```
+
+---
+
+We can reduce dimenions by expressing the `a` and `b` variables by choosing some representation. For example, we can calculate the area:
+
+```{r}
+rect_dims %>%
+  mutate(area = a * b) %>%
+  select(rect, area)
+```
+
+---
+
+Why bother you may ask.
+
+```{r}
+head(iris)
+```
+
+```{r}
+cor.test(~ Sepal.Length + Petal.Length, data = iris)
+```
+
+---
+
+# Why do dimensionality reduction?
+
+<!-- Let's take a simple polyA RNA-seq experiment. We will perform that experiment on **3 groups, 10 patients each (n = 30, technically 3 x n = 10)**. We want to compare expression on gene level - let's assume that human genome have **20 000 protein coding genes**. Some of them are not expressed in our tissue of interest, and we can assume that in our analysis we will be left with **12 000 genes**. What now? :) -->
+
+<!-- We can do Dimensionality Reduction! -->
+
+<!-- In brief, dimensionality reduction is a task of representing multidimensional data (for example expression data) into low dimensional (1-3D) space. For humans to see patterns, be able to comprehend the data. -->
+
+```{r, echo = FALSE, out.height="400px", out.width="400px"}
+knitr::include_graphics("./graphics/chips.png")
+```
+
+
+---
+# Dimensionality Reduction methods
+
+*Note:* those are the ones we will touch on in this brief tutorial, there are many more methods! 
+*Note2:* the following classification of the methos is arbitrary and serves only teaching purposes. 
+
+* Linear methods
++ Principal Component Aanalysis (PCA)
++ Classical / Metric Multidimensioanl Scaling == Principal Coordinate Analysis (PCoA)
+* Non-linear methos
++ Non-Metric Multidimensional Scaling (NMDS)
++ t-distributed Stochastic Neighbor Embedding (tSNE)
++ Uniform Manifold Approximation and Projection (UMAP)
+
+.footnote[[In-depth introdction to DR methods](https://www.youtube.com/watch?v=9iol3Lk6kyU&t=722s)]
+---
+
+# Iris data set
+
+```{r}
+head(iris, n=3)
+```
+
+```{r, out.width="450px", echo=FALSE}
+knitr::include_graphics("./graphics/iris.jpeg")
+```
+
+---
+
+# Iris data set
+
+```{r}
+summary(iris)
+```
+
+---
+
+## Principal Component Analysis (PCA)
+
+The goal of the PCA
+
+```{r, out.width="900px", echo=FALSE}
+knitr::include_graphics("https://i.stack.imgur.com/lNHqt.gif")
+```
+
+.footnote[[PCA on Setosa](http://setosa.io/ev/principal-component-analysis/), [Making sense of PCA on CrossValidated](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues)]
+
+---
+### PCA in R
+
+```{r}
+iris_pca <- prcomp(iris[,1:4], scale = TRUE, center = TRUE)
+```
+
+```{r}
+summary(iris_pca)
+```
+
+```{r, echo = FALSE}
+iris_pca <- prcomp(iris[,1:4], scale = TRUE, center = TRUE)
+iris_var_exp <- iris_pca$sdev^2
+iris_var_exp <- round(iris_var_exp / sum(iris_var_exp) * 100, 1)
+
+data.frame(principal_component = paste0("PC", 1:length(iris_var_exp)),
+           variance_explained = iris_var_exp,
+           stringsAsFactors = FALSE) %>%
+  mutate(accumulated_variance = cumsum(variance_explained),
+         principal_component = factor(principal_component, 
+                                      levels = principal_component)) %>%
+  #filter(accumulated_variance < 100) %>%
+  ggplot(., aes(x = principal_component, y = variance_explained)) +
+  geom_bar(stat = "identity")
+```
+
+---
+
+```{r,  echo = FALSE, out.width="700px", out.height="600px"}
+a_pc <- 1
+b_pc <- 2
+iris_pca_plt <- 
+  iris_pca$x %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species) %>%
+  ggplot(., aes_string(x = paste0("PC", a_pc), y  = paste0("PC", b_pc), 
+                       color = "label")) +
+  geom_point() +
+  labs(x = paste0("PC", a_pc, " [", iris_var_exp[a_pc], "%]"),
+       y = paste0("PC", b_pc, " [", iris_var_exp[b_pc], "%]"),
+       title = "PCA on iris dataset",
+       color = "Species") +
+  scale_color_aaas()
+iris_pca_plt
+```
+
+---
+
+```{r, echo=FALSE, out.width="700px", out.height="600px"}
+factoextra::fviz_pca_biplot(iris_pca, geom = "point", col.var = "contrib") +
+  labs(x = paste0("PC", a_pc, " [", iris_var_exp[a_pc], "%]"),
+       y = paste0("PC", b_pc, " [", iris_var_exp[b_pc], "%]"),
+       title = "PCA on iris dataset (explained)",
+       color= "Contribution")
+```
+
+---
+
+## Distances
+
+Exactly what you think it is. :)
+
+```{r}
+set.seed(7)
+samp_df <- tibble(x = rnorm(10), y = rnorm(10))
+
+samp_df[1:2,] %>%
+  dist()
+```
+
+```{r, out.height="200px", out.width="200px", dpi = 100, echo = FALSE}
+head(samp_df, 2) %>%
+  mutate(point = 1:n()) %>%
+  ggplot(., aes(x, y, label = point)) +
+  geom_line(linetype="dotdash", alpha = 0.8, color = "red") +
+  geom_text() 
+```
+
+```{r echo=FALSE}
+x1 <- samp_df[1, 1]
+x2 <- samp_df[2, 1]
+y1 <- samp_df[1, 2]
+y2 <- samp_df[2, 2]
+```
+
+```{r}
+sqrt((x1 - x2)^2 + (y1 - y2)^2)
+```
+
+---
+## Classical / Metric Multidimensioanl Scaling == Principal Coordinate Analysis (PCoA)
+
+```{r}
+iris_dist <- iris[,1:4] %>%
+  scale() %>%
+  dist()
+iris_pcoa <- cmdscale(iris_dist)
+```
+
+```{r}
+head(iris_pcoa, n = 5)
+```
+
+---
+```{r, echo=FALSE, out.width="700px", out.height="600px"}
+a_pc <- 1
+b_pc <- 2
+iris_pcoa_plt <-
+  iris_pcoa %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species) %>%
+  ggplot(., aes(x = V1, y  = V2, color = label)) +
+  geom_point() +
+  labs(title = "PCoA on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+
+iris_pcoa_plt
+```
+
+---
+.pull-left[
+```{r}
+iris_pca_plt
+```
+
+]
+.pull-right[
+```{r}
+iris_pcoa_plt
+```
+]
+
+---
+
+However, this method gives us more flexibility. For example, we can use prior knowledge about our dataset and reduce the dimenions using distance appropriate for our method. Like,
+
+* correlation distance for correlated measurements (gene expression?)  
+* binary distance for multiple binary meaurements (smoking/non-smoking and similiar)  
+* ranking based distanced to apply rank based normalisation (mutations in genes)
+
+---
+
+# Non linear methods
+## Non-Metric Multidimensional Scaling (NMDS)
+
+* No assumptions about the linear relationship!  
+* NMDS tries to find a Euclidean distance matrix in 2D that will best correlate with the distances in the original space.
+
+*Here:* Kruskal’s non-metric multidimensional scaling
+
+```{r, echo = FALSE}
+iris_dist2 <- iris[-102,1:4] %>%
+  scale() %>%
+  dist()
+```
+
+```{r}
+iris_nmds <- MASS::isoMDS(iris_dist2)
+```
+
+```{r}
+head(iris_nmds$points, n=3)
+```
+
+```{r}
+iris_nmds$stress
+```
+---
+
+```{r, echo=FALSE, out.width="700px", out.height="600px"}
+a_pc <- 1
+b_pc <- 2
+iris_nmds_plt <-
+  iris_nmds$points %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species[-102]) %>%
+  ggplot(., aes(x = V1, y  = V2, color = label)) +
+  geom_point() +
+  labs(title = "NMDS on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+
+iris_nmds_plt
+```
+
+.footnote[[Matthew E. Clapham](https://youtu.be/Kl49qI3XJKY)]
+
+---
+## tSNE
+
+1. Step 1. Determining the similarity of the points. (normal dist)
+1. Step 2. Random projection of the data. (t-distribution)
+1. Step 3. Moving the points - so Matrix from Step 2 resembles Matrix form Step 1.
+
+Simple, ain't it? :)
+
+.footnote[["How to Use t-SNE Effectively"](https://distill.pub/2016/misread-tsne/)]
+
+---
+## t-SNE
+
+```{r warning=FALSE, message=TRUE}
+iris_tsne <- tsne::tsne(iris[,1:4])
+```
+
+```{r}
+head(iris_tsne)
+```
+
+---
+```{r, echo=FALSE, out.width="700px", out.height="600px"}
+a_pc <- 1
+b_pc <- 2
+iris_tsne_plt <-
+  iris_tsne %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species) %>%
+  ggplot(., aes(x = V1, y = V2, color = label)) +
+  geom_point() +
+  labs(title = "t-SNE on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+
+iris_tsne_plt
+```
+
+---
+## UMAP
+
+.footnote[[UMAP @ SciPy2018](https://www.youtube.com/watch?v=nq6iPZVUxZU)]
+
+```{r}
+iris_umap <- umap::umap(iris[,1:4])
+```
+
+```{r}
+head(iris_umap$layout)
+```
+
+---
+
+```{r}
+str(iris_umap)
+```
+---
+```{r, echo=FALSE, out.width="700px", out.height="600px"}
+a_pc <- 1
+b_pc <- 2
+iris_umap_plt <-
+  iris_umap$layout %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species) %>%
+  ggplot(., aes(x = V1, y = V2, color = label)) +
+  geom_point() +
+  labs(title = "UMAP on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+
+iris_umap_plt
+```
+
+---
+```{r, out.width="700px", out.height="600px"}
+ggpubr::ggarrange(iris_pca_plt, iris_pcoa_plt, 
+                  iris_nmds_plt, iris_tsne_plt, iris_umap_plt, common.legend = TRUE)
+```
+---
+# Clustering
+
+Concept - assing data points into groups.
+
+## Kmeans
+
+Biggest disadvantage: you need to know k.
+
+```{r}
+iris_kmeans <- kmeans(scale(iris[,1:4]), 3)
+iris_kmeans$cluster
+```
+
+---
+## Kmeans
+```{r}
+iris_umap_plt2 <-
+  iris_umap$layout %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species,
+         cluster = as.character(iris_kmeans$cluster)) %>%
+  ggplot(., aes(x = V1, y = V2, 
+                color = label, shape = cluster)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "UMAP on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+iris_umap_plt2
+```
+---
+
+```{r}
+iris_tsne_plt2 <-
+  iris_tsne %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species,
+         cluster = as.character(iris_kmeans$cluster)) %>%
+  ggplot(., aes(x = V1, y = V2, 
+                color = label, shape = cluster)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "t-SNE on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+iris_tsne_plt2
+```
+---
+
+```{r}
+iris_pca_plt2 <-
+  iris_pca$x %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species,
+         cluster = as.character(iris_kmeans$cluster)) %>%
+  ggplot(., aes(x = PC1, y = PC2, 
+                color = label, shape = cluster)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "KMeans clustering on Iris dataset - UMAP",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+iris_pca_plt2
+```
+
+---
+
+```{r}
+iris_hclust <- hclust(iris_dist)
+```
+
+```{r}
+ggdendro::ggdendrogram(iris_hclust, rotate = FALSE, 
+                       size = 2, labels = FALSE) +
+  geom_hline(yintercept = 4.5, color = "red", linetype = "dotdash")
+```
+---
+
+```{r}
+iris_hclust_labels <- dendextend::cutree(iris_hclust, 3)
+```
+
+---
+```{r}
+iris_umap_plt3 <-
+  iris_umap$layout %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species,
+         cluster = as.character(iris_hclust_labels)) %>%
+  ggplot(., aes(x = V1, y = V2, 
+                color = label, shape = cluster)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "Hirerchical clustering on iris dataset - UMAP",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+iris_umap_plt3
+```
+
+---
+
+# Resources
+
+* [Modern Statistics for Modern Biology](http://web.stanford.edu/class/bios221/book/index.html)  
+  
+```{r, echo = FALSE, out.height="350px"}
+knitr::include_graphics("http://web.stanford.edu/class/bios221/book/images/MSFMB-Cover2-compressed.jpg")
+```
+* [In-depth introdction to DR methods](https://www.youtube.com/watch?v=9iol3Lk6kyU&t=722s)   
+* [Making sense of PCA on CrossValidated](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues)  
+* [UMAP @ SciPy2018](https://www.youtube.com/watch?v=nq6iPZVUxZU)  
+

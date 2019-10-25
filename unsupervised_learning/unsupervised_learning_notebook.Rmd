@@ -1,0 +1,468 @@
+---
+title: "Introduction to  Dimensionality Reduction - notebook"
+author: "Katarzyna Kedzierska"
+date: "27 September 2019"
+---
+
+```{r setup_and_test}
+required_packages <- c("MASS", "umap", "tsne", 
+                       "tidyverse", "ggsci", "dslabs",
+                       "ggarrange", "ggpubr", "factoextra")
+
+for (pkg in required_packages) {
+  if(!require(pkg, character.only = TRUE, 
+              quietly = TRUE, 
+              warn.conflicts = FALSE)) {
+    print(paste0("Warning! Installing package: ", pkg, "."))
+    install.packages(pkg)
+    } 
+}
+
+library(tidyverse)
+library(ggsci)
+theme_set(theme_classic())
+
+print("All done! :))")
+```
+# What does dimensionality reduction mean?
+
+We can reduce dimensionality of our data by for example explaining two measuremnets by one. 
+
+Let's say we have rectangle dimenions:
+
+```{r}
+rect_dims <- tibble(rect = 1:5,
+                    a = sample(1:10, 5, replace = TRUE),
+                    b = sample(5:10, 5, replace = TRUE))
+rect_dims
+```
+
+We reduce dimenions by expressing the `a` and `b` variables by some representation. For example, we can calculate the area:
+
+```{r}
+rect_dims %>%
+  mutate(area = a * b) %>%
+  select(rect, area)
+```
+
+Why bother you may ask.
+
+```{r}
+head(iris)
+```
+
+```{r}
+cor.test(~ Sepal.Length + Petal.Length, data = iris)
+```
+
+# Why do dimensionality reduction?
+
+# Dimensionality Reduction methods
+
+*Note:* those are the ones we will touch on in this brief tutorial, there are many more methods! 
+*Note2:* the following classification of the methos is arbitrary and serves only teaching purposes. 
+
+* Linear methods
++ Principal Component Aanalysis (PCA)
++ Classical / Metric Multidimensioanl Scaling == Principal Coordinate Analysis (PCoA)
+* Non-linear methos
++ Non-Metric Multidimensional Scaling (NMDS)
++ t-distributed Stochastic Neighbor Embedding (tSNE)
++ Uniform Manifold Approximation and Projection (UMAP)
+
+## Principal Component Analysis (PCA)
+
+## Principal Component Analysis
+
+```{r}
+set.seed(7)
+samp_df <- tibble(x = rnorm(10), y = rnorm(10))
+
+samp_df %>%
+  ggplot(., aes(x, y)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+```{r}
+head(iris)
+```
+
+One command and we're done!
+
+```{r}
+iris_pca <- prcomp(iris[,1:4], scale = TRUE, center = TRUE)
+```
+
+```{r}
+summary(iris_pca)
+```
+
+```{r}
+iris_pca <- prcomp(iris[,1:4], scale = TRUE, center = TRUE)
+iris_var_exp <- iris_pca$sdev^2
+iris_var_exp <- round(iris_var_exp / sum(iris_var_exp) * 100, 1)
+
+data.frame(principal_component = paste0("PC", 1:length(iris_var_exp)),
+           variance_explained = iris_var_exp,
+           stringsAsFactors = FALSE) %>%
+  mutate(accumulated_variance = cumsum(variance_explained),
+         principal_component = factor(principal_component, 
+                                      levels = principal_component)) %>%
+  #filter(accumulated_variance < 100) %>%
+  ggplot(., aes(x = principal_component, y = variance_explained)) +
+  geom_bar(stat = "identity")
+```
+
+```{r}
+a_pc <- 1
+b_pc <- 2
+iris_pca_plt <- 
+  iris_pca$x %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species) %>%
+  ggplot(., aes_string(x = paste0("PC", a_pc), y  = paste0("PC", b_pc), 
+                       color = "label")) +
+  geom_point() +
+  labs(x = paste0("PC", a_pc, " [", iris_var_exp[a_pc], "%]"),
+       y = paste0("PC", b_pc, " [", iris_var_exp[b_pc], "%]"),
+       title = "PCA on iris dataset",
+       color = "Species") +
+  scale_color_aaas()
+iris_pca_plt
+```
+
+```{r}
+factoextra::fviz_pca_var(iris_pca, repel = TRUE, col.var = "contrib") +
+  labs(x = paste0("PC", a_pc, " [", iris_var_exp[a_pc], "%]"),
+       y = paste0("PC", b_pc, " [", iris_var_exp[b_pc], "%]"),
+       title = "PCA on iris dataset (explained)",
+       color= "Contribution")
+```
+
+
+## Distances
+
+Exactly what you think it is. :)
+
+```{r}
+samp_df[1:2,] %>%
+  dist()
+```
+
+```{r, out.height="200px", out.width="200px"}
+head(samp_df, 2) %>%
+  mutate(point = 1:n()) %>%
+  ggplot(., aes(x, y, label = point)) +
+  geom_line(linetype="dotdash", alpha = 0.8, color = "red") +
+  geom_text() 
+```
+
+```{r echo=FALSE}
+x1 <- samp_df[1, 1]
+x2 <- samp_df[2, 1]
+y1 <- samp_df[1, 2]
+y2 <- samp_df[2, 2]
+```
+
+```{r}
+sqrt((x1 - x2)^2 + (y1 - y2)^2)
+```
+
+
+## Classical / Metric Multidimensioanl Scaling == Principal Coordinate Analysis (PCoA)
+
+```{r}
+iris_dist <- iris[,1:4] %>%
+  scale() %>%
+  dist()
+iris_pcoa <- cmdscale(iris_dist)
+```
+
+```{r}
+head(iris_pcoa, n = 5)
+```
+
+
+```{r}
+a_pc <- 1
+b_pc <- 2
+iris_pcoa_plt <-
+  iris_pcoa %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species) %>%
+  ggplot(., aes(x = V1, y  = V2, color = label)) +
+  geom_point() +
+  labs(title = "PCoA on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+
+iris_pcoa_plt
+```
+
+
+```{r}
+iris_dist2 <- iris[-102,1:4] %>%
+  scale() %>%
+  dist()
+```
+
+```{r}
+iris_nmds <- MASS::isoMDS(iris_dist2)
+```
+
+```{r}
+head(iris_nmds$points)
+```
+
+```{r}
+iris_nmds$stress
+```
+
+```{r}
+a_pc <- 1
+b_pc <- 2
+iris_nmds_plt <-
+  iris_nmds$points %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species[-102]) %>%
+  ggplot(., aes(x = V1, y  = V2, color = label)) +
+  geom_point() +
+  labs(title = "NMDS on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+
+iris_nmds_plt
+```
+
+
+## t-SNE
+
+
+```{r warning=FALSE, message=TRUE}
+iris_tsne <- tsne::tsne(iris[,1:4])
+```
+
+```{r}
+head(iris_tsne)
+```
+
+
+```{r}
+a_pc <- 1
+b_pc <- 2
+iris_tsne_plt <-
+  iris_tsne %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species) %>%
+  ggplot(., aes(x = V1, y = V2, color = label)) +
+  geom_point() +
+  labs(title = "t-SNE on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+
+iris_tsne_plt
+```
+
+
+## UMAP
+
+.footnote[[UMAP @ SciPy2018](https://www.youtube.com/watch?v=nq6iPZVUxZU)]
+
+
+
+```{r}
+iris_umap <- umap::umap(iris[,1:4])
+```
+
+```{r}
+head(iris_umap$layout)
+```
+
+
+
+```{r}
+str(iris_umap)
+```
+
+```{r}
+a_pc <- 1
+b_pc <- 2
+iris_umap_plt <-
+  iris_umap$layout %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species) %>%
+  ggplot(., aes(x = V1, y = V2, color = label)) +
+  geom_point() +
+  labs(title = "UMAP on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+
+iris_umap_plt
+```
+
+
+```{r, out.width="700px", out.height="600px"}
+ggpubr::ggarrange(iris_pca_plt, iris_pcoa_plt, 
+                  iris_nmds_plt, iris_tsne_plt, iris_umap_plt, common.legend = TRUE)
+```
+
+# Clustering
+
+Concept - assing data points into groups.
+
+## Kmeans
+
+Biggest disadvantage: you need to know k.
+
+```{r}
+iris_kmeans <- kmeans(iris[,1:4], 3)
+iris_kmeans$cluster
+```
+
+```{r}
+iris_umap_plt2 <-
+  iris_umap$layout %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species,
+         cluster = as.character(iris_kmeans$cluster)) %>%
+  ggplot(., aes(x = V1, y = V2, 
+                color = label, shape = cluster)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "UMAP on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+iris_umap_plt2
+```
+
+
+```{r}
+iris_tsne_plt2 <-
+  iris_tsne %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species,
+         cluster = as.character(iris_kmeans$cluster)) %>%
+  ggplot(., aes(x = V1, y = V2, 
+                color = label, shape = cluster)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "t-SNE on iris dataset",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+iris_tsne_plt2
+```
+
+
+```{r}
+iris_pca_plt2 <-
+  iris_pca$x %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species,
+         cluster = as.character(iris_kmeans$cluster)) %>%
+  ggplot(., aes(x = PC1, y = PC2, 
+                color = label, shape = cluster)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "KMeans clustering on Iris dataset - UMAP",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+iris_pca_plt2
+```
+
+
+
+```{r}
+iris_hclust <- hclust(iris_dist)
+```
+
+```{r}
+ggdendro::ggdendrogram(iris_hclust, rotate = FALSE, 
+                       size = 2, labels = FALSE) +
+  geom_hline(yintercept = 4.5, color = "red", linetype = "dotdash")
+```
+
+
+```{r}
+iris_hclust_labels <- dendextend::cutree(iris_hclust, 3)
+```
+
+
+```{r}
+iris_umap_plt3 <-
+  iris_umap$layout %>%
+  as.data.frame() %>%
+  mutate(label = iris$Species,
+         cluster = as.character(iris_hclust_labels)) %>%
+  ggplot(., aes(x = V1, y = V2, 
+                color = label, shape = cluster)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "Hirerchical clustering on iris dataset - UMAP",
+       color = "Species",
+       x = "Dim1",
+       y = "Dim2") +
+  scale_color_aaas()
+iris_umap_plt3
+```
+
+
+# Excersise 1
+
+Given the following data, cluster the cases into groups. Try to recapitulate the diagnosis column from the data. 
+
+```{r excercise_data}
+wdbc <- read_csv("./data/wdbc.data", col_names = F)
+features <- c("radius", "texture", "perimeter", "area", "smoothness", 
+              "compactness", "concavity", "concave_points", 
+              "symmetry", "fractal_dimension")
+colnames(wdbc) <- c("id", "diagnosis", 
+                    paste0(features,"_mean"), 
+                    paste0(features,"_se"), 
+                    paste0(features,"_worst"))
+```
+
+## Excercise 2
+
+MNIST dataset is the most common datset to learna dn teach Machine Learning. It has the images of the hand written digits.
+
+```{r}
+mnist <- dslabs::read_mnist()
+i <- 50
+image(1:28, 1:28, matrix(mnist$test$images[i,], nrow = 28)[ , 28:1], 
+      col = gray(seq(0, 1, 0.05)), 
+      xlab = "", ylab = "", main = mnist$test$labels[i])
+```
+
+Using the sampled data below, create `umap` representation of the dataset. Try clustering the data.
+
+```{r}
+set.seed(7)
+mnist_data_size <- nrow(mnist$train$images)
+sampled_indices <- sample(1:mnist_data_size, 0.1 * mnist_data_size)
+mnist_images <- mnist$train$images[sampled_indices, ]
+mnist_labels <- mnist$train$labels[sampled_indices]
+```
+
+# Resources
+
+* [Modern Statistics for Modern Biology](http://web.stanford.edu/class/bios221/book/index.html)  
+  
+```{r, echo = FALSE, out.height="350px"}
+knitr::include_graphics("http://web.stanford.edu/class/bios221/book/images/MSFMB-Cover2-compressed.jpg")
+```
+* [In-depth introdction to DR methods](https://www.youtube.com/watch?v=9iol3Lk6kyU&t=722s)   
+* [Making sense of PCA on CrossValidated](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues)  
+* [UMAP @ SciPy2018](https://www.youtube.com/watch?v=nq6iPZVUxZU)  
+
