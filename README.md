@@ -110,7 +110,9 @@ https://docs.conda.io/en/latest/miniconda.html
 
 **access the environment:**
 
-`source activate workshop`
+`conda activate workshop`
+
+Do not forget to activate the environment before starting the workshop!
 
 **install the libraries:**
 
