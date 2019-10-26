@@ -204,6 +204,24 @@ jupyter notebook
 ### Reinforcement Learning
 tutor: Robert Loftin
 
+In order to run locally:
+
+```
+conda create --name reinforced python=3.7
+conda activate reinforced
+pip install numpy==1.17.3
+pip install gym==0.15.3
+pip install matplotlib==3.0.3
+pip install torch==1.3.0
+pip install chainer
+pip install minerl
+pip install opencv-python-headless
+pip install roboschool
+conda install jupyter
+conda install -c anaconda openjdk
+jupyter-notebook
+```
+
 ### Deep learning methods for genomics
 tutor: Ron Schwessinger
 
