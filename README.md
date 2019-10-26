@@ -239,6 +239,23 @@ print("All done! :)")
 ### Lasso workshop
 tutor: Tim Padvitski
 
+You will work locally in RStudio, execute following code to install packages:
+
+```
+required_packages <- c("c060", "glmnet", "igraph)
+
+for (pkg in required_packages) {
+  if(!require(pkg, character.only = TRUE, 
+              quietly = TRUE, 
+              warn.conflicts = FALSE)) {
+    print(paste0("Warning! Installing package: ", pkg, "."))
+    install.packages(pkg)
+  } 
+}
+
+print("All done! :)")
+```
+
 ## Hackathons
 
 ### Dilated Convolutional Neural Nets for DNase-seq and ATAC-seq footprinting 
