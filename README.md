@@ -47,7 +47,7 @@ Job log will be created in the current directory: `jobname-log-JOBID.txt`.
 
 To check if the job is in the qeue:
 
-`squeue`
+`squeue -u $USER`
 
 To cancel the job:
 
