@@ -6,6 +6,7 @@ You will find here the materials for workshops, hackathons and lectures at the #
 
   * [General instructions](#general-instructions)
      * [Colab](#colab)
+     * [Working on Prometheus](#Working-on-Prometheus)
   * [Workshops](#workshops)
      * [Intro to HPC](#intro-to-hpc)
      * [Intro to R](#intro-to-r)
@@ -29,11 +30,30 @@ You will find here the materials for workshops, hackathons and lectures at the #
 [Google Colab](https://colab.research.google.com) is an online service in which you can run jupyter notebooks (and even use some limited GPU!) It comes with some preloaded libraries which makes it easier to teach and run tutorials without having to spend too much time on fixing dependencies etc.
 
 ### Working on Prometheus
+To access the cluster:
+
+`ssh username@pro.cyfronet.pl`
+
 To clone the workshops repository that contains all the materials needed for the
 exercises:
 
-
 `git clone --recurse-submodules $PLG_GROUPS_SHARED/plggngschool/workshops`
+
+To run a job:
+
+`sbatch jobname.slurm`
+
+Job log will be created in the current directory: `jobname-log-JOBID.txt`. 
+
+To check if the job is in the qeue:
+
+`squeue`
+
+To cancel the job:
+
+`scancel JOBID`
+
+
 
 ## Workshops
 
