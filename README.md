@@ -28,6 +28,13 @@ You will find here the materials for workshops, hackathons and lectures at the #
 ### Colab
 [Google Colab](https://colab.research.google.com) is an online service in which you can run jupyter notebooks (and even use some limited GPU!) It comes with some preloaded libraries which makes it easier to teach and run tutorials without having to spend too much time on fixing dependencies etc.
 
+### Working on Prometheus
+To clone the workshops repository that contains all the materials needed for the
+exercises:
+
+
+`git clone --recurse-submodules $PLG_GROUPS_SHARED/plggngschool/workshops`
+
 ## Workshops
 
 ### Intro to HPC
