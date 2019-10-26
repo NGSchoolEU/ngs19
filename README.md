@@ -217,6 +217,25 @@ tutor: Kaspar Märtens
 ### Tree based methods
 tutor: Rosa Karlic
 
+You will work locally in RStudio, execute following code to install packages:
+
+```
+required_packages <- c("caret", "rpart", "e1071", 
+                       "ranger", "dplyr", "randomForest", "rpart.plot",
+		       "ipred", "bst", "plyr")
+
+for (pkg in required_packages) {
+  if(!require(pkg, character.only = TRUE, 
+              quietly = TRUE, 
+              warn.conflicts = FALSE)) {
+    print(paste0("Warning! Installing package: ", pkg, "."))
+    install.packages(pkg)
+  } 
+}
+
+print("All done! :)")
+```
+
 ### Lasso workshop
 tutor: Tim Padvitski
 
