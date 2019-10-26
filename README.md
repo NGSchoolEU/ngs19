@@ -137,7 +137,17 @@ To simplify, we can crete the enviromnet from the yml file: [nlp/workshop.yml](n
 
 3. **FROM LOCAL COPY** Install missing package:
 
+3a. Copy the file from USB
+
 Due to a large file size (>1GB), we are copying the `en_core_web_lg` from USB sticks distributed on site. When you copy the file from a USB, please change the following command to point to the location of the file.
+
+3b. Copy from server
+
+If you **didn't** copy the file from USB stick, copy it from local server.
+
+```
+scp <your-user>@10.0.0.200:/srv/en_core_web_lg-2.2.0.tar.gz ~/
+```
 
 ```
 # python -m spacy download en_core_web_lg
