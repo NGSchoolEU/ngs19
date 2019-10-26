@@ -207,7 +207,7 @@ tutor: Robert Loftin
 ### Deep learning methods for genomics
 tutor: Ron Schwessinger
 
-[Slides](slides_deep_learning_methods_for_genomics.pdf)
+[Slides](./deep_learning/slides_deep_learning_methods_for_genomics.pdf)
 
 The seminar hands-on workshop will be run in a [google colab notebook](https://colab.research.google.com/drive/1SRHe_SXmKeXImNBR6tnhFQ3eThM4-iZu). A google account is required though. Additional information can be found in this [repo](https://github.com/rschwess/tutorial_dl_for_genomics) but no need to install anything for the workshop.
 
