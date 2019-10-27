@@ -34,10 +34,11 @@ To access the cluster:
 
 `ssh username@pro.cyfronet.pl`
 
-To clone the workshops repository that contains all the materials needed for the
-exercises:
+Clone NGSchool repo:
 
-`git clone --recurse-submodules $PLG_GROUPS_SHARED/plggngschool/workshops`
+`git clone https://github.com/NGSchoolEU/ngs19.git`
+
+Inside folders with workshops, that are meant to be run on cluster, there will be *.slurm files with the job description.
 
 To run a job:
 
@@ -53,6 +54,7 @@ To cancel the job:
 
 `scancel JOBID`
 
+Majority of the workshops will be run inside notebooks, how to use them with cluster is described here [Intro to HPC](#intro-to-hpc).
 
 
 ## Workshops
