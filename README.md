@@ -212,7 +212,8 @@ conda activate reinforced
 pip install numpy==1.17.3
 pip install gym==0.15.3
 pip install matplotlib==3.0.3
-pip install torch==1.3.0
+#pip install torch==1.3.0
+conda install pytorch torchvision cpuonly -c pytorch
 pip install chainer
 pip install minerl
 pip install opencv-python-headless
