@@ -7,6 +7,7 @@ You will find here the materials for workshops, hackathons and lectures at the #
   * [General instructions](#general-instructions)
      * [Colab](#colab)
      * [Working on Prometheus](#Working-on-Prometheus)
+  * [Talks](#talks)
   * [Workshops](#workshops)
      * [Intro to HPC](#intro-to-hpc)
      * [Intro to R](#intro-to-r)
@@ -56,6 +57,9 @@ To cancel the job:
 
 Majority of the workshops will be run inside notebooks, how to use them with cluster is described here [Intro to HPC](#intro-to-hpc).
 
+
+## Talks
+[Guilliame Fillion - "An experiment on anti-academic research"](talks)
 
 ## Workshops
 
