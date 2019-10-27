@@ -59,7 +59,7 @@ Majority of the workshops will be run inside notebooks, how to use them with clu
 
 
 ## Talks
-[Guilliame Fillion - "An experiment on anti-academic research"](talks)
+[Guilliame Fillion - "An experiment on anti-academic research"](talks/ngschool_2019_Filion.pdf)
 
 ## Workshops
 
