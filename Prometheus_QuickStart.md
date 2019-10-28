@@ -181,6 +181,7 @@ jupyter shell magic, like:
 ```
 
 ***Important for TensorFlow and R users***
+
 By default R module loads cuda==9.0, and TensorFlow depends on cuda==10.0. When
 doing GPU computing with R and then switching to TensorFlow run:
 ```sh
