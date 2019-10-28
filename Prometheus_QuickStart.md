@@ -159,6 +159,7 @@ software/
    to use the X11 for plotting.
 *  Each of the workshop folders contain similarly named folder with Python
    virtual environment and the required modules.
+*  `requirements.txt` files contain Python pip module requirements.
 
 #### Software instalation
 
@@ -194,6 +195,43 @@ R run:
 module swap plgrid/apps/cuda/9.0
 ```
 
+#### Example configuration files
 
+```sh
+# software/deep_learning/deep_learning.rc
+export LD_LIBRARY_PATH="$PLG_GROUPS_SHARED/plggngschool/software/cuda/lib64:$LD_LIBRARY_PATH"
+module load plgrid/apps/r/3.6.0
+module load plgrid/libs/tensorflow-gpu/1.13.1-python-3.6
+source "$PLG_GROUPS_SHARED/plggngschool/software/deep_learning/deep_learning/bin/activate"
+source "$PLG_GROUPS_SHARED/plggngschool/software/R/Renviron.ngschool"
+```
+
+
+```sh
+# software/deep_learning/requirements.txt
+argparse
+h5py
+keras
+numpy
+pandas
+pybigwig
+pysam
+rpy2
+jupyterlab
+#tensorflow >=1.8,<=1.14
+```
+
+
+```sh
+# software/R/Renviron.ngschool 
+export R_LIBS_USER="$PLG_GROUPS_SHARED/plggngschool/software/R/library"
+export R_PROFILE="$PLG_GROUPS_SHARED/plggngschool/software/R/Rprofile.ngschool"
+```
+
+ 
+```sh
+# software/R/Rprofile.ngschool 
+options(bitmapType = 'cairo')
+```
 ---
 
