@@ -3,7 +3,7 @@
 #SBATCH --nodes 1
 #SBATCH --ntasks-per-node 2
 #SBATCH --gres=gpu
-#SBATCH --time 03:00:00
+#SBATCH --time 04:00:00
 #SBATCH --job-name deep_learning-tunnel
 #SBATCH --output deep_learning-log-%J.txt
 #SBATCH --account ngschool2019
