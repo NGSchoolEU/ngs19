@@ -6,8 +6,8 @@ following document will guide you for the process specific to the NGSchool2019
 workshops and hackathons.
 
 More general references:
-*  [Klemens Noga's Quick tutorial] (https://docs.cyfronet.pl/display/~plgnoga/NGSchool2019)
-*  [Prometheus Basics Guide:] (https://kdm.cyfronet.pl/portal/Prometheus:Basics)
+*  [Klemens Noga's Quick tutorial](https://docs.cyfronet.pl/display/~plgnoga/NGSchool2019)
+*  [Prometheus Basics Guide:](https://kdm.cyfronet.pl/portal/Prometheus:Basics)
 
 ### Reserving the resources to work on the cluster in jupyter-lab interactive mode
 
@@ -50,8 +50,7 @@ After this wait a while until your submitted job is processed by the system.
 
 
 Next proceed exactly how it was described by Klemens Noga during his
-introductory workshop and summarized in [his guide]
-(https://docs.cyfronet.pl/display/~plgnoga/Python+Jupyter+notebooks)
+introductory workshop and summarized in [his guide](https://docs.cyfronet.pl/display/~plgnoga/Python+Jupyter+notebooks)
 
 
 This schedules your work in the interactive jupyter session for **4 hour by
@@ -164,7 +163,7 @@ software/
 #### Software instalation
 
 Users from the `plggngs_adm` group which contains the organizers and hackathon
-mentors can install python modules with pip and R packages after sourcing their
+mentors can install Python modules with pip and R packages after sourcing their
 appropriate `*rc` file. The packages and modules installed in this way will be
 available for all the users of their workshop. For example:
 
@@ -180,5 +179,20 @@ jupyter shell magic, like:
 ```
 !pip install seaborn
 ```
+
+***Important for TensorFlow and R users***
+By default R module loads cuda==9.0, and TensorFlow depends on cuda==10.0. When
+doing GPU computing with R and then switching to TensorFlow run:
+```sh
+module swap plgrid/apps/cuda/10.0
+```
+
+Similarly after doing GPU computing in TensorFlow and wanting to do the same in
+R run:
+```sh
+module swap plgrid/apps/cuda/9.0
+```
+
+
 ---
 
