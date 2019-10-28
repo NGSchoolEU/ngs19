@@ -1,0 +1,184 @@
+---
+title: "Tree-based methods"
+output:
+  html_document:
+    df_print: paged
+---
+
+## Load the packages that we will use in the workshop
+```{r warning = F, message = F}
+library(caret)
+library(tidyverse)
+library(rpart)
+library(rpart.plot)
+library(ipred)
+library(bst)
+```
+
+# Classification trees
+## Exercise 1 - Classification trees using rpart package
+Using the rpart() function, create a classification tree using the adapted ICU data (made from the ICU dataset available in the Stat2Data package).
+
+```{r}
+# Read in the data
+ICU = read.delim("ICU.adapted.txt")
+
+# Check the structure of the data
+
+# Train a classification tree using rpart()
+
+# Plot the tree using the rpart.plot() function
+# Shows predicted class, predicted probability of class, percentage of observations in node
+
+# What are the splitting rules for this tree?
+
+# Is the tree the same as before? What is your explanation for this?
+
+# Use the predict() function to classify the data and calculate the classification error rate of our tree.
+
+```
+
+
+## Exercise 2 - How large should my tree be?
+```{r}
+# Set the Cp parameter to 0.1 and construct another tree with the ICU data. Visualize the tree. What do you notice?
+
+# Check the cp parameter of the original tree that you created (ICU.tree object) - use the summary() and plotcp() functions
+
+
+# What is the prediction accuracy of the original tree (ICU.tree object) but on new data? Use the predict() function
+
+ICU.test = read.delim("ICU.adapted.test.txt")
+
+```
+
+## Exercise 3 - Stability of trees 
+Read in the original ICU dataset from the Stat2Data package. You want to construct a training set with 50 Emergency and 50 Non-emergency patients and train a classification tree. Repeat this process 3 times and compare the resulting classification trees. Set the seed to 1, 2 and 3 respectively. What do you notice?
+```{r}
+# Read in the original ICU data from the Stat2Data package
+ICU.original = read.delim("ICU.original.txt")
+
+# Repeat the process three times
+for (i in 1:3){
+  set.seed(i)
+  # Sample 40 observations from each class
+
+  # Build a classification tree with rpart()
+ 
+  # Visualize the tree
+
+}
+ 
+
+
+```
+
+
+# Regression trees 
+
+## Exercise 4 - Training a regression tree using the Caret package
+Using the rpart method implemented in caret package, train a regression tree to predict gene expression from histone modifications. Report the accuracy of your model (hcp.model)
+
+```{r}
+# Read in data for histone modifications and gene expression
+hm.data.hcp = read.delim("hm.data.hcp.txt")
+
+
+# Create training and test sets using the CreateDataPartition() function (80:20 split) 
+set.seed(12)
+
+# What are the dimensions of the training and test datasets?
+
+
+# Define the control parameters for the model using the trainControl() function. Use 5-fold cross-validation and return all resampled measures. Also print the training log. Save the control parameters in an object hcp.ctrl since we will use them in subsequent models. 
+
+# Train the regression tree using the train() function
+
+# Test the model on the test data
+# Predict expression values for test data
+
+# Calculate the accuracy of the model using the postResample() function
+
+```
+
+## Exercise 5 - Visualize the regression tree and the predictions
+Plot the binary tree representing the model and visualize the observed and predicted expression data. What do you notice?
+```{r}
+# What does our model actually look like? Print the final model and visualize the regression tree using rpart.plot()
+
+# Create a scatterplot of predicted and observed values gene expression on the test set. What do you notice?
+```
+
+
+# Ensemble methods
+
+## Exercise 6 - Random Forest
+Using the ranger method implemented in caret package, train a regression tree to predict gene expression from histone modifications. Report the accuracy of your model (hcp.model.rf)
+```{r}
+
+# Train the model using 'ranger' method. Set the number of trees to 500 and importance to "permutation"
+
+# Inspect the final randomForest model
+
+# Using the predict() function, predict the expression values of the test dataset
+
+# Calculate the accuracy of the model using the postResample() function
+
+```
+
+## Exercise 7 - Variable importance of Random Forest models
+Compare variable importance of random forest models used for predicting expression of genes with HCP or LCP promoters. 
+```{r}
+# Inspect and visualize the variable importance of randomForest model used to predict gene expression from histone modifications. Use the varImp() function
+
+# Using the ranger method implemented in caret package, train a regression tree to predict gene expression from histone modifications but for LCP promoters. Report the accuracy of your model (lcp.model.rf)
+
+# Read in expression and histone modification data for genes with LCP promoters
+hm.data.lcp = read.delim("hm.data.lcp.txt")
+
+# Create training and test sets using the createDataPartition() function (80:20)
+
+# Train the model using 'ranger' method. Set the number of trees to 500 and importance to "permutation"
+
+#Inspect the final model
+
+# Using the predict() function, predict the expression values of the test dataset of genes with LCP promoters
+
+# Calculate the accuracy of the model using the postResample() function
+
+# Inspect and visualize the variable importance of randomForest model used to predict gene expression from histone modifications for genes with LCP promoters. Use the varImp() function
+
+```
+
+## Exercise 8 - Bagging
+Using the "treebag" method implemented in caret package, train a regression tree to predict gene expression from histone modifications for genes with HCP promoters. Report the accuracy of your model (hcp.model.bag)
+```{r}
+# Train the model using 'treebag' method. Set nbagg to 10
+
+# Using the predict() function, predict the expression values of the test dataset 
+
+# Calculate the accuracy of the model using the postResample() function
+
+```
+
+## Exercise 9 - Boosting
+Using the "bstTree" method implemented in caret package, train a regression tree to predict gene expression from histone modifications for genes with HCP promoters. Report the accuracy of your model (hcp.model.boost)
+```{r}
+# Train the model using 'bstTree' method
+
+# Using the predict() function, predict the expression values of the test dataset 
+
+# Calculate the accuracy of the model using the postResample() function
+
+```
+
+
+## Exercise 10 - Compare the performance of different models
+Use the previously obtained Rsquared values (form postResample) to compare the accuracy of regression tree, random forest, bagging and boosting models. 
+```{r}
+# Compare prediction accuracy of the different models
+
+```
+
+
+
