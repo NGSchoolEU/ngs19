@@ -5,14 +5,10 @@ German Demidov, Maja Kuzman
 ## The Goals:  
 
 ### Day 1:  
-1. Explain the data set  
-
-What is the data? What is in the paper? What are the figures?
-What are your samples in this case?
-Predictors/ response? What are the main conclusions in the paper that concern this data? How did the authors get them?
-2. Explore the data  
-  - Explore the response data set 
-  - Explore the predictors data set
+1. Explain the data set   
+2. Explore the data   
+  - Explore the response data set  
+  - Explore the predictors data set  
 
 ### Day 2:  
 
