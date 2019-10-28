@@ -31,32 +31,10 @@ You will find here the materials for workshops, hackathons and lectures at the #
 [Google Colab](https://colab.research.google.com) is an online service in which you can run jupyter notebooks (and even use some limited GPU!) It comes with some preloaded libraries which makes it easier to teach and run tutorials without having to spend too much time on fixing dependencies etc.
 
 ### Working on Prometheus
-To access the cluster:
 
-`ssh username@pro.cyfronet.pl`
+Here you will find a short guide on how to work on the Prometheus supercomputer.
 
-Clone NGSchool repo:
-
-`git clone https://github.com/NGSchoolEU/ngs19.git`
-
-Inside folders with workshops, that are meant to be run on cluster, there will be *.slurm files with the job description.
-
-To run a job:
-
-`sbatch jobname.slurm`
-
-Job log will be created in the current directory: `jobname-log-JOBID.txt`. 
-
-To check if the job is in the qeue:
-
-`squeue -u $USER`
-
-To cancel the job:
-
-`scancel JOBID`
-
-Majority of the workshops will be run inside notebooks, how to use them with cluster is described here [Intro to HPC](#intro-to-hpc).
-
+[Prometheus Quick Start Guide](Prometheus_QuickStart.md)
 
 ## Talks
 [Guilliame Fillion - "An experiment on anti-academic research"](talks/ngschool_2019_Filion.pdf)
@@ -66,7 +44,7 @@ Majority of the workshops will be run inside notebooks, how to use them with clu
 ### Intro to HPC
 tutor: Klemens Noga
 
-The wbsite with info about the workshop can be accessed [here](https://docs.cyfronet.pl/display/~plgnoga/NGSchool2019)
+The website with info about the workshop can be accessed [here](https://docs.cyfronet.pl/display/~plgnoga/NGSchool2019)
 
 ### Intro to R
 tutor: Maja Kuzman
