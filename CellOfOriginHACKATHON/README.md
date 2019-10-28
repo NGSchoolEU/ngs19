@@ -2,6 +2,17 @@
 
 German Demidov, Maja Kuzman  
 
+
+### To work on the prometheus:  
+This will open an interactive session with 
+
+```
+srun --mem=4G --time=02:00:00 -p plgrid-now -N 1 --ntasks-per-node=6 -n 1 -A ngschool2019 --pty /bin/bash -l
+module load plgrid/apps/r/3.6.0
+source "$PLG_GROUPS_SHARED/plggngschool/software/R/Renviron.ngschool"
+
+```
+
 ## The Goals:  
 
 ### Day 1:  
