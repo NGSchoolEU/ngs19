@@ -7,8 +7,8 @@ German Demidov, Maja Kuzman
 ### Day 1:  
 1. Explain the data set   
 2. Explore the data   
-  - Explore the response data set  
-  - Explore the predictors data set  
+    - Explore the response data set  
+    - Explore the predictors data set  
 
 ### Day 2:  
 
