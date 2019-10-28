@@ -17,9 +17,9 @@ Predictors/ response? What are the main conclusions in the paper that concern th
 ### Day 2:  
 
 3. Predict mutational patterns using random forest regression   
-  - Find important features  
+    - Find important features  
 4. Predict mutational patterns using different methods   
-5 . Use mutational profiles to predict cancer type  
+5 . Use mutational profiles to predict cancer type   
 6. Try to beat Rosa!  
 
 ### Day 3:  
