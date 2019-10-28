@@ -239,6 +239,12 @@ The seminar hands-on workshop will be run in a [google colab notebook](https://c
 ### Deep Generative Models for dimensionality reduction
 tutor: Kaspar Märtens
 
+Link to [slides](https://drive.google.com/open?id=1__9oqaTn0tdJYx3b2SzYZiLOhZpB0HkL)
+
+In the hands-on part of the tutorial, we will implement an Autoencoder on MNIST data. See [google colab notebook for Autoencoders on MNIST](https://colab.research.google.com/drive/1HbInpu-7L_CfWbWKFrvlbvyURzoN0lsH). 
+
+For those interested, there is also [an additional colab notebook for Variational Autoencoders](https://colab.research.google.com/drive/12J8Q183G8UdY1gqSIONeVL3aVJQnUFyZ). 
+
 ### Tree based methods
 tutor: Rosa Karlic
 
