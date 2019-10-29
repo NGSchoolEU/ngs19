@@ -5,9 +5,9 @@ German Demidov, Maja Kuzman
 
 ## The Groups:  
 
-Group1: Green group http://bit.ly/COOdataG1 
-Group2: Red group http://bit.ly/COOdataG2
-Group3: Dark Magenta group http://bit.ly/COOdataG3  
+Group1: Green group http://bit.ly/COOdataG1  
+Group2: Red group http://bit.ly/COOdataG2  
+Group3: Dark Magenta group http://bit.ly/COOdataG3   
 
 
 ## The Goals:  
