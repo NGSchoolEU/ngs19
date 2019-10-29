@@ -17,3 +17,8 @@ All information, access to data and an example workflow to get you started are a
 * `numpy`
 * `scikit-learn`
 * please find the data download links in the notebook
+
+### Links
+
+[BPnet_1](https://www.biorxiv.org/content/10.1101/737981v1)
+
