@@ -1,0 +1,327 @@
+---
+title: "Tree-based methods"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+## Load the packages that we will use in the workshop
+```{r warning = F, message = F}
+library(caret)
+library(tidyverse)
+library(rpart)
+library(rpart.plot)
+library(ipred)
+library(bst)
+library(ranger)
+```
+
+# Classification trees
+## Exercise 1 - Classification trees using rpart package
+Using the rpart() function, create a classification tree using the adapted ICU data (made from the ICU dataset available in the Stat2Data package).
+
+```{r}
+# Read in the data
+ICU = read.delim("ICU.adapted.txt")
+
+# Check the structure of the data
+str(ICU)
+
+ICU.tree = rpart(Emergency ~ SysBP + Pulse, data = ICU)
+
+# Plot the tree using the rpart.plot() function
+# Shows predicted class, predicted probability of class, percentage of observations in node
+
+rpart.plot(ICU.tree)
+
+# What are the splitting rules for this tree?
+rpart.rules(ICU.tree)
+
+# Is the tree the same as before? What is your explanation for this?
+
+# Use the predict() function to classify the data and calculate the classification
+# error rate of our tree.
+
+
+predicted.emergency = predict(ICU.tree)
+
+predicted.emergency = predict(ICU.tree, type = "class")
+
+ICU.table = table(predicted.emergency, ICU$Emergency)
+ICU.table 
+
+ICU.error = (ICU.table[2,1] + ICU.table[1,2]) / sum(ICU.table)
+
+
+
+```
+
+
+## Exercise 2 - How large should my tree be?
+```{r}
+# Set the Cp parameter to 0.1 and construct another tree with the ICU data. What do you notice?
+
+ICU.tree.cp.01 = rpart(Emergency ~ SysBP + Pulse, data = ICU, control = rpart.control(cp = 0.1))
+## Higher cp - smaller tree and vice versa
+
+rpart.plot(ICU.tree.cp.01)
+
+# Check the cp parameter of the original tree that you created (ICU.tree object) -
+# use the summary() and plotcp() functions
+
+summary(ICU.tree)$cptable
+plotcp(ICU.tree)
+
+# What is the prediction accuracy of the original tree (ICU.tree object) but on
+# new data?
+
+ICU.test = read.delim("ICU.adapted.test.txt")
+predicted.test.emergency = predict(ICU.tree, newdata = ICU.test, type = "class")
+
+ICU.test.table = table(predicted.test.emergency, ICU.test$Emergency)
+
+ICU.test.error = (ICU.test.table[1,2] + ICU.test.table[2,1]) / sum(ICU.test.table)
+ICU.test.error
+```
+*This exercise shows the influence of the cp parameter on the tree size and the prediction accuracy*
+
+## Exercise 3 - Stability of trees 
+Read in the original ICU dataset from the Stat2Data package. You want to construct a training set with 50 Emergency and 50 Non-emergency patients and train a classification tree. Repeat this process 3 times and compare the resulting classification trees. Set the seed to 1, 2 and 3 respectively. What do you notice?
+```{r}
+# Read in the original ICU data from the Stat2Data package
+ICU.original = read.delim("ICU.original.txt")
+
+# Repeat the process three times
+for (i in 1:3){
+  set.seed(i)
+  # Sample 40 observations from each class
+ emergency = sample(which(ICU.original$Emergency == "Emergency"), 40)
+  notemergency = sample(which(ICU.original$Emergency == "Non-emergency"), 40)
+  ICU.sampled = rbind(ICU.original[emergency,], ICU.original[notemergency,])
+  
+  # Build a classification tree with rpart
+ ICU.tree.sampled = rpart(Emergency ~ SysBP + Pulse, data = ICU.sampled, 
+                          method = "class")
+ # Visualize the tree
+ rpart.plot(ICU.tree.sampled)
+}
+ 
+
+
+```
+*You are supposed to notice the instability of trees when change input data (take different samples of patients from the same dataset)*
+
+# Regression trees 
+
+## Exercise 4 - Training a regression tree using the Caret package
+Using the rpart method implemented in caret package, train a regression tree to predict gene expression from histone modifications. Report the accuracy of your model (hcp.model)
+
+```{r}
+# Read in data for histone modifications and gene expression
+hm.data.hcp = read.delim("hm.data.hcp.txt")
+
+
+# Create training and test sets using the CreateDataPartition() function 
+# (80:20 split) 
+set.seed(12)
+index.train <- createDataPartition(y = hm.data.hcp$expression, 
+                                   p = 0.8, 
+                                   list = FALSE)
+training.hcp <- hm.data.hcp[index.train,]
+testing.hcp <- hm.data.hcp[-index.train,]
+
+# What are the dimensions of the training and test datasets?
+dim(training.hcp)
+dim(testing.hcp)
+
+# Define the control parameters for the model using the trainControl() function. 
+# Use 5-fold cross-validation and return all resampled measures. 
+# Also print the training log. 
+# Save the control parameters in an object hcp.ctrl since we will use them in 
+# subsequent models. 
+hcp.ctrl <- trainControl(method = "cv",
+                     number = 5, 
+                     returnResamp = "all", 
+                     verboseIter = TRUE)
+
+# Train the regression tree using the train() function
+hcp.model <- train(  expression ~ .,
+                 training.hcp,
+               method = "rpart",
+               trControl = hcp.ctrl)
+
+
+
+# Test the model on the test data
+# Predict expression values for test data
+predicted.hcp = predict(hcp.model, newdata = testing.hcp)
+
+# Calculate the accuracy of the model using the postResample() function
+test.hcp.accuracy = postResample(pred = predicted.hcp, obs = testing.hcp$expression)
+
+test.hcp.accuracy
+```
+
+## Exercise 5 - Visualize the regression tree and the predictions
+Plot the binary tree representing the model and visualize the observed and predicted expression data. What do you notice?
+```{r}
+# What does our model actually look like? Print the final model and 
+# visualize the regression tree using rpart.plot()
+hcp.model$finalModel
+rpart.plot(hcp.model$finalModel)
+
+# Create a scatterplot of predicted and observed values of gene expression 
+# on the test set. What do you notice?
+hcp.results = data.frame(observed = testing.hcp$expression, predicted = predicted.hcp)
+
+ggplot(hcp.results, aes(x = observed, y = predicted)) +
+  geom_point() +
+  theme_bw()
+
+
+
+```
+*This is a demonstration of the lack of smoothness of regression trees*
+
+# Ensemble methods
+
+## Exercise 6 - Random Forest
+Using the ranger method implemented in caret package, train a regression tree to predict gene expression from histone modifications. Report the accuracy of your model (hcp.model.rf)
+```{r}
+
+# Train the model using 'ranger' method. Set the number of trees to 500 
+# and importance to "permutation"
+hcp.model.rf <- train(expression ~ ., 
+                 data = training.hcp,
+                 method = 'ranger',
+                # should be set high at least p/3
+                 tuneLength = 10, 
+                 trControl = hcp.ctrl,
+                ## parameters passed onto the ranger function
+                # the bigger the better.
+                 num.trees = 500,
+                 importance = "permutation")
+
+# Inspect the final randomForest model
+hcp.model.rf$finalModel
+
+# Using the predict() function, predict the expression values of the test dataset
+predicted.hcp.rf <- predict(hcp.model.rf , newdata = testing.hcp)
+
+# Calculate the accuracy of the model using the postResample() function
+test.hcp.accuracy.rf = postResample(pred = predicted.hcp.rf, obs = testing.hcp$expression)
+test.hcp.accuracy.rf 
+```
+*Notice that random forest gives a higher prediction accuracy than individual regression tree from exercise 4*
+
+## Exercise 7 - Variable importance of Random Forest models
+Compare variable importance of random forest models used for predicting expression of genes with HCP or LCP promoters. 
+```{r}
+# Inspect and visualize the variable importance of randomForest model used to
+# predict gene expression from histone modifications. Use the varImp() function
+rfImp.hcp <- varImp(hcp.model.rf)
+rfImp.hcp
+plot(rfImp.hcp,top = 20)
+
+
+# Using the ranger method implemented in caret package, train a regression tree 
+# to predict gene expression from histone modifications but for LCP promoters.
+# Report the accuracy of your model (lcp.model.rf)
+
+# Read in expression and histone modification data for genes with LCP promoters
+hm.data.lcp = read.delim("hm.data.lcp.txt")
+
+# Create training and test sets using the createDataPartition() function (80:20)
+index.train <- createDataPartition(y = hm.data.lcp$expression, p= 0.8, list = FALSE)
+training.lcp <- hm.data.lcp[index.train,]
+testing.lcp <- hm.data.lcp[-index.train,]
+
+# Train the model using 'ranger' method. Set the number of trees to 500 and 
+# importance to "permutation"
+lcp.model.rf <- train(expression ~ ., 
+                 data = training.lcp,
+                 method = 'ranger',
+                # should be set high at least p/3
+                 tuneLength = 10, 
+                 trControl = hcp.ctrl,
+                ## parameters passed onto the ranger function
+                # the bigger the better.
+                 num.trees = 500,
+                 importance = "permutation")
+
+#Inspect the final model
+lcp.model.rf$finalModel
+
+# Using the predict() function, predict the expression values of the test dataset
+# of genes with LCP promoters
+predicted.lcp.rf <- predict(lcp.model.rf , testing.lcp)
+
+# Calculate the accuracy of the model using the postResample() function
+test.accuracy.lcp.rf = postResample(pred = predicted.lcp.rf, obs = testing.lcp$expression)
+test.accuracy.lcp.rf
+
+# Inspect and visualize the variable importance of randomForest model used to
+# predict gene expression from histone modifications for genes with LCP promoters.
+# Use the varImp() function
+rfImp.lcp <- varImp(lcp.model.rf)
+rfImp.lcp
+plot(rfImp.lcp,top = 20)
+```
+*The purpose of this exercise was to demonstrate how we can use variable importance to infer biological mechanisms - genes with high-CpG (HCP) and low-CpG (LCP) promoters seem to be regulated by different histone modfications. For more information you can check out https://www.pnas.org/content/107/7/2926 where we used linear regression with feature selection to choose important variables but the final results are similar.*
+
+## Exercise 8 - Bagging
+Using the "treebag" method implemented in caret package, train a regression tree to predict gene expression from histone modifications for genes with HCP promoters. Report the accuracy of your model (hcp.model.bag)
+```{r}
+# Train the model using 'treebag' method. Set nbagg to 10
+hcp.model.bag <- train(expression~., 
+                           data = training.hcp,
+                           method = "treebag", 
+                           trControl = hcp.ctrl,
+                           nbagg = 10)
+
+# Using the predict() function, predict the expression values of the test dataset 
+predicted.hcp.bag <- predict(hcp.model.bag, newdata = testing.hcp)
+
+# Calculate the accuracy of the model using the postResample() function
+test.hcp.accuracy.bag = postResample(pred = predicted.hcp.bag, obs = testing.hcp$expression)
+
+test.hcp.accuracy.bag
+```
+
+## Exercise 9 - Boosting
+Using the "bstTree" method implemented in caret package, train a regression tree to predict gene expression from histone modifications for genes with HCP promoters. Report the accuracy of your model (hcp.model.boost)
+```{r}
+# Train the model using 'bstTree' method
+hcp.model.boost <- train(expression~., 
+                         data=training.hcp,
+                         method="bstTree",
+                         trControl=hcp.ctrl)
+
+# Using the predict() function, predict the expression values of the test dataset 
+predicted.hcp.boost <- predict(hcp.model.boost, newdata = testing.hcp)
+
+# Calculate the accuracy of the model using the postResample() function
+test.hcp.accuracy.boost = postResample(pred = predicted.hcp.boost, obs = testing.hcp$expression)
+
+test.hcp.accuracy.boost
+```
+
+
+## Exercise 10 - Compare the performance of different models
+Use the previously obtained Rsquared values (from postResample() funciton) to compare the accuracy of regression tree, random forest, bagging and boosting models. 
+```{r}
+accuracy = data.frame(Rsquared = c(test.hcp.accuracy[2], 
+                                   test.hcp.accuracy.bag[2],
+                                   test.hcp.accuracy.boost[2],
+                                   test.hcp.accuracy.rf[2]), 
+                      method = c("Regression tree", 
+                                 "Bagging", 
+                                 "Boosting", 
+                                 "Random Forest")
+                      )
+
+ggplot(accuracy, aes(x = method, y = Rsquared, fill = method )) + 
+  geom_bar(stat = "identity") 
+```
+*Ensemble methods clearly perform better than individual trees.*
