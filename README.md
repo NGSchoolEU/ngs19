@@ -188,7 +188,9 @@ jupyter notebook
 ### Reinforcement Learning
 tutor: Robert Loftin
 
-In order to run locally:
+[Presentation Slides](https://github.com/NGSchoolEU/ngs19/blob/master/reinforcement_learning/NGSchool_ReinforcementLearning_Loftin_Small.pptx)
+
+In order to run tutorial locally:
 
 ```
 conda create --name reinforced python=3.7
