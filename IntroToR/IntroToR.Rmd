@@ -1,0 +1,530 @@
+---
+title: "IntroductionToR"
+author: "Maja Kuzman"
+date: "7/1/2020"
+output: html_document
+---
+
+# R, Rstudio, Rmd
+
+---
+### How can we use R and RStudio?  
+
+- console   
+- script   
+- notebook:   
+     new chunk: ctrl + ALT + i 
+
+--
+### What can we do with R? 
+
+-  We can use R as a calculator!  
+
+### Try it:  
+     
+Add a new chunk (ctrl + ALT + i).   
+Calculate the result of 13%/%3 and 13%%3. 
+( 13/3 = 4*3+1 )
+
+
+*We can even do better than that...* 
+
+
+# Variables and data structures
+
+### Variables 
+
+
+```{r}
+myFirstNumber <- 0.1
+myFirstVector <- c(2, 3, 7, 8)
+
+```
+
+-> call the variable by name  
+-> print() function  
+-> one line, part of code shaded and CTRL +ENTER
+
+```{r}
+print(myFirstNumber)
+myFirstNumber
+
+```
+
+
+### Data structures in R  
+
+vectors  
+list
+matrix  
+data.frame  
+factors  
+
+---
+### Vectors 
+
+```{r}
+nVec <- c(1, 5, 7, 9, 12.5) # numeric vector
+cVec <- c("a", "b", "some words") # character vector
+lVec <- c(TRUE, FALSE, T, T, F) # logical vector
+vvec <- c(1,5, "word")
+vvec
+```
+
+```{r}
+nVec
+cVec
+lVec
+```
+
+---
+
+### Matrices  
+
+Matrices are tables that have rows and columns and store elements of same type.
+```{r}
+y <- matrix(1:20, nrow=5,ncol=4)
+y
+```
+
+
+---
+
+### Data frames
+
+```{r}
+mydf <- data.frame( firstColumn = c(1,5,7),
+                    secondColumn = c("a","b","third Element"))
+mydf
+```
+
+---
+
+### Lists
+
+
+```{r}
+l <- list(firstElement = c(1,5,44,6),
+          second = c("a", 3),
+          y)
+l
+```
+
+---
+
+### Factors  
+
+If something is weird, factors are the usual suspects.. 
+
+
+```{r}
+xx <- factor(sample(1:15,20, replace = T))
+xx
+```
+
+--
+
+If you want a normal numeric vector:
+```{r}
+vvec
+nvvec <- as.numeric(vvec)
+nvvec
+```
+
+
+
+```{r}
+xx
+
+```
+```{r}
+numericxx <- as.numeric(xx)
+numericxx
+```
+
+--
+
+you should do this... 
+
+```{r}
+as.numeric(as.character(xx))
+```
+
+
+# Vectors
+
+## The basics
+
+### What we can do with vectors:  
+
+#### Make a vector c()  
+
+You can make a vector by using the function c() (concatenate). Here is an example of vectors myFirstvector, and myFirstSequence:
+
+```{r}
+myFirstVector <- c("some words","p","word", "last one")
+myFirstSequence <- 1:4
+```
+
+---
+
+## Subsetting [ ]
+
+Print the whole vector
+
+```{r}
+myFirstVector
+myFirstSequence
+```
+
+Print third element in a vector
+```{r}
+myFirstVector[3]
+myFirstSequence[3]
+```
+
+---
+
+### Access multiple elements:  
+
+1) BY POSITION  
+
+Provide A VECTOR of positions to look at:  
+```{r}
+myFirstVector
+```
+
+THIS WON'T WORK:
+```{r, eval=FALSE}
+myFirstVector[1,3]
+```
+
+```{r}
+myFirstVector[c(1,3)]
+```
+
+```{r}
+somePositions <- c(1,3)
+somePositions
+```
+
+```{r}
+myFirstVector[somePositions]
+```
+
+---
+
+### Access multiple elements:  
+
+2) BY INCLUSION  
+
+Provide a LOGICAL vector :  
+```{r}
+myFirstVector
+myFirstVector[c(TRUE, FALSE, TRUE,FALSE)]
+```
+
+```{r}
+someLogicalVector <- c(TRUE,TRUE, FALSE, FALSE)
+someLogicalVector
+```
+
+```{r}
+myFirstVector[someLogicalVector]
+```
+
+
+---
+
+### Exercise! 
+
+1. Create a vector named myvector that contains numbers 15,16,17,18 and 20.  
+2. Get 2nd and 4th number in the vector by subsetting.  
+3. Get 2nd and 4th number in the vector by providing a logical vector.  
+
+
+Solution: 
+CTRL+Alt+i will insert a new chunk  
+
+
+---
+
+### Think about it!
+
+#### What happened here??:  
+
+```{r}
+someothervector <- c(1,0,1,0,1)
+myFirstVector
+myFirstVector[someothervector]
+myFirstVector[as.logical(someothervector)]
+```
+
+--
+
+### Basic operation on vectors  
+
+Same as on numbers:  
+    +  
+    -  
+    /  
+    *  
+
+Example:   
+
+#### Multiplication  by constant  
+
+```{r}
+someothervector
+someothervector * 0.5
+```
+
+---
+
+#### Multiplication by other vector:
+
+I) SAME size  
+
+```{r}
+someothervector
+1:5
+someothervector * 1:5
+```
+
+II) DIFFERENT size : recycling *because why not.*
+
+```{r}
+someothervector
+c(0.3,0.1)
+someothervector*c(0.3,0.1)
+# c(1,0,1,0,1)* c(0.3, 0.1, 0.3, 0.1,0.3, 0.1)
+c(1,2,3,4,5,6) * 1:2 # doesnt produce a warning c(1,2,3,4,5,6) * c(1,2, 1,2, 1,2)
+```
+
+---
+
+### Basic comparisons  
+
+The following will return a logical vector for every compared position:
+
+```{r}
+someothervector
+someothervector == 1
+```
+
+```{r}
+someothervector == c(1,0,1,0,1)
+```
+
+```{r}
+someothervector
+someothervector>0
+```
+
+--
+
+#### what happened here?  
+
+```{r}
+someothervector[someothervector>0]
+
+```
+*remember: subsetting by logical indices returns ELEMENTS on POSITIONS WHICH ARE TRUE*
+
+---
+### Exercise: Multiplication, recycling and comparison.   
+1. Multiply your myvector by c(0.1, 0.2)  
+     -> what do you expect to get??
+2. Check if you get what you expected by comparing it to vector you expect to get :)   
+
+
+Solution:  
+(get new chunk by ctrl+alt+i)
+
+
+---
+
+### Exercise: Multiplication, recycling and comparison.   
+1. Return only ELEMENTS in myvector that are smaller then 17.
+     -> hint - use subsetting and comparison. 
+
+
+```{r, eval=FALSE}
+myvector[ ??? ]
+
+```
+
+
+
+
+---
+
+### Logical operators
+
+AND: & 
+
+```{r, echo=FALSE}
+data.frame('first_second'=c(TRUE, FALSE),
+           'TRUE'=c(TRUE, FALSE),
+           'FALSE'=c(FALSE, FALSE))
+```
+
+OR: |  
+
+```{r, echo=FALSE}
+data.frame('first_second'=c(TRUE, FALSE),
+           'TRUE'=c(TRUE, TRUE),
+           'FALSE'=c(TRUE, FALSE))
+```
+
+NOT: ! 
+TRUE -> FALSE  
+FALSE -> TRUE 
+
+They are used in a following way: 
+
+```{r, eval=FALSE}
+firstLogical <- c(TRUE, TRUE, FALSE, FALSE) 
+secondLogical <- c(TRUE, FALSE, TRUE, FALSE)
+firstLogical & secondLogical
+firstLogical | secondLogical
+! firstLogical
+```
+
+---
+
+### Exercise: Subset by logical indexes
+
+remember:  
+     x == 0 - where is x equal to 0  
+     x%%5 -> gives you the modulo while dividing x by 5  
+     x != 0 - not equal to   
+
+1. Return all the elements from your myvector that are divisable by 3.  
+
+
+extra:
+2. Return all the elements from your myvector which are on EVEN positions (2,4,6,...)  
+
+
+## Functions 
+#### Some useful functions  
+
+---
+
+### length - Gives you the length of the vector:    
+
+```{r}
+length(someothervector)
+```
+
+--
+
+### unique -Gives you all unique elements in your vector:   
+```{r}
+unique(someothervector)
+```
+
+--
+### table : gives you list of all elements and counts them  
+
+```{r}
+table(someothervector)
+```
+
+---
+## Math:  
+
+
+```{r}
+sum(someothervector)
+mean(someothervector)
+sd(someothervector)
+summary(someothervector)
+```
+
+
+---
+
+## more random math:  
+
+### sample - gives you random numbers from a vector
+```{r}
+sample(1:100, 10)
+```
+
+--
+
+### rnorm - gives you 10 random numbers from normal distribution with mean=0 and sd=1  
+
+```{r}
+rnorm(10, mean = 0, sd = 1)
+```
+
+--
+
+analogously, rpois, runif
+
+```{r,eval=FALSE}
+runif(n = 10, min=10, max=20)
+```
+
+---
+## Exercise!  
+
+What will the following  produce? 
+
+     x=seq(1,6, by=2) 
+     x[x>4]           
+     mean(x)          
+     median(x)  
+     x[c(T,F)]  
+     rev(x)  
+
+Create a sequence of numbers from 1 to 1000 and save it in a vector myseq.  
+
+Part 1: What is the mean of the elements which are larger then the median?  
+
+Part 2: What is the sum of every second element?  
+
+Part 3: sum all the elements pairwise by summing the first one with the last one,
+second one with second to last, and so on.
+
+
+### HELP!!??!!
+
+```{r, eval=FALSE}
+?runif
+example(runif)
+```
+
+---
+
+
+### Super extra if you are really bored with subetting and want some challenge
+
+###  Exercise - estimate pi
+Do the following: 
+
+#### Create random points in 2D:  
+
+
+1. Make a vector x with 1 000 000 random numbers uniformly distributed from -1 to 1.  
+2. Make another vector y with 1 000 000 random numbers uniformly distributed from -1 to 1.  
+
+Calculate percentage of points that fall within the circle:  
+Calculate distance from center for each point!  
+
+3. Create a vector dist that will calculate the result of x^2 + y^2   
+4. Create a logical vector insideCircle that will check if dist is smaller then 1^2
+5. Calculate the ratio of points that fall into the circle.  
+
+     Useful functions:
+     
+     length(x) : vector length  
+     as.numeric(x): conversion to num  
+     mean(x): mean of all values in x
+     
+
+
+pi = 3.1415926535...  
